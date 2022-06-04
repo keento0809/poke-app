@@ -1,6 +1,7 @@
 import React from "react";
+import Head from "next/head";
 
-const Meta = (props) => {
+const Meta = ({ title, keywords, description }) => {
   return (
     <Head>
       <meta name="viewpoint" content="width=device-width,initial-scale=1" />
@@ -8,7 +9,7 @@ const Meta = (props) => {
       <meta name="description" content={description} />
       <meta charSet="utf-8" />
       <link rel="icon" href="/favicon.ico" />
-      <title>{props.title}</title>
+      <title>{title}</title>
     </Head>
   );
 };
