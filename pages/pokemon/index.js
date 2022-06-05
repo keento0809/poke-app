@@ -55,21 +55,19 @@ const Pokemon = ({ results }) => {
             placeholder="Search"
             required=""
           />
-          {/* <button
-            type="submit"
-            className="text-white absolute right-2.5 bottom-2.5 bg-purple-500 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-500 font-medium rounded-lg text-sm px-4 py-2 dark:bg-purple-600 dark:hover:bg-purple-600 dark:focus:ring-purple-700"
-          >
-            Search
-          </button> */}
         </div>
       </form>
       <div className="min-h-360">
-        <div className="max-h-350 overflow-scroll">
+        <div className="max-h-350 overflow-scroll my-6">
           {displayData.map((pokemon, index) => {
+            const pokemonIndex = pokemon.url.substring(
+              34,
+              pokemon.url.length - 1
+            );
             return (
               <div className="py-3" key={index}>
                 <p className="text-purple-400 text-lg">
-                  <Link href={`/pokemon/${index + 1}`}>{pokemon.name}</Link>
+                  <Link href={`/pokemon/${pokemonIndex}`}>{pokemon.name}</Link>
                 </p>
               </div>
             );

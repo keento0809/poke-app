@@ -18,7 +18,7 @@ export default function Home() {
         </h2>
         {/* <!-- Code block for button with black outline starts --> */}
         <button className="mx-2 my-2 bg-white transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 rounded border border-purple-400 text-purple-400 px-8 py-3 text-sm hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500">
-          <Link href="/home">Get started</Link>
+          <Link href="/pokemon">Get started</Link>
         </button>
       </main>
 
