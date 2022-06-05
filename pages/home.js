@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import Header from "../layout/Header";
-import Meta from "../components/Meta/Meta";
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
 const home = () => {
@@ -24,7 +23,10 @@ const home = () => {
   return (
     <Fragment>
       <div className={styles.main}>
-        <h2>Home</h2>
+        <h2 className="text-xl text-purple-400 font-bold">Home</h2>
+        <button className="mx-2 my-2 bg-white transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 rounded border border-purple-400 text-purple-400 px-8 py-3 text-sm hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500">
+          <Link href="/pokemon">Explore Pokemon</Link>
+        </button>
       </div>
     </Fragment>
   );
