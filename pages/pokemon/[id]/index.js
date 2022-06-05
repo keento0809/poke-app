@@ -87,9 +87,9 @@ const PokemonDetail = ({ fetchedPokemon }) => {
               <div className="w-full lg:w-1/3 flex-col flex justify-center items-center px-12 py-8">
                 {fetchedPokemon.stats.map((stats, index) => {
                   return (
-                    <div>
+                    <div key={index}>
                       <h2
-                        key={index}
+                        // key={index}
                         className="text-center text-2xl text-gray-800 dark:text-gray-100 font-medium tracking-normal"
                       >
                         {stats.base_stat}
