@@ -8,8 +8,8 @@ const PokemonDetail = ({
   fixedEvolvesTo,
   fixedEvolvesPokemon,
 }) => {
-  console.log(fixedEvolution);
-  console.log(fixedEvolvesPokemon.sprites.other.home.front_default);
+  console.log(fixedEvolution.chain.evolves_to);
+  // console.log(fixedEvolvesPokemon.sprites.other.home.front_default);
 
   return (
     <div className="text-center">
@@ -108,23 +108,37 @@ const PokemonDetail = ({
                   );
                 })}
               </div>
-              {}
               <div className="w-full lg:w-1/3 px-12 border-t border-b lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
                 <div className="pb-3">
                   <h3 className="text-xl">Evolution</h3>
                 </div>
                 <div className="mx-auto pb-4">
-                  <img
-                    className="inline-block"
-                    width="100px"
-                    height="100px"
-                    src={`${fixedEvolvesPokemon.sprites.other.home.front_default}`}
-                  />
+                  {fixedEvolvesPokemon && (
+                    <img
+                      className="inline-block"
+                      width="100px"
+                      height="100px"
+                      src={`${
+                        fixedEvolvesPokemon
+                          ? fixedEvolvesPokemon.sprites.other.home.front_default
+                          : ""
+                      }`}
+                    />
+                  )}
+                  {!fixedEvolvesPokemon && (
+                    <div className="min-h-100 flex justify-center items-center">
+                      <p>This Pokemon has No evolution</p>
+                    </div>
+                  )}
                 </div>
                 <div className="py-4">
                   <button className="mx-2 my-2 bg-white transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 rounded border border-purple-400 text-purple-400 rounded-lg px-12 py-3 text-sm hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500">
-                    <Link href={`/pokemon/${fixedEvolvesPokemon.id}`}>
-                      Detail
+                    <Link
+                      href={`/pokemon/${
+                        fixedEvolvesPokemon ? fixedEvolvesPokemon.id : ""
+                      }`}
+                    >
+                      {fixedEvolvesPokemon ? "Detail" : "BACK"}
                     </Link>
                   </button>
                 </div>
@@ -170,11 +184,7 @@ export const getStaticProps = async ({ params }) => {
   const resSpecies = await fetch(
     `https://pokeapi.co/api/v2/pokemon-species/${params.id}`
   );
-  const res = await fetch(
-    `https://pokeapi.co/api/v2/evolution-chain/${params.id}`
-  );
 
-  const fetchedEvolution = await res.json();
   const fetchedSpecies = await resSpecies.json();
   const fetchedPokemon = await response.json();
 
@@ -183,21 +193,30 @@ export const getStaticProps = async ({ params }) => {
   );
   const fixedEvolution = await fixedEvolutionRes.json();
 
-  const evolvesToRes = await fetch(
-    `${fixedEvolution.chain.evolves_to[0].species.url}`
-  );
-  const fixedEvolvesTo = await evolvesToRes.json();
+  // declare variables
+  let fixedEvolvesTo = "";
+  let fixedEvolvesPokemon = "";
 
-  const fixedEvolvesPokemonRes = await fetch(
-    `${fixedEvolvesTo.varieties[0].pokemon.url}`
-  );
-  const fixedEvolvesPokemon = await fixedEvolvesPokemonRes.json();
+  if (
+    fixedEvolution !== "" &&
+    fixedEvolution.chain.evolves_to[0]?.species.url
+  ) {
+    const evolvesToRes = await fetch(
+      `${fixedEvolution.chain.evolves_to[0].species.url}`
+    );
+    fixedEvolvesTo = await evolvesToRes.json();
+  }
+
+  if (fixedEvolvesTo !== "" && fixedEvolvesTo.varieties[0].pokemon.url) {
+    const fixedEvolvesPokemonRes = await fetch(
+      `${fixedEvolvesTo.varieties[0].pokemon.url}`
+    );
+    fixedEvolvesPokemon = await fixedEvolvesPokemonRes.json();
+  }
 
   return {
     props: {
       fetchedPokemon,
-      // fetchedEvolution,
-      // fetchedSpecies,
       fixedEvolution,
       fixedEvolvesTo,
       fixedEvolvesPokemon,
@@ -222,7 +241,6 @@ export const getStaticPaths = async () => {
   console.log(paths);
 
   return {
-    // paths: [{ params: { id: "1" } }],
     paths,
     fallback: false,
   };
