@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       minHeight: {
         100: "100px",
-        360: "360px",
+        398: "398px",
       },
       maxHeight: {
         350: "350px",

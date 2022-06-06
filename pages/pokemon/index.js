@@ -17,6 +17,27 @@ const Pokemon = ({ results }) => {
     setDisplayData(searchResults);
   };
 
+  const fetchWeather = async () => {
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=49.2846717&lon=-123.1200546&appid=806b5a9230bb5d5e4370ac1b77652918`
+    );
+    const data = await res.json();
+    console.log(data);
+  };
+
+  const fetchGeoData = async () => {
+    const res = await fetch(
+      "http://api.openweathermap.org/geo/1.0/reverse?lat=49.2846717&lon=-123.1200546&limit=2&appid=806b5a9230bb5d5e4370ac1b77652918"
+    );
+    const data = await res.json();
+    console.log(data);
+  };
+
+  useEffect(() => {
+    // fetchWeather();
+    // fetchGeoData();
+  }, []);
+
   return (
     <div className={styles.main}>
       <h2 className="text-xl text-purple-400 font-bold">Pokemon</h2>
@@ -56,7 +77,7 @@ const Pokemon = ({ results }) => {
           />
         </div>
       </form>
-      <div className="min-h-360">
+      <div className="min-h-398">
         <div className="max-h-350 overflow-scroll my-6">
           {displayData.map((pokemon, index) => {
             const pokemonIndex = pokemon.url.substring(

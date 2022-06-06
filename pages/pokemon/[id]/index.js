@@ -8,7 +8,14 @@ const PokemonDetail = ({
   fixedEvolvesTo,
   fixedEvolvesPokemon,
 }) => {
-  console.log(fixedEvolution.chain.evolves_to);
+  console.log(fetchedPokemon.id);
+  console.log(
+    fixedEvolution.chain.evolves_to[0].species.url.substring(
+      42,
+      fixedEvolution.chain.evolves_to[0].species.url.length - 1
+    )
+  );
+  // console.log(fixedEvolvesPokemon);
   // console.log(fixedEvolvesPokemon.sprites.other.home.front_default);
 
   return (
@@ -201,8 +208,19 @@ export const getStaticProps = async ({ params }) => {
     fixedEvolution !== "" &&
     fixedEvolution.chain.evolves_to[0]?.species.url
   ) {
+    // original
+    // const evolvesToRes = await fetch(
+    //   `${fixedEvolution.chain.evolves_to[0].species.url}`
+    // );
+    // test
     const evolvesToRes = await fetch(
-      `${fixedEvolution.chain.evolves_to[0].species.url}`
+      fetchedPokemon.id ==
+        fixedEvolution.chain.evolves_to[0].species.url.substring(
+          42,
+          fixedEvolution.chain.evolves_to[0].species.url.length - 1
+        )
+        ? `${fixedEvolution.chain.evolves_to[0].evolves_to[0].species.url}`
+        : `${fixedEvolution.chain.evolves_to[0].species.url}`
     );
     fixedEvolvesTo = await evolvesToRes.json();
   }
