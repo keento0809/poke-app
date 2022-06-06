@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Link from "next/link";
 import { server } from "../../../config/index";
 
-const PokemonDetail = ({ fetchedPokemon }) => {
-  console.log(fetchedPokemon.stats);
+const PokemonDetail = ({
+  fetchedPokemon,
+  fixedEvolution,
+  fixedEvolvesTo,
+  fixedEvolvesPokemon,
+}) => {
+  console.log(fixedEvolution);
+  console.log(fixedEvolvesPokemon.sprites.other.home.front_default);
 
   return (
     <div className="text-center">
@@ -76,7 +83,7 @@ const PokemonDetail = ({ fetchedPokemon }) => {
                       <a
                         key={index}
                         tab-index="0"
-                        className="cursor-pointer hover:opacity-75  bg-gray-200 text-gray-600 dark:text-gray-100 dark:bg-gray-700 rounded text-xs leading-3 py-2 px-3"
+                        className="cursor-pointer hover:opacity-75 border border-purple-400 dark:border-purple-500 mx-4  bg-white text-gray-600 dark:text-gray-100 dark:bg-gray-700 rounded text-xs leading-3 py-2 px-3"
                       >
                         {pokemonType.type.name}
                       </a>
@@ -101,6 +108,52 @@ const PokemonDetail = ({ fetchedPokemon }) => {
                   );
                 })}
               </div>
+              {}
+              <div className="w-full lg:w-1/3 px-12 border-t border-b lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
+                <div className="pb-3">
+                  <h3 className="text-xl">Evolution</h3>
+                </div>
+                <div className="mx-auto pb-4">
+                  <img
+                    className="inline-block"
+                    width="100px"
+                    height="100px"
+                    src={`${fixedEvolvesPokemon.sprites.other.home.front_default}`}
+                  />
+                </div>
+                <div className="py-4">
+                  <button className="mx-2 my-2 bg-white transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 rounded border border-purple-400 text-purple-400 rounded-lg px-12 py-3 text-sm hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500">
+                    <Link href={`/pokemon/${fixedEvolvesPokemon.id}`}>
+                      Detail
+                    </Link>
+                  </button>
+                </div>
+                {/* <div className="flex flex-row items-start justify-center w-full">
+                  <div className="">
+                    <p>{fixedEvolution.chain.evolves_to[0].species.name}</p>
+                    <span className="text-xs">Name</span>
+                  </div>
+                  <div className="mx-5 lg:mx-3 xl:mx-6 px-8 lg:px-4 xl:px-8 border-l border-r">
+                    <p className="text-md">
+                      Lv.
+                      {
+                        fixedEvolution.chain.evolves_to[0].evolution_details[0]
+                          .min_level
+                      }
+                    </p>
+                    <span className="text-xs">Min_Level</span>
+                  </div>
+                  <div className="">
+                    <p className="text-md">
+                      {
+                        fixedEvolution.chain.evolves_to[0].evolution_details[0]
+                          .trigger.name
+                      }
+                    </p>
+                    <span className="text-xs">Method</span>
+                  </div>
+                </div> */}
+              </div>
             </div>
           </div>
         </div>
@@ -110,15 +163,44 @@ const PokemonDetail = ({ fetchedPokemon }) => {
 };
 
 export const getStaticProps = async ({ params }) => {
+  // original
   const response = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${params.id}`
   );
+  const resSpecies = await fetch(
+    `https://pokeapi.co/api/v2/pokemon-species/${params.id}`
+  );
+  const res = await fetch(
+    `https://pokeapi.co/api/v2/evolution-chain/${params.id}`
+  );
 
+  const fetchedEvolution = await res.json();
+  const fetchedSpecies = await resSpecies.json();
   const fetchedPokemon = await response.json();
+
+  const fixedEvolutionRes = await fetch(
+    `${fetchedSpecies.evolution_chain.url}`
+  );
+  const fixedEvolution = await fixedEvolutionRes.json();
+
+  const evolvesToRes = await fetch(
+    `${fixedEvolution.chain.evolves_to[0].species.url}`
+  );
+  const fixedEvolvesTo = await evolvesToRes.json();
+
+  const fixedEvolvesPokemonRes = await fetch(
+    `${fixedEvolvesTo.varieties[0].pokemon.url}`
+  );
+  const fixedEvolvesPokemon = await fixedEvolvesPokemonRes.json();
 
   return {
     props: {
       fetchedPokemon,
+      // fetchedEvolution,
+      // fetchedSpecies,
+      fixedEvolution,
+      fixedEvolvesTo,
+      fixedEvolvesPokemon,
     },
   };
 };
