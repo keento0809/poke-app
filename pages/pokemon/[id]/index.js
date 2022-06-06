@@ -9,14 +9,6 @@ const PokemonDetail = ({
   fixedEvolvesPokemon,
 }) => {
   console.log(fetchedPokemon.id);
-  console.log(
-    fixedEvolution.chain.evolves_to[0].species.url.substring(
-      42,
-      fixedEvolution.chain.evolves_to[0].species.url.length - 1
-    )
-  );
-  // console.log(fixedEvolvesPokemon);
-  // console.log(fixedEvolvesPokemon.sprites.other.home.front_default);
 
   return (
     <div className="text-center">
