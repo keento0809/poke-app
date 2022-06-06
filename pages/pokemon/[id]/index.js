@@ -8,7 +8,13 @@ const PokemonDetail = ({
   fixedEvolvesTo,
   fixedEvolvesPokemon,
 }) => {
-  console.log(fetchedPokemon.id);
+  console.log(fixedEvolution);
+  console.log(
+    fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
+      42,
+      fixedEvolution.chain.evolves_to[0].species.url.length - 1
+    )
+  );
 
   return (
     <div className="text-center">
@@ -196,23 +202,26 @@ export const getStaticProps = async ({ params }) => {
   let fixedEvolvesTo = "";
   let fixedEvolvesPokemon = "";
 
+  // check if 0 or 2 or 3
+  // if 2
   if (
     fixedEvolution !== "" &&
     fixedEvolution.chain.evolves_to[0]?.species.url
   ) {
+    let evolvesToRes;
+    // if 3
+    if (fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url) {
+      evolvesToRes = await fetch(
+        `${fixedEvolution.chain.evolves_to[0].evolves_to[0].species.url}`
+      );
+    }
     // original
     // const evolvesToRes = await fetch(
     //   `${fixedEvolution.chain.evolves_to[0].species.url}`
     // );
     // test
-    const evolvesToRes = await fetch(
-      fetchedPokemon.id ==
-        fixedEvolution.chain.evolves_to[0].species.url.substring(
-          42,
-          fixedEvolution.chain.evolves_to[0].species.url.length - 1
-        )
-        ? `${fixedEvolution.chain.evolves_to[0].evolves_to[0].species.url}`
-        : `${fixedEvolution.chain.evolves_to[0].species.url}`
+    evolvesToRes = await fetch(
+      `${fixedEvolution.chain.evolves_to[0].species.url}`
     );
     fixedEvolvesTo = await evolvesToRes.json();
   }
