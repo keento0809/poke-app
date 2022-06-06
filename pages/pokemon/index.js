@@ -11,7 +11,6 @@ const Pokemon = ({ results }) => {
 
   const handleSearch = () => {
     const inputValue = searchInputRef.current.value;
-    console.log(inputValue);
     const searchResults = defaultResults.filter((pokemon) => {
       return pokemon.name.includes(inputValue.toLowerCase());
     });
