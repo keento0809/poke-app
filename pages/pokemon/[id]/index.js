@@ -13,7 +13,8 @@ const PokemonDetail = ({
     fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
       42,
       fixedEvolution.chain.evolves_to[0].species.url.length - 1
-    )
+    ),
+    fetchedPokemon.id
   );
 
   return (
@@ -204,17 +205,53 @@ export const getStaticProps = async ({ params }) => {
 
   // check if 0 or 2 or 3
   // if 2
+  let evolvesToRes;
   if (
+    fixedEvolution !== "" &&
+    fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url &&
+    fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
+      42,
+      fixedEvolution.chain.evolves_to[0].species.url.length - 1
+    ) == fetchedPokemon.id
+    //   ||
+    // (fixedEvolution !== "" &&
+    //   fixedEvolution.chain.evolves_to[0]?.species.url.substring(
+    //     42,
+    //     fixedEvolution.chain.evolves_to[0].species.url.length - 1
+    //   ) == undefined)
+  ) {
+    fixedEvolvesTo = "";
+  } else if (
+    fixedEvolution !== "" &&
+    fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url &&
+    fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
+      42,
+      fixedEvolution.chain.evolves_to[0].species.url.length - 1
+    ) ==
+      fetchedPokemon.id + 1
+  ) {
+    evolvesToRes = await fetch(
+      `${fixedEvolution.chain.evolves_to[0].evolves_to[0].species.url}`
+    );
+    fixedEvolvesTo = await evolvesToRes.json();
+  } else if (
     fixedEvolution !== "" &&
     fixedEvolution.chain.evolves_to[0]?.species.url
   ) {
-    let evolvesToRes;
+    // let evolvesToRes;
     // if 3
-    if (fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url) {
-      evolvesToRes = await fetch(
-        `${fixedEvolution.chain.evolves_to[0].evolves_to[0].species.url}`
-      );
-    }
+    // if (
+    //   fixedEvolution.chain.evolves_to[0].evolves_to[0].species.url ||
+    //   fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
+    //     42,
+    //     fixedEvolution.chain.evolves_to[0].species.url.length - 1
+    //   ) == fetchedPokemon.id
+    // ) {
+    //   evolvesToRes = await fetch(
+    //     `${fixedEvolution.chain.evolves_to[0].evolves_to[0].species.url}`
+    //   );
+    // }
+
     // original
     // const evolvesToRes = await fetch(
     //   `${fixedEvolution.chain.evolves_to[0].species.url}`
