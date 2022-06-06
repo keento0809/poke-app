@@ -7,6 +7,7 @@ module.exports = {
   theme: {
     extend: {
       minHeight: {
+        100: "100px",
         360: "360px",
       },
       maxHeight: {
