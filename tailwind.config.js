@@ -6,6 +6,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        345: "345px",
+        500: "500px",
+        650: "650px",
+      },
       minHeight: {
         100: "100px",
         398: "398px",
