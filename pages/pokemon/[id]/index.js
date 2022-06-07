@@ -10,6 +10,10 @@ const PokemonDetail = ({
 }) => {
   console.log(fixedEvolution);
   console.log(
+    fixedEvolution.chain.evolves_to[0]?.species.url.substring(
+      42,
+      fixedEvolution.chain.evolves_to[0].species.url.length - 1
+    ),
     fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
       42,
       fixedEvolution.chain.evolves_to[0].species.url.length - 1
@@ -207,18 +211,20 @@ export const getStaticProps = async ({ params }) => {
   // if 2
   let evolvesToRes;
   if (
-    fixedEvolution !== "" &&
-    fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url &&
-    fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
+    (fixedEvolution !== "" &&
+      fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url &&
+      fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
+        42,
+        fixedEvolution.chain.evolves_to[0].species.url.length - 1
+      ) == fetchedPokemon.id) ||
+    (fixedEvolution.chain.evolves_to[0]?.species.url.substring(
       42,
       fixedEvolution.chain.evolves_to[0].species.url.length - 1
-    ) == fetchedPokemon.id
-    //   ||
-    // (fixedEvolution !== "" &&
-    //   fixedEvolution.chain.evolves_to[0]?.species.url.substring(
-    //     42,
-    //     fixedEvolution.chain.evolves_to[0].species.url.length - 1
-    //   ) == undefined)
+    ) == fetchedPokemon.id &&
+      fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
+        42,
+        fixedEvolution.chain.evolves_to[0].species.url.length - 1
+      ) == undefined)
   ) {
     fixedEvolvesTo = "";
   } else if (
