@@ -17,17 +17,9 @@ const Pokemon = ({ results }) => {
     setDisplayData(searchResults);
   };
 
-  const fetchWeather = async () => {
-    const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=49.2846717&lon=-123.1200546&appid=806b5a9230bb5d5e4370ac1b77652918`
-    );
-    const data = await res.json();
-    console.log(data);
-  };
-
   const fetchGeoData = async () => {
     const res = await fetch(
-      "http://api.openweathermap.org/geo/1.0/reverse?lat=49.2846717&lon=-123.1200546&limit=2&appid=806b5a9230bb5d5e4370ac1b77652918"
+      "http://api.openweathermap.org/geo/1.0/direct?q={cityName}&limit={limit}&appid={APIkey}"
     );
     const data = await res.json();
     console.log(data);
