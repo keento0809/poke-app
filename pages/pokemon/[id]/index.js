@@ -288,7 +288,7 @@ export const getStaticProps = async ({ params }) => {
 
 export const getStaticPaths = async () => {
   const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151`
+    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=251`
   );
 
   const allData = await response.json();

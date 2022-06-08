@@ -19,15 +19,15 @@ const Pokemon = ({ results }) => {
 
   const fetchGeoData = async () => {
     const res = await fetch(
-      "http://api.openweathermap.org/geo/1.0/direct?q={cityName}&limit={limit}&appid={APIkey}"
+      "http://api.openweathermap.org/geo/1.0/direct?q=Vancouver&limit=1&appid=806b5a9230bb5d5e4370ac1b77652918"
     );
     const data = await res.json();
-    console.log(data);
+    console.log(data[0].lat, data[0].lon);
   };
 
   useEffect(() => {
     // fetchWeather();
-    // fetchGeoData();
+    fetchGeoData();
   }, []);
 
   return (
