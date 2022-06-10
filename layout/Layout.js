@@ -8,9 +8,7 @@ const Layout = (props) => {
       <Meta />
       <Header />
       <div className="container mx-auto">
-        <main className="main" style={{ paddingTop: "60px" }}>
-          {props.children}
-        </main>
+        <main className="main">{props.children}</main>
       </div>
     </>
   );

@@ -17,11 +17,11 @@ const Header = () => {
               className="mr-3 h-6 sm:h-9"
               alt="Flowbite Logo"
             /> */}
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="cursor-pointer self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               PokeApp
             </span>
           </Link>
-          <button
+          {/* <button
             data-collapse-toggle="mobile-menu"
             type="button"
             className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -54,8 +54,8 @@ const Header = () => {
                 clipRule="evenodd"
               ></path>
             </svg>
-          </button>
-          <div className="hidden w-full md:block md:w-auto" id="mobile-menu">
+          </button> */}
+          {/* <div className="hidden w-full md:block md:w-auto" id="mobile-menu">
             <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
               <li>
                 <a
@@ -99,7 +99,7 @@ const Header = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </nav>
     </>
