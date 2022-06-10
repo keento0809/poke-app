@@ -43,13 +43,9 @@ const Pokemon = ({ results, resultsData }) => {
     setLoadCount((loadCount += 1));
   };
 
-  function handleToggleFilter() {
-    setIsFilterShown(!isFilterShown);
-  }
-
   return (
     <div className={styles.main}>
-      <h2 className="text-xl text-purple-400 font-bold">Pokemon</h2>
+      <h2 className="text-xl pb-3 text-purple-400 font-bold">Pokemon</h2>
 
       <form
         className="w-10/12 max-w-345 md:max-w-500 xl:max-w-650 mx-auto"
@@ -62,7 +58,7 @@ const Pokemon = ({ results, resultsData }) => {
           Search
         </label>
         <div className="relative ml-auto mr-auto">
-          <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+          <div className="flex absolute inset-y-0 left-0 items-center pl-3 cursor-pointer">
             <svg
               className="w-5 h-5 text-gray-500 dark:text-gray-400"
               fill="none"
@@ -89,9 +85,9 @@ const Pokemon = ({ results, resultsData }) => {
           />
         </div>
       </form>
-      <div className="min-h-600 text-center">
+      <div className="text-center">
         <div
-          className="overflow-scroll max-h-500 my-6 flex flex-row flex-wrap"
+          className="overflow-scroll max-h-500 md:max-h-450 lg:max-h-420 my-6 flex flex-row flex-wrap"
           // styles={{ maxHeight: "380px" }}
         >
           {isSearching &&
@@ -119,7 +115,10 @@ const Pokemon = ({ results, resultsData }) => {
               // );
               const pokemonIndex = pokemon.id;
               return (
-                <div className="py-3 basis-4/12 md:basis-3/12" key={index}>
+                <div
+                  className="py-3 basis-4/12 md:basis-3/12 xl:basis-1/5"
+                  key={index}
+                >
                   <PokemonDetail
                     pokemonId={pokemonIndex}
                     name={pokemon.name}
@@ -133,7 +132,7 @@ const Pokemon = ({ results, resultsData }) => {
         {!isSearching && (
           <button
             onClick={handleLoadMore}
-            className="mx-2 my-2 bg-white transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 rounded border border-purple-400 text-purple-400 px-8 py-3 text-sm hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500"
+            className="mx-2 my-5 bg-white transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 rounded border border-purple-400 text-purple-400 px-8 py-3 text-sm hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500"
           >
             Load More
           </button>
@@ -157,12 +156,6 @@ export const getStaticProps = async () => {
     const data = await res.json();
     resultsData.push(data);
   }
-
-  // for (let i = 1; i < results.length; i++) {
-  //   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-  //   const data = await response.json();
-  //   resultsData.push(data);
-  // }
 
   return {
     props: {

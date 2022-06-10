@@ -4,8 +4,7 @@
 
 .main {
   min-height: 100vh;
-  padding: 7rem 1.5rem;
-  padding-bottom: 0;
+  padding: 7rem 1.5rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -113,5 +112,11 @@
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    padding: 5rem 2rem 0;
   }
 }
