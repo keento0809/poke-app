@@ -25,7 +25,7 @@ const PokemonDetail = ({
     <>
       <div className="px-6 pt-6 flex flex-row justify-center">
         {fetchedPokemon.id > 1 && (
-          <Link href={`/pokemon/${fetchedPokemon.id - 1}`}>
+          <Link href={`/pokemon/${fetchedPokemon.id - 1}`} className="grow">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
@@ -40,6 +40,7 @@ const PokemonDetail = ({
                 d="M15 19l-7-7 7-7"
               />
             </svg>
+            {/* <span>Prev</span> */}
           </Link>
         )}
         <Link href={`/pokemon/${fetchedPokemon.id + 1}`}>
@@ -57,6 +58,7 @@ const PokemonDetail = ({
               d="M9 5l7 7-7 7"
             />
           </svg>
+          {/* <span>Next</span> */}
         </Link>
       </div>
       <div className="text-center">
