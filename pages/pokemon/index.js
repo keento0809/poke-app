@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useAppContext } from "../../context/state";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 import PokemonDetail from "../../components/Pokemon/PokemonDetail";
@@ -12,10 +13,12 @@ const Pokemon = ({ results, resultsData }) => {
   const [loadCount, setLoadCount] = useState(1);
   // declare useRef
   const searchInputRef = useRef();
-  const defaultResults = results;
-  console.log(defaultResults);
 
-  // console.log(resultsData);
+  // declare useContext
+  const favoriteCtx = useAppContext();
+  // console.log(favoriteCtx.favorites);
+
+  const defaultResults = results;
 
   const handleSearch = () => {
     const inputValue = searchInputRef.current.value;
