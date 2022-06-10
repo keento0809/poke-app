@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useAppContext } from "../../../context/state";
 import { server } from "../../../config/index";
 
 const PokemonDetail = ({
@@ -8,7 +10,7 @@ const PokemonDetail = ({
   fixedEvolvesTo,
   fixedEvolvesPokemon,
 }) => {
-  console.log(fixedEvolution);
+  console.log(fetchedPokemon);
   console.log(
     fixedEvolution.chain.evolves_to[0]?.species.url.substring(
       42,
@@ -20,16 +22,33 @@ const PokemonDetail = ({
     ),
     fetchedPokemon.id
   );
-
+  // declare useState
   const [isFavorite, setIsFavorite] = useState(false);
+
+  // declare useContext
+  const favoriteCtx = useAppContext();
+
+  // declare useRouter
+  const router = useRouter();
 
   function handleAddToFavorite() {
     setIsFavorite(true);
+    favoriteCtx.addFavorite(fetchedPokemon);
+    router.push("/pokemon");
   }
 
   function handleRemoveFavorite() {
     setIsFavorite(false);
   }
+
+  useEffect(() => {
+    const favList = favoriteCtx.favorites;
+    for (const index in favList) {
+      favList[index].name === fetchedPokemon.name
+        ? setIsFavorite(true)
+        : setIsFavorite(false);
+    }
+  }, [fetchedPokemon.id]);
 
   return (
     <div className="pt-12">
@@ -53,7 +72,6 @@ const PokemonDetail = ({
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            {/* <span>Prev</span> */}
           </Link>
         )}
         <Link
