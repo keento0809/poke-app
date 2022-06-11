@@ -12,14 +12,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h2 className="text-xl text-purple-400 font-bold">
-          Welcome to <a href="https://nextjs.org">PokeApp!</a>
-        </h2>
-        {/* <!-- Code block for button with black outline starts --> */}
-        <button className="mx-2 my-2 bg-white transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 rounded border border-purple-400 text-purple-400 px-8 py-3 text-sm hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500">
-          <Link href="/pokemon">Get started</Link>
-        </button>
+      <main className={styles.mainHero}>
+        <div className="pb-10 flex flex-col justify-center items-center">
+          <h2 className="text-xl pb-2 text-purple-400 font-bold">
+            Welcome to <a href="https://nextjs.org">PokeApp!</a>
+          </h2>
+          {/* <!-- Code block for button with black outline starts --> */}
+          <button className="mx-2 my-2 bg-white transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 rounded border border-purple-400 text-purple-400 px-8 py-3 text-sm hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500">
+            <Link href="/pokemon">Get started</Link>
+          </button>
+        </div>
       </main>
 
       <footer className={styles.footer}>
