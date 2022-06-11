@@ -64,7 +64,7 @@ const PokemonDetail = ({
 
   return (
     <div className="pt-12">
-      <div className="px-6 pt-6 flex flex-row justify-center">
+      <div className="px-6 pt-6 flex flex-row justify-around">
         {fetchedPokemon.id > 1 && (
           <Link
             href={`/pokemon/${fetchedPokemon.id - 1}`}
@@ -72,7 +72,7 @@ const PokemonDetail = ({
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 cursor-pointer"
+              className="h-6 w-6 cursor-pointer rounded-lg basis-1/3 border border-purple-400"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -92,7 +92,7 @@ const PokemonDetail = ({
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 cursor-pointer"
+            className="h-6 w-6 cursor-pointer rounded-lg basis-1/3 border border-purple-400"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -348,13 +348,20 @@ export const getStaticProps = async ({ params }) => {
   ) {
     fixedEvolvesTo = "";
   } else if (
-    fixedEvolution !== "" &&
-    fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url &&
-    fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
-      42,
-      fixedEvolution.chain.evolves_to[0].species.url.length - 1
-    ) ==
-      fetchedPokemon.id + 1
+    // test
+    (fixedEvolution !== "" &&
+      fixedEvolution.chain.evolves_to[0]?.species.url.substring(
+        42,
+        fixedEvolution.chain.evolves_to[0].species.url.length - 1
+      ) == fetchedPokemon.id) ||
+    // test ends here
+    (fixedEvolution !== "" &&
+      fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url &&
+      fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
+        42,
+        fixedEvolution.chain.evolves_to[0].species.url.length - 1
+      ) ==
+        fetchedPokemon.id + 1)
   ) {
     evolvesToRes = await fetch(
       `${fixedEvolution.chain.evolves_to[0].evolves_to[0].species.url}`
