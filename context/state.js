@@ -4,6 +4,7 @@ const AppContext = createContext();
 
 export function AppWrapper({ children }) {
   const [favorites, setFavorites] = useState([]);
+  const [isNotify, setIsNotify] = useState(false);
 
   const handleAddFavorite = (pokemon) => {
     console.log(pokemon);
@@ -16,10 +17,26 @@ export function AppWrapper({ children }) {
     setFavorites(updatedFavorites);
   };
 
+  const handleSetNotification = () => {
+    setIsNotify(true);
+    // setTimeout =
+    //   (() => {
+    //     setIsNotify(false);
+    //   },
+    //   1000);
+  };
+
+  const handleTurnoffNotification = () => {
+    setIsNotify(false);
+  };
+
   let sharedState = {
     favorites: favorites,
     addFavorite: handleAddFavorite,
     removeFavorite: handleRemoveFavorite,
+    isNotify: isNotify,
+    setNotification: handleSetNotification,
+    turnoffNotification: handleTurnoffNotification,
   };
 
   return (

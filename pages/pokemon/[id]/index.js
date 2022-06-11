@@ -36,6 +36,7 @@ const PokemonDetail = ({
     setIsFavorite(true);
     favoriteCtx.addFavorite(fetchedPokemon);
     router.push("/favorites");
+    favoriteCtx.setNotification();
   }
 
   function handleRemoveFavorite() {
@@ -55,7 +56,7 @@ const PokemonDetail = ({
 
   useEffect(() => {
     const favList = favoriteCtx.favorites;
-    console.log(favList);
+    console.log("読み込むのだー", favList);
     for (const index in favList) {
       favList[index].name === fetchedPokemon.name
         ? setIsFavorite(true)
@@ -89,25 +90,27 @@ const PokemonDetail = ({
               </svg>
             </Link>
           )}
-          <Link
-            href={`/pokemon/${fetchedPokemon.id + 1}`}
-            className="cursor-pointer"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 cursor-pointer rounded-lg basis-1/3 max-w-120 border border-purple-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
+          {fetchedPokemon.id < 251 && (
+            <Link
+              href={`/pokemon/${fetchedPokemon.id + 1}`}
+              className="cursor-pointer"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </Link>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 cursor-pointer rounded-lg basis-1/3 max-w-120 border border-purple-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
+          )}
         </div>
         <div className="text-center">
           <div className="w-full pt-6 pb-10">
