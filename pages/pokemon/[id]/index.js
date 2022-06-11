@@ -34,7 +34,7 @@ const PokemonDetail = ({
   function handleAddToFavorite() {
     setIsFavorite(true);
     favoriteCtx.addFavorite(fetchedPokemon);
-    router.push("/pokemon");
+    router.push("/favorites");
   }
 
   function handleRemoveFavorite() {
@@ -48,7 +48,19 @@ const PokemonDetail = ({
         ? setIsFavorite(true)
         : setIsFavorite(false);
     }
-  }, [fetchedPokemon.id]);
+  }, [fetchedPokemon]);
+
+  console.log(fetchedPokemon.name);
+
+  useEffect(() => {
+    const favList = favoriteCtx.favorites;
+    console.log(favList);
+    for (const index in favList) {
+      favList[index].name === fetchedPokemon.name
+        ? setIsFavorite(true)
+        : setIsFavorite(false);
+    }
+  }, []);
 
   return (
     <div className="pt-12">
