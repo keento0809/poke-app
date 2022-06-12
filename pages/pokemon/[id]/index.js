@@ -11,18 +11,18 @@ const PokemonDetail = ({
   fixedEvolvesTo,
   fixedEvolvesPokemon,
 }) => {
-  console.log(fetchedPokemon);
-  console.log(
-    fixedEvolution.chain.evolves_to[0]?.species.url.substring(
-      42,
-      fixedEvolution.chain.evolves_to[0].species.url.length - 1
-    ),
-    fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
-      42,
-      fixedEvolution.chain.evolves_to[0].species.url.length - 1
-    ),
-    fetchedPokemon.id
-  );
+  // console.log(fetchedPokemon);
+  // console.log(
+  //   fixedEvolution.chain.evolves_to[0]?.species.url.substring(
+  //     42,
+  //     fixedEvolution.chain.evolves_to[0].species.url.length - 1
+  //   ),
+  //   fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
+  //     42,
+  //     fixedEvolution.chain.evolves_to[0].species.url.length - 1
+  //   ),
+  //   fetchedPokemon.id
+  // );
   // declare useState
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -43,25 +43,27 @@ const PokemonDetail = ({
     setIsFavorite(false);
   }
 
+  function checkInFavorite(favList) {
+    for (const index in favList) {
+      console.log(favList[index].name);
+      if (favList[index].name === fetchedPokemon.name) {
+        setIsFavorite(true);
+        break;
+      }
+    }
+  }
+
   useEffect(() => {
     const favList = favoriteCtx.favorites;
-    for (const index in favList) {
-      favList[index].name === fetchedPokemon.name
-        ? setIsFavorite(true)
-        : setIsFavorite(false);
-    }
-  }, [fetchedPokemon]);
-
-  console.log(fetchedPokemon.name);
+    setIsFavorite(false);
+    checkInFavorite(favList);
+  }, [fetchedPokemon.id]);
 
   useEffect(() => {
     const favList = favoriteCtx.favorites;
-    console.log("読み込むのだー", favList);
-    for (const index in favList) {
-      favList[index].name === fetchedPokemon.name
-        ? setIsFavorite(true)
-        : setIsFavorite(false);
-    }
+    console.log("読み込むのだー");
+    setIsFavorite(false);
+    checkInFavorite(favList);
   }, []);
 
   return (
