@@ -36,11 +36,14 @@ const PokemonDetail = ({
     setIsFavorite(true);
     favoriteCtx.addFavorite(fetchedPokemon);
     router.push("/favorites");
-    favoriteCtx.setNotification();
+    favoriteCtx.setNotification("Success");
   }
 
   function handleRemoveFavorite() {
     setIsFavorite(false);
+    favoriteCtx.removeFavorite(fetchedPokemon);
+    router.push("/favorites");
+    favoriteCtx.setNotification("Delete");
   }
 
   function checkInFavorite(favList) {
@@ -61,7 +64,6 @@ const PokemonDetail = ({
 
   useEffect(() => {
     const favList = favoriteCtx.favorites;
-    console.log("読み込むのだー");
     setIsFavorite(false);
     checkInFavorite(favList);
   }, []);
@@ -152,6 +154,25 @@ const PokemonDetail = ({
                     </svg>
                   )}
                 </div>
+                {isFavorite && (
+                  <div className="absolute top-0 right-0 px-2 py-2 rounded-lg border border-purple-300">
+                    <svg
+                      onClick={handleRemoveFavorite}
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                      />
+                    </svg>
+                  </div>
+                )}
                 <div className="flex flex-col lg:flex-row mx-auto bg-white dark:bg-gray-800 shadow rounded">
                   <div className="w-full lg:w-1/3 px-12 flex flex-col items-center pt-5 pb-10">
                     <div className="">
