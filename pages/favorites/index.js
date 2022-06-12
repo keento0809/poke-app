@@ -18,6 +18,12 @@ const Favorites = () => {
     setFavoriteLength(favoriteCtx.favorites.length);
   }, [favoriteCtx.favorites.length]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      favoriteCtx.turnoffNotification();
+    }, 1000);
+  }, []);
+
   return (
     <>
       <Meta title="Favorites" />
