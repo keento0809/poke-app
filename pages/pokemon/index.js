@@ -55,11 +55,11 @@ const Pokemon = ({ results, resultsData }) => {
 
         <form
           className="w-10/12 max-w-345 md:max-w-500 xl:max-w-650 mx-auto"
-          // styles={{ maxWidth: "345px" }}
+          // styles={{ maxWidth: "345px" }} dark:text-gray-300 text-gray-900
         >
           <label
             htmlFor="default-search"
-            className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
+            className="mb-2 text-sm font-medium sr-only dark:text-gray-300 text-gray-900"
           >
             Search
           </label>
@@ -85,7 +85,7 @@ const Pokemon = ({ results, resultsData }) => {
               ref={searchInputRef}
               onKeyUp={handleSearch}
               id="default-search"
-              className="block p-4 pl-10 w-full mx-auto text-sm text-gray-900 bg-white rounded-lg border border-purple-400 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+              className="block p-4 pl-10 w-full mx-auto text-sm text-gray-900 rounded-lg border border-purple-400 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
               placeholder="Search"
               required=""
             />
@@ -138,7 +138,7 @@ const Pokemon = ({ results, resultsData }) => {
           {!isSearching && (
             <button
               onClick={handleLoadMore}
-              className="mx-2 my-5 bg-white transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 rounded border border-purple-400 text-purple-400 px-8 py-3 text-sm hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500"
+              className="mx-2 my-5 transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 rounded border border-purple-400 text-purple-400 px-8 py-3 text-sm  focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500"
             >
               Load More
             </button>
