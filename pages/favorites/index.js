@@ -5,6 +5,7 @@ import FavoritesList from "../../components/favorites/FavoritesList";
 import SuccessAlert from "../../components/UI/Alert/SuccessAlert";
 import DeleteAlert from "../../components/UI/Alert/DeleteAlert";
 import { useAppContext } from "../../context/state";
+import Button from "../../components/UI/Button/Button";
 
 const Favorites = () => {
   const [favoriteLength, setFavoriteLength] = useState(0);
@@ -38,9 +39,7 @@ const Favorites = () => {
           {favoriteLength > 0 && <FavoritesList />}
         </div>
         <div className="py-4 text-center">
-          <button className="mx-2 my-2 bg-white transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 border border-purple-400 text-purple-400 rounded-lg px-12 py-3 text-sm hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500">
-            <Link href="/pokemon">BACK</Link>
-          </button>
+          <Button link={`/pokemon`} text="BACK" />
         </div>
         {favoriteCtx.isNotify && <SuccessAlert />}
         {favoriteCtx.deleteNotify && <DeleteAlert />}

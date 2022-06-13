@@ -7,7 +7,7 @@ const Layout = (props) => {
     <>
       <Meta />
       <Header />
-      <div className="container mx-auto">
+      <div className="container mx-auto dark:bg-gray-800">
         <main className="main">{props.children}</main>
       </div>
     </>

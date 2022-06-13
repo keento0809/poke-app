@@ -3,7 +3,7 @@ import Meta from "../../../components/Meta/Meta";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useAppContext } from "../../../context/state";
-import { server } from "../../../config/index";
+import Button from "../../../components/UI/Button/Button";
 
 const PokemonDetail = ({
   fetchedPokemon,
@@ -80,7 +80,7 @@ const PokemonDetail = ({
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 cursor-pointer rounded-lg basis-1/3 max-w-120 border border-purple-400"
+                className="h-6 w-6 cursor-pointer rounded-lg basis-1/3 max-w-120 border border-purple-400 dark:border-purple-500"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -101,7 +101,7 @@ const PokemonDetail = ({
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 cursor-pointer rounded-lg basis-1/3 max-w-120 border border-purple-400"
+                className="h-6 w-6 cursor-pointer rounded-lg basis-1/3 max-w-120 border border-purple-400 dark:border-purple-500"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -121,8 +121,8 @@ const PokemonDetail = ({
             <div className="container mx-auto px-6 flex items-start justify-center">
               <div aria-label="group of cards" className="w-full relative">
                 <div
-                  className={`absolute top-0 left-0 px-2 py-2 rounded-lg border border-purple-300 ${
-                    isFavorite ? "bg-purple-200" : "bg-white"
+                  className={`absolute top-0 left-0 px-2 py-2 rounded-lg border border-purple-300 dark:border-purple-500 ${
+                    isFavorite ? "bg-purple-200" : "bg-white dark:bg-gray-800"
                   }`}
                 >
                   {!isFavorite && (
@@ -173,7 +173,7 @@ const PokemonDetail = ({
                     </svg>
                   </div>
                 )}
-                <div className="flex flex-col lg:flex-row mx-auto bg-white dark:bg-gray-800 shadow rounded">
+                <div className="flex flex-col lg:flex-row mx-auto dark:bg-gray-800 shadow rounded">
                   <div className="w-full lg:w-1/3 px-12 flex flex-col items-center pt-5 pb-10">
                     <div className="">
                       <img
@@ -206,12 +206,12 @@ const PokemonDetail = ({
                         </a>
                       </div>
                       <div className="mx-6 lg:mx-3 xl:mx-6 px-8 lg:px-4 xl:px-8 border-l border-r">
-                        <h2 className="text-gray-600 dark:text-gray-100 text-2xl leading-6 mb-2 text-center">
+                        <h2 className="dark:text-gray-100 text-gray-600 text-2xl leading-6 mb-2 text-center">
                           {fetchedPokemon.id}
                         </h2>
                         <a
                           tab-index="0"
-                          className="focus:outline-none focus:underline focus:text-gray-400 text-gray-800 hover:text-gray-400 cursor-pointer"
+                          className="focus:outline-none focus:underline focus:text-gray-400 hover:text-gray-400 cursor-pointer"
                         >
                           <p className=" dark:text-gray-100 text-sm leading-5">
                             No.
@@ -267,7 +267,7 @@ const PokemonDetail = ({
                   </div>
                   <div className="w-full lg:w-1/3 px-12 border-t border-b lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
                     <div className="pb-3">
-                      <h3 className="text-xl">Evolution</h3>
+                      <h3 className="text-xl dark:text-white">Evolution</h3>
                     </div>
                     <div className="mx-auto pb-4">
                       {fixedEvolvesPokemon && (
@@ -290,15 +290,12 @@ const PokemonDetail = ({
                       )}
                     </div>
                     <div className="py-4">
-                      <button className="mx-2 my-2 bg-white transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 rounded border border-purple-400 text-purple-400 rounded-lg px-12 py-3 text-sm hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500">
-                        <Link
-                          href={`/pokemon/${
-                            fixedEvolvesPokemon ? fixedEvolvesPokemon.id : ""
-                          }`}
-                        >
-                          {fixedEvolvesPokemon ? "Detail" : "BACK"}
-                        </Link>
-                      </button>
+                      <Button
+                        link={`/pokemon/${
+                          fixedEvolvesPokemon ? fixedEvolvesPokemon.id : ""
+                        }`}
+                        text={fixedEvolvesPokemon ? "Detail" : "BACK"}
+                      />
                     </div>
                     {/* <div className="flex flex-row items-start justify-center w-full">
                   <div className="">
