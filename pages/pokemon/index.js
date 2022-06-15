@@ -4,6 +4,7 @@ import Meta from "../../components/Meta/Meta";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 import PokemonDetail from "../../components/Pokemon/PokemonDetail";
+import Button from "../../components/UI/Button/Button";
 
 const Pokemon = ({ results, resultsData }) => {
   // declare useState
@@ -51,7 +52,9 @@ const Pokemon = ({ results, resultsData }) => {
     <>
       <Meta title="TOP" />
       <div className={styles.main}>
-        <h2 className="text-xl pb-3 text-purple-400 font-bold">Pokemon</h2>
+        <h2 className="text-xl pb-3 text-purple-400 font-bold">
+          Search Pokemon
+        </h2>
 
         <form
           className="w-10/12 max-w-345 md:max-w-500 xl:max-w-650 mx-auto"

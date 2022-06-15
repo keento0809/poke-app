@@ -11,6 +11,10 @@ body {
   /* color: ; */
 }
 
+html.dark {
+  background: rgb(31, 41, 55);
+}
+
 /* [data-theme="dark"],
 [data-theme="dark"] body,
 [data-theme="dark"] input {
