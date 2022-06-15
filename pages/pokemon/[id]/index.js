@@ -80,7 +80,7 @@ const PokemonDetail = ({
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 cursor-pointer rounded-lg basis-1/3 max-w-120 border border-purple-400 dark:border-purple-500"
+                className="h-6 w-6 cursor-pointer transition duration-150 ease-in-out rounded-lg basis-1/3 max-w-120 border border-purple-400 hover:border-purple-500 dark:border-purple-500 dark:hover:border-purple-600"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -101,7 +101,7 @@ const PokemonDetail = ({
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 cursor-pointer rounded-lg basis-1/3 max-w-120 border border-purple-400 dark:border-purple-500"
+                className="h-6 w-6 cursor-pointer transition duration-150 ease-in-out rounded-lg basis-1/3 max-w-120 border border-purple-400 hover:border-purple-500 dark:border-purple-500 dark:hover:border-purple-600"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -117,7 +117,7 @@ const PokemonDetail = ({
           )}
         </div>
         <div className="text-center">
-          <div className="w-full pt-6 pb-10">
+          <div className="w-full rounded-lg pt-6 pb-10">
             <div className="container mx-auto px-6 flex items-start justify-center">
               <div aria-label="group of cards" className="w-full relative">
                 <div
@@ -126,27 +126,29 @@ const PokemonDetail = ({
                   }`}
                 >
                   {!isFavorite && (
-                    <svg
-                      onClick={handleAddToFavorite}
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="purple"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
+                    <>
+                      <svg
+                        onClick={handleAddToFavorite}
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6 cursor-pointer"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                        />
+                      </svg>
+                    </>
                   )}
                   {isFavorite && (
                     <svg
                       onClick={handleRemoveFavorite}
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
+                      className="h-6 w-6 cursor-pointer"
                       viewBox="0 0 20 20"
                       fill="purple"
                     >
@@ -159,7 +161,7 @@ const PokemonDetail = ({
                     <svg
                       onClick={handleRemoveFavorite}
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
+                      className="h-6 w-6 cursor-pointer"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -173,7 +175,7 @@ const PokemonDetail = ({
                     </svg>
                   </div>
                 )}
-                <div className="flex flex-col lg:flex-row mx-auto dark:bg-gray-800 shadow rounded">
+                <div className="flex flex-col lg:flex-row mx-auto dark:bg-gray-800 shadow-xl dark:shadow-gray-900 rounded">
                   <div className="w-full lg:w-1/3 px-12 flex flex-col items-center pt-5 pb-10">
                     <div className="">
                       <img
@@ -183,14 +185,14 @@ const PokemonDetail = ({
                         alt=""
                       />
                     </div>
-                    <a
+                    <span
                       tab-index="0"
-                      className="focus:outline-none focus:opacity-75 hover:opacity-75 text-gray-800 dark:text-gray-100 cursor-pointer focus:underline"
+                      className="focus:outline-none text-gray-800 dark:text-gray-100 focus:underline"
                     >
                       <h2 className="py-6 text-2xl tracking-normal font-bold mb-1">
                         {fetchedPokemon.name}
                       </h2>
-                    </a>
+                    </span>
                     <div className="flex items-start">
                       <div className="">
                         <h2 className="text-gray-600 dark:text-gray-100 text-2xl leading-6 mb-2 text-center">
@@ -240,7 +242,7 @@ const PokemonDetail = ({
                           <a
                             key={index}
                             tab-index="0"
-                            className="cursor-pointer hover:opacity-75 border border-purple-400 dark:border-purple-500 mx-4  bg-white text-gray-600 dark:text-gray-100 dark:bg-gray-700 rounded text-xs leading-3 py-2 px-3"
+                            className="border border-purple-400 dark:border-purple-500 mx-4  bg-white text-gray-600 dark:text-gray-100 dark:bg-gray-700 rounded text-xs leading-3 py-2 px-3"
                           >
                             {pokemonType.type.name}
                           </a>
@@ -252,10 +254,7 @@ const PokemonDetail = ({
                     {fetchedPokemon.stats.map((stats, index) => {
                       return (
                         <div key={index}>
-                          <h2
-                            // key={index}
-                            className="text-center text-2xl text-gray-800 dark:text-gray-100 font-medium tracking-normal"
-                          >
+                          <h2 className="text-center text-2xl text-gray-800 dark:text-gray-100 font-medium tracking-normal">
                             {stats.base_stat}
                           </h2>
                           <h2 className="text-center text-sm text-gray-600 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal">
@@ -265,7 +264,7 @@ const PokemonDetail = ({
                       );
                     })}
                   </div>
-                  <div className="w-full lg:w-1/3 px-12 border-t border-b lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
+                  <div className="w-full lg:w-1/3 px-12 border-t lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
                     <div className="pb-3">
                       <h3 className="text-xl dark:text-white">Evolution</h3>
                     </div>

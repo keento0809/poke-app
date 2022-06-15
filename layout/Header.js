@@ -11,11 +11,6 @@ const Header = () => {
 
   const { theme, setTheme } = useTheme();
 
-  function handleThemeSet() {
-    console.log("クリックしたで");
-    setTheme(theme === "light" ? "dark" : "light");
-  }
-
   return (
     <>
       <nav className="fixed top-0 w-full z-10 border-gray-200 px-6 md:px-8 py-2.5 rounded dark:bg-purple-800">
@@ -26,22 +21,6 @@ const Header = () => {
             </span>
           </Link>
           <div className="">
-            <button onClick={handleThemeSet}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                />
-              </svg>
-            </button>
             <button
               data-collapse-toggle="mobile-menu"
               type="button"
