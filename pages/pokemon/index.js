@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 import PokemonDetail from "../../components/Pokemon/PokemonDetail";
 import Button from "../../components/UI/Button/Button";
+import Backdrop from "../../components/Backdrop/Backdrop";
 
 const Pokemon = ({ results, resultsData }) => {
   // declare useState
@@ -13,6 +14,7 @@ const Pokemon = ({ results, resultsData }) => {
   const [isSearching, setIsSearching] = useState(false);
   const [isFilterShown, setIsFilterShown] = useState(false);
   const [loadCount, setLoadCount] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   // declare useRef
   const searchInputRef = useRef();
 
@@ -33,6 +35,7 @@ const Pokemon = ({ results, resultsData }) => {
   };
 
   const handleLoadMore = async () => {
+    setIsLoading(true);
     const additionalData = [];
     for (
       let i = Number(loadCount) * 20 + 1;
@@ -46,11 +49,17 @@ const Pokemon = ({ results, resultsData }) => {
     console.log(additionalData);
     setDisplayData([...displayData, ...additionalData]);
     setLoadCount((loadCount += 1));
+    setIsLoading(false);
   };
+
+  useEffect(() => {
+    console.log("Load start or complete!");
+  }, [isLoading]);
 
   return (
     <>
       <Meta title="TOP" />
+      {isLoading && <Backdrop />}
       <div className={styles.main}>
         <h2 className="text-xl pb-3 text-purple-400 font-bold">
           Search Pokemon
