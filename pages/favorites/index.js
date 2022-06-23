@@ -41,6 +41,7 @@ const Favorites = () => {
         <div className="py-4 text-center">
           <Button link={`/pokemon`} text="BACK" />
         </div>
+
         {favoriteCtx.isNotify && <SuccessAlert />}
         {favoriteCtx.deleteNotify && <DeleteAlert />}
       </div>
