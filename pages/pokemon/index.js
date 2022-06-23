@@ -15,6 +15,7 @@ const Pokemon = ({ results, resultsData }) => {
   const [isFilterShown, setIsFilterShown] = useState(false);
   const [loadCount, setLoadCount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [isShowcasedAll, setIsShowcasedAll] = useState(false);
   // declare useRef
   const searchInputRef = useRef();
 
@@ -53,8 +54,9 @@ const Pokemon = ({ results, resultsData }) => {
   };
 
   useEffect(() => {
-    console.log("Load start or complete!");
-  }, [isLoading]);
+    console.log(loadCount);
+    loadCount > 12 && setIsShowcasedAll(true);
+  }, [loadCount]);
 
   return (
     <>
@@ -149,8 +151,11 @@ const Pokemon = ({ results, resultsData }) => {
           </div>
           {!isSearching && (
             <button
+              disabled={isShowcasedAll}
               onClick={handleLoadMore}
-              className="mx-2 my-5 transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 rounded border border-purple-400 text-purple-400 px-8 py-3 text-sm  focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500"
+              className={`mx-2 my-5 transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 rounded border border-purple-400 text-purple-400 px-8 py-3 text-sm  focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500 ${
+                isShowcasedAll && "opacity-40"
+              }`}
             >
               Load More
             </button>
