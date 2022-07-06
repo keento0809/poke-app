@@ -1,10 +1,10 @@
-# Project Title
+# Poke-app
 
-The name of the Project
+The name of the Project. Poke stands for the initial part of "Pokemon" indicating an application themed on Pokemon.
 
 ## Demo link:
 
-Access my site at [poke-app](https://poke-app-three-mu.vercel.app/)
+Access this project at [poke-app](https://poke-app-three-mu.vercel.app/){:target="\_blank"} !
 
 ## Table of Content:
 
@@ -23,8 +23,10 @@ Access my site at [poke-app](https://poke-app-three-mu.vercel.app/)
 
 ## Screenshots
 
-`![Writing](https://unsplash.com/photos/VBPzRgd7gfc)`
-`![Writing](pokeApp-lp-revised.png)`
+![poke-app](https://user-images.githubusercontent.com/65790344/177622366-63d2ca57-c8b1-46f7-9d2e-88adacf84cbe.png)
+
+<!-- `![Writing](https://unsplash.com/photos/VBPzRgd7gfc)` -->
+<!-- `![Writing](pokeApp-lp-revised.png)` -->
 
 <!-- Picture by [Kelly Sikkema](https://unsplash.com/@kellysikkema) -->
 
