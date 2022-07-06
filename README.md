@@ -1,10 +1,10 @@
 # Poke-app
 
-The name of the Project. Poke stands for the initial part of "Pokemon" indicating an application themed on Pokemon.
+A simple application with search Pokemon feature created with Javascript,Next.js, and Tailwind CSS.
 
 ## Demo link:
 
-Access this project at [poke-app](https://poke-app-three-mu.vercel.app/){:target="\_blank"}!
+Access this project at [poke-app](https://poke-app-three-mu.vercel.app/)!
 
 ## Table of Content:
 
@@ -19,7 +19,11 @@ Access this project at [poke-app](https://poke-app-three-mu.vercel.app/){:target
 
 ## About The App
 
-[poke-app](https://poke-app-three-mu.vercel.app/) is a simple web application introducing Poke REST API to make users enable to discover their favorite pokemons.
+[poke-app](https://poke-app-three-mu.vercel.app/) is a simple web application focusing on the usage of Poke REST API fetching data and sending requests with the Server Side Rendering that Next.js has.
+
+This application follows the basic CRUD operation as adding or deleting favorite pokemons registered by users.
+
+When it comes to design parts, I utilized TailWind CSS as CSS library and flowbite as the library in order to refer UI components for TailWind CSS.
 
 ## Screenshots
 
@@ -27,7 +31,17 @@ Access this project at [poke-app](https://poke-app-three-mu.vercel.app/){:target
 
 ## Technologies
 
-I mainly used `JavaScript`, `Next.js`, `TailWind CSS`, to create this application.
+I used
+
+- `JavaScript`
+- `Next.js`
+- `TailWind CSS`
+
+for creating this application.
+
+In addition, I introduced `next-theme` that is a library for next.js, automatically toggling light mode and dark mode based on users' screen modes.
+
+<!-- I used `JavaScript`, `Next.js`, `TailWind CSS`, to create this application. -->
 
 ## Setup
 
@@ -37,8 +51,9 @@ I mainly used `JavaScript`, `Next.js`, `TailWind CSS`, to create this applicatio
 
 ## Approach
 
-I adopted the `BEM` naming style for my css class names and ...
-
+- Utilize Next.js to simplify compositions of application as well as maximize powerful features of Next.js such as Server-Side Rendering
+- Restricted the initial number of pokemons showcased in home page considering about the workloads of server and performances of the application
+- Tried to make design simplify but have good-looking styles by taking advantage of TailWind CSS and UI components provided by flowbite.
 <!-- ## Status -->
 
 <!-- [name of project] is still in progress. `Version 2` will be out soon. -->
