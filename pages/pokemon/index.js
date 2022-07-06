@@ -54,7 +54,6 @@ const Pokemon = ({ results, resultsData }) => {
   };
 
   useEffect(() => {
-    console.log(loadCount);
     loadCount > 12 && setIsShowcasedAll(true);
   }, [loadCount]);
 
