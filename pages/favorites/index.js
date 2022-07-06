@@ -12,7 +12,6 @@ const Favorites = () => {
   const favoriteCtx = useAppContext();
 
   useEffect(() => {
-    console.log(favoriteCtx.isNotify, favoriteCtx.deleteNotify);
     setFavoriteLength(favoriteCtx.favorites.length);
   }, [favoriteCtx.favorites.length]);
 
