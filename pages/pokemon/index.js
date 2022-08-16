@@ -21,7 +21,6 @@ const Pokemon = ({ results, resultsData }) => {
 
   // declare useContext
   const favoriteCtx = useAppContext();
-  // console.log(favoriteCtx.favorites);
 
   const defaultResults = results;
 
@@ -31,7 +30,6 @@ const Pokemon = ({ results, resultsData }) => {
     const searching = results.filter((pokemon) => {
       return pokemon.name.includes(inputValue.toLowerCase());
     });
-    console.log(searching);
     setSearchResults(searching);
   };
 
@@ -47,7 +45,6 @@ const Pokemon = ({ results, resultsData }) => {
       const data = await res.json();
       additionalData.push(data);
     }
-    console.log(additionalData);
     setDisplayData([...displayData, ...additionalData]);
     setLoadCount((loadCount += 1));
     setIsLoading(false);

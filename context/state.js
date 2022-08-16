@@ -8,7 +8,6 @@ export function AppWrapper({ children }) {
   const [deleteNotify, setDeleteNotify] = useState(false);
 
   const handleAddFavorite = (pokemon) => {
-    console.log(pokemon);
     setFavorites([...favorites, pokemon]);
   };
   const handleRemoveFavorite = (pokemon) => {
