@@ -3,8 +3,6 @@ import Link from "next/link";
 import styles from "../../styles/types.module.css";
 
 function PokemonDetail(props) {
-  // console.log(props.type);
-  // const type = props.type;
   return (
     <Link href={`/pokemon/${props.pokemonId}`}>
       <div

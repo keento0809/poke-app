@@ -11,18 +11,6 @@ const PokemonDetail = ({
   fixedEvolvesTo,
   fixedEvolvesPokemon,
 }) => {
-  // console.log(fetchedPokemon);
-  // console.log(
-  //   fixedEvolution.chain.evolves_to[0]?.species.url.substring(
-  //     42,
-  //     fixedEvolution.chain.evolves_to[0].species.url.length - 1
-  //   ),
-  //   fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
-  //     42,
-  //     fixedEvolution.chain.evolves_to[0].species.url.length - 1
-  //   ),
-  //   fetchedPokemon.id
-  // );
   // declare useState
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -48,7 +36,6 @@ const PokemonDetail = ({
 
   function checkInFavorite(favList) {
     for (const index in favList) {
-      console.log(favList[index].name);
       if (favList[index].name === fetchedPokemon.name) {
         setIsFavorite(true);
         break;
@@ -296,31 +283,6 @@ const PokemonDetail = ({
                         text={fixedEvolvesPokemon ? "Detail" : "BACK"}
                       />
                     </div>
-                    {/* <div className="flex flex-row items-start justify-center w-full">
-                  <div className="">
-                    <p>{fixedEvolution.chain.evolves_to[0].species.name}</p>
-                    <span className="text-xs">Name</span>
-                  </div>
-                  <div className="mx-5 lg:mx-3 xl:mx-6 px-8 lg:px-4 xl:px-8 border-l border-r">
-                    <p className="text-md">
-                      Lv.
-                      {
-                        fixedEvolution.chain.evolves_to[0].evolution_details[0]
-                          .min_level
-                      }
-                    </p>
-                    <span className="text-xs">Min_Level</span>
-                  </div>
-                  <div className="">
-                    <p className="text-md">
-                      {
-                        fixedEvolution.chain.evolves_to[0].evolution_details[0]
-                          .trigger.name
-                      }
-                    </p>
-                    <span className="text-xs">Method</span>
-                  </div>
-                </div> */}
                   </div>
                 </div>
               </div>
@@ -349,12 +311,9 @@ export const getStaticProps = async ({ params }) => {
   );
   const fixedEvolution = await fixedEvolutionRes.json();
 
-  // declare variables
   let fixedEvolvesTo = "";
   let fixedEvolvesPokemon = "";
 
-  // check if 0 or 2 or 3
-  // if 2
   let evolvesToRes;
   if (
     (fixedEvolution !== "" &&
@@ -397,25 +356,6 @@ export const getStaticProps = async ({ params }) => {
     fixedEvolution !== "" &&
     fixedEvolution.chain.evolves_to[0]?.species.url
   ) {
-    // let evolvesToRes;
-    // if 3
-    // if (
-    //   fixedEvolution.chain.evolves_to[0].evolves_to[0].species.url ||
-    //   fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(
-    //     42,
-    //     fixedEvolution.chain.evolves_to[0].species.url.length - 1
-    //   ) == fetchedPokemon.id
-    // ) {
-    //   evolvesToRes = await fetch(
-    //     `${fixedEvolution.chain.evolves_to[0].evolves_to[0].species.url}`
-    //   );
-    // }
-
-    // original
-    // const evolvesToRes = await fetch(
-    //   `${fixedEvolution.chain.evolves_to[0].species.url}`
-    // );
-    // test
     evolvesToRes = await fetch(
       `${fixedEvolution.chain.evolves_to[0].species.url}`
     );
@@ -445,15 +385,10 @@ export const getStaticPaths = async () => {
   );
 
   const allData = await response.json();
-  console.log(
-    allData.results[0].url.substring(10, allData.results[0].url.length - 1)
-  );
   const ids = allData.results.map((data) =>
     data.url.substring(34, data.url.length - 1)
   );
-
   const paths = ids.map((id) => ({ params: { id: id.toString() } }));
-  console.log(paths);
 
   return {
     paths,
