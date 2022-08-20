@@ -20,7 +20,7 @@ const Pokemon = ({ results, resultsData }) => {
   const searchInputRef = useRef();
 
   // declare useContext
-  const favoriteCtx = useAppContext();
+  const { handleToggleIsMain } = useAppContext();
 
   const defaultResults = results;
 
@@ -51,6 +51,10 @@ const Pokemon = ({ results, resultsData }) => {
   };
 
   useEffect(() => {
+    handleToggleIsMain(true);
+  }, []);
+
+  useEffect(() => {
     loadCount > 12 && setIsShowcasedAll(true);
   }, [loadCount]);
 
@@ -63,10 +67,7 @@ const Pokemon = ({ results, resultsData }) => {
           Search Pokemon
         </h2>
 
-        <form
-          className="w-10/12 max-w-345 md:max-w-500 xl:max-w-650 mx-auto"
-          // styles={{ maxWidth: "345px" }} dark:text-gray-300 text-gray-900
-        >
+        <form className="w-10/12 max-w-345 md:max-w-500 xl:max-w-650 mx-auto">
           <label
             htmlFor="default-search"
             className="mb-2 text-sm font-medium sr-only dark:text-gray-300 text-gray-900"
@@ -102,10 +103,7 @@ const Pokemon = ({ results, resultsData }) => {
           </div>
         </form>
         <div className="text-center">
-          <div
-            className="overflow-scroll max-h-500 md:max-h-450 lg:max-h-420 my-6 flex flex-row flex-wrap"
-            // styles={{ maxHeight: "380px" }}
-          >
+          <div className="overflow-scroll max-h-500 md:max-h-450 lg:max-h-420 my-6 flex flex-row flex-wrap">
             {isSearching &&
               searchResults.map((pokemon, index) => {
                 const pokemonIndex = pokemon.url.substring(
@@ -125,10 +123,6 @@ const Pokemon = ({ results, resultsData }) => {
               })}
             {!isSearching &&
               displayData.map((pokemon, index) => {
-                // const pokemonIndex = pokemon.url.substring(
-                //   34,
-                //   pokemon.url.length - 1
-                // );
                 const pokemonIndex = pokemon.id;
                 return (
                   <div
