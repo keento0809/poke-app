@@ -295,7 +295,6 @@ const PokemonDetail = ({
 };
 
 export const getStaticProps = async ({ params }) => {
-  // original
   const response = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${params.id}`
   );
@@ -333,13 +332,11 @@ export const getStaticProps = async ({ params }) => {
   ) {
     fixedEvolvesTo = "";
   } else if (
-    // test
     (fixedEvolution !== "" &&
       fixedEvolution.chain.evolves_to[0]?.species.url.substring(
         42,
         fixedEvolution.chain.evolves_to[0].species.url.length - 1
       ) == fetchedPokemon.id) ||
-    // test ends here
     (fixedEvolution !== "" &&
       fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url &&
       fixedEvolution.chain.evolves_to[0]?.evolves_to[0]?.species.url.substring(

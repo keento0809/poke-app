@@ -48,6 +48,4 @@ const Favorites = () => {
   );
 };
 
-// export const getStaticProps = () => {};
-
 export default Favorites;

@@ -4,6 +4,7 @@ const AppContext = createContext();
 
 export function AppWrapper({ children }) {
   const [favorites, setFavorites] = useState([]);
+  const [isMain, setIsMain] = useState(false);
   const [isNotify, setIsNotify] = useState(false);
   const [deleteNotify, setDeleteNotify] = useState(false);
 
@@ -45,6 +46,10 @@ export function AppWrapper({ children }) {
     }
   };
 
+  const handleToggleIsMain = (boolean) => {
+    setIsMain(boolean);
+  };
+
   let sharedState = {
     favorites: favorites,
     addFavorite: handleAddFavorite,
@@ -53,6 +58,8 @@ export function AppWrapper({ children }) {
     deleteNotify: deleteNotify,
     setNotification: handleSetNotification,
     turnoffNotification: handleTurnoffNotification,
+    isMain: isMain,
+    handleToggleIsMain: handleToggleIsMain,
   };
 
   return (
