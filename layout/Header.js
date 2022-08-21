@@ -3,13 +3,19 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import { useAppContext } from "../context/state";
+import Backdrop from "../components/Backdrop/Backdrop";
 
 const Header = () => {
   const router = useRouter();
-  const { isMain } = useAppContext();
+  const { isMain, loading, handleLoading } = useAppContext();
 
   const handleJumpToFavorites = () => {
     router.push("/favorites");
+  };
+
+  const handleClick = (link) => {
+    handleLoading(true);
+    router.replace(link);
   };
 
   const { theme, setTheme } = useTheme();
@@ -21,11 +27,14 @@ const Header = () => {
           className="container flex flex-wrap justify-between items-center mx-auto"
           style={{ minHeight: "40px" }}
         >
-          <Link href={`/pokemon`} className="flex items-center">
+          <span
+            className="flex items-center"
+            onClick={() => handleClick("/pokemon")}
+          >
             <span className="cursor-pointer self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               PokeApp
             </span>
-          </Link>
+          </span>
           <div className="">
             {isMain && (
               <button

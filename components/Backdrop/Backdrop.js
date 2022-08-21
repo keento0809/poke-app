@@ -11,7 +11,7 @@ const Backdrop = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <svg
             role="status"
-            className="z-50 inline w-10 h-10 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-purple-800 dark:fill-purple-600"
+            className="z-50 inline w-10 h-10 mr-2 text-black animate-spin dark:text-white fill-purple-800 dark:fill-purple-700"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

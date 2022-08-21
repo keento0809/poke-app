@@ -5,9 +5,19 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Button from "../components/UI/Button/Button";
 import { useAppContext } from "../context/state";
+import TransitionButton from "../components/UI/Button/TransitionButton";
+import Backdrop from "../components/Backdrop/Backdrop";
+import { useRouter } from "next/router";
 
 export default function Home() {
-  const { handleToggleIsMain } = useAppContext();
+  const router = useRouter();
+  const { handleToggleIsMain, loading, handleLoading } = useAppContext();
+
+  const handleClick = (link) => {
+    handleLoading(true);
+    router.replace(link);
+  };
+
   useEffect(() => {
     handleToggleIsMain(false);
   }, []);
@@ -24,7 +34,10 @@ export default function Home() {
           <h2 className="text-xl pb-2 text-purple-400 font-bold">
             Welcome to <a href="https://nextjs.org">PokeApp!</a>
           </h2>
-          <Button link={`/pokemon`} text="Get started" />
+          <TransitionButton
+            onClick={() => handleClick("/pokemon")}
+            text="Get started"
+          />
         </div>
       </main>
     </div>
