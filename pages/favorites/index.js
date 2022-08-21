@@ -5,20 +5,34 @@ import FavoritesList from "../../components/favorites/FavoritesList";
 import SuccessAlert from "../../components/UI/Alert/SuccessAlert";
 import DeleteAlert from "../../components/UI/Alert/DeleteAlert";
 import { useAppContext } from "../../context/state";
-import Button from "../../components/UI/Button/Button";
+import TransitionButton from "../../components/UI/Button/TransitionButton";
+import { useRouter } from "next/router";
 
 const Favorites = () => {
   const [favoriteLength, setFavoriteLength] = useState(0);
-  const favoriteCtx = useAppContext();
+  const {
+    favorites,
+    turnoffNotification,
+    isNotify,
+    deleteNotify,
+    loading,
+    handleLoading,
+  } = useAppContext();
+  const router = useRouter();
+
+  const handleClick = (link) => {
+    handleLoading(true);
+    router.replace(link);
+  };
 
   useEffect(() => {
-    setFavoriteLength(favoriteCtx.favorites.length);
-  }, [favoriteCtx.favorites.length]);
+    setFavoriteLength(favorites.length);
+  }, [favorites.length]);
 
   useEffect(() => {
     setTimeout(() => {
-      favoriteCtx.turnoffNotification("Success");
-      favoriteCtx.turnoffNotification("Delete");
+      turnoffNotification("Success");
+      turnoffNotification("Delete");
     }, 1000);
   }, []);
 
@@ -38,11 +52,14 @@ const Favorites = () => {
           {favoriteLength > 0 && <FavoritesList />}
         </div>
         <div className="py-4 text-center">
-          <Button link={`/pokemon`} text="BACK" />
+          <TransitionButton
+            onClick={() => handleClick("/pokemon")}
+            text="BACK"
+          />
         </div>
 
-        {favoriteCtx.isNotify && <SuccessAlert />}
-        {favoriteCtx.deleteNotify && <DeleteAlert />}
+        {isNotify && <SuccessAlert />}
+        {deleteNotify && <DeleteAlert />}
       </div>
     </>
   );

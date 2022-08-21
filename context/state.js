@@ -6,6 +6,7 @@ export function AppWrapper({ children }) {
   const [favorites, setFavorites] = useState([]);
   const [isMain, setIsMain] = useState(false);
   const [isNotify, setIsNotify] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [deleteNotify, setDeleteNotify] = useState(false);
 
   const handleAddFavorite = (pokemon) => {
@@ -50,6 +51,10 @@ export function AppWrapper({ children }) {
     setIsMain(boolean);
   };
 
+  const handleLoading = (boolean) => {
+    setLoading(boolean);
+  };
+
   let sharedState = {
     favorites: favorites,
     addFavorite: handleAddFavorite,
@@ -60,6 +65,8 @@ export function AppWrapper({ children }) {
     turnoffNotification: handleTurnoffNotification,
     isMain: isMain,
     handleToggleIsMain: handleToggleIsMain,
+    loading: loading,
+    handleLoading: handleLoading,
   };
 
   return (

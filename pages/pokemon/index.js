@@ -4,7 +4,6 @@ import Meta from "../../components/Meta/Meta";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 import PokemonDetail from "../../components/Pokemon/PokemonDetail";
-import Button from "../../components/UI/Button/Button";
 import Backdrop from "../../components/Backdrop/Backdrop";
 
 const Pokemon = ({ results, resultsData }) => {
@@ -20,7 +19,7 @@ const Pokemon = ({ results, resultsData }) => {
   const searchInputRef = useRef();
 
   // declare useContext
-  const { handleToggleIsMain } = useAppContext();
+  const { handleToggleIsMain, handleLoading } = useAppContext();
 
   const defaultResults = results;
 
@@ -50,8 +49,13 @@ const Pokemon = ({ results, resultsData }) => {
     setIsLoading(false);
   };
 
+  const handleTesting = () => {
+    console.log("aaaa");
+  };
+
   useEffect(() => {
     handleToggleIsMain(true);
+    handleLoading(false);
   }, []);
 
   useEffect(() => {
@@ -111,7 +115,11 @@ const Pokemon = ({ results, resultsData }) => {
                   pokemon.url.length - 1
                 );
                 return (
-                  <div className="py-3 text-center min-w-122" key={index}>
+                  <div
+                    className="py-3 text-center min-w-122"
+                    key={index}
+                    onClick={handleTesting}
+                  >
                     <Link href={`/pokemon/${pokemonIndex}`}>
                       <span className="text-xl text-purple-400 cursor-pointer">
                         {" "}
