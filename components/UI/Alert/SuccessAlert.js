@@ -9,7 +9,7 @@ const SuccessAlert = () => {
     <>
       <div
         id="alert-3"
-        className="flex w-full p-4 mx-auto my-4 bg-green-100 rounded-lg dark:bg-green-200"
+        className="flex w-full md:max-w-500 p-4 mr-auto my-4 bg-green-100 rounded-lg dark:bg-green-200"
         role="alert"
       >
         <svg
