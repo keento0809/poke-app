@@ -1,4 +1,3 @@
-import React from "react";
 import Meta from "../components/Meta/Meta";
 import Header from "./Header";
 import { useAppContext } from "../context/state";

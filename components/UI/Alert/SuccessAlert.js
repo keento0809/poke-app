@@ -1,10 +1,7 @@
-import React from "react";
-
 const SuccessAlert = () => {
   const handleCloseAlert = () => {
     favoriteCtx.turnoffNotification("Delete");
   };
-
   return (
     <>
       <div

@@ -1,17 +1,13 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Button from "../components/UI/Button/Button";
 import { useAppContext } from "../context/state";
 import TransitionButton from "../components/UI/Button/TransitionButton";
-import Backdrop from "../components/Backdrop/Backdrop";
 import { useRouter } from "next/router";
 
 export default function Home() {
   const router = useRouter();
-  const { handleToggleIsMain, loading, handleLoading } = useAppContext();
+  const { isMain, handleToggleIsMain, handleLoading } = useAppContext();
 
   const handleClick = (link) => {
     handleLoading(true);
@@ -19,7 +15,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    handleToggleIsMain(false);
+    isMain && handleToggleIsMain(false);
   }, []);
   return (
     <div className={styles.container}>

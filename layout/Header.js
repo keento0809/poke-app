@@ -1,13 +1,10 @@
-import React, { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import { useAppContext } from "../context/state";
-import Backdrop from "../components/Backdrop/Backdrop";
 
 const Header = () => {
   const router = useRouter();
-  const { isMain, loading, handleLoading } = useAppContext();
+  const { isMain, handleLoading } = useAppContext();
 
   const handleJumpToFavorites = () => {
     router.push("/favorites");
@@ -17,8 +14,6 @@ const Header = () => {
     handleLoading(true);
     router.replace(link);
   };
-
-  const { theme, setTheme } = useTheme();
 
   return (
     <>
