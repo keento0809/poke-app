@@ -1,4 +1,4 @@
-import Meta from "../components/Meta/Meta";
+import Meta from "../Meta/Meta";
 import Header from "./Header";
 import { useAppContext } from "../context/state";
 import Backdrop from "../components/Backdrop/Backdrop";
