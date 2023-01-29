@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Meta from "../../../components/Meta/Meta";
+import Meta from "../../../Meta/Meta";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useAppContext } from "../../../context/state";
-import Button from "../../../components/UI/Button/Button";
+import Button from "../../../components/Button/Button";
 
 const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   const [isFavorite, setIsFavorite] = useState(false);

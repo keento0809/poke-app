@@ -1,5 +1,5 @@
 import { useAppContext } from "../../context/state";
-import PokemonDetail from "../Pokemon/PokemonDetail";
+import PokemonDetail from "../PokemonDetail/PokemonDetail";
 
 const FavoritesList = () => {
   const favoriteCtx = useAppContext();

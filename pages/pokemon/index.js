@@ -1,9 +1,9 @@
 import { useRef, useEffect, useState } from "react";
 import { useAppContext } from "../../context/state";
-import Meta from "../../components/Meta/Meta";
+import Meta from "../../Meta/Meta";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
-import PokemonDetail from "../../components/Pokemon/PokemonDetail";
+import PokemonDetail from "../../features/PokemonDetail/PokemonDetail";
 import Backdrop from "../../components/Backdrop/Backdrop";
 
 const Pokemon = ({ results, resultsData }) => {

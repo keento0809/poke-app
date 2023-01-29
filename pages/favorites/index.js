@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Meta from "../../components/Meta/Meta";
-import FavoritesList from "../../components/favorites/FavoritesList";
-import SuccessAlert from "../../components/UI/Alert/SuccessAlert";
-import DeleteAlert from "../../components/UI/Alert/DeleteAlert";
+import Meta from "../../Meta/Meta";
+import FavoritesList from "../../features/favorites/FavoritesList";
+import SuccessAlert from "../../components/Alert/SuccessAlert";
+import DeleteAlert from "../../components/Alert/DeleteAlert";
 import { useAppContext } from "../../context/state";
-import TransitionButton from "../../components/UI/Button/TransitionButton";
+import TransitionButton from "../../components/Button/TransitionButton";
 import { useRouter } from "next/router";
 
 const Favorites = () => {
