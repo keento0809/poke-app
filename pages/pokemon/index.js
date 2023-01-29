@@ -33,7 +33,7 @@ const Pokemon = ({ results, resultsData }) => {
       i <= Number(loadCount) * 20 + 20;
       i++
     ) {
-      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+      const res = await fetch(`${process.env.BASE_POKE_API_ENDPOINT}/${i}`);
       const data = await res.json();
       additionalData.push(data);
     }
@@ -155,13 +155,14 @@ const Pokemon = ({ results, resultsData }) => {
 
 export const getStaticProps = async () => {
   const res = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=251`
+    `${process.env.BASE_POKE_API_ENDPOINT}/?offset=0&limit=251`
   );
   const allData = await res.json();
   const results = allData.results;
   const resultsData = [];
   for (let i = 1; i < 21; i++) {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+    const res = await fetch(`${process.env.BASE_POKE_API_ENDPOINT}/${i}`);
+
     const data = await res.json();
     resultsData.push(data);
   }

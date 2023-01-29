@@ -286,10 +286,10 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
 
 export const getStaticProps = async ({ params }) => {
   const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${params.id}`
+    `${process.env.BASE_POKE_API_ENDPOINT}/${params.id}`
   );
   const resSpecies = await fetch(
-    `https://pokeapi.co/api/v2/pokemon-species/${params.id}`
+    `${process.env.BASE_POKE_API_ENDPOINT}-species/${params.id}`
   );
 
   const fetchedSpecies = await resSpecies.json();
