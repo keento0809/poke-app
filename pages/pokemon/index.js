@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useAppContext } from "../../context/state";
 import Meta from "../../components/Meta/Meta";
 import Link from "next/link";
@@ -7,21 +7,14 @@ import PokemonDetail from "../../components/Pokemon/PokemonDetail";
 import Backdrop from "../../components/Backdrop/Backdrop";
 
 const Pokemon = ({ results, resultsData }) => {
-  // declare useState
   const [displayData, setDisplayData] = useState(resultsData);
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
-  const [isFilterShown, setIsFilterShown] = useState(false);
   const [loadCount, setLoadCount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isShowcasedAll, setIsShowcasedAll] = useState(false);
-  // declare useRef
   const searchInputRef = useRef();
-
-  // declare useContext
-  const { handleToggleIsMain, handleLoading } = useAppContext();
-
-  const defaultResults = results;
+  const { isMain, handleToggleIsMain, handleLoading } = useAppContext();
 
   const handleSearch = () => {
     const inputValue = searchInputRef.current.value;
@@ -49,12 +42,8 @@ const Pokemon = ({ results, resultsData }) => {
     setIsLoading(false);
   };
 
-  const handleTesting = () => {
-    console.log("aaaa");
-  };
-
   useEffect(() => {
-    handleToggleIsMain(true);
+    isMain && handleToggleIsMain(true);
     handleLoading(false);
   }, []);
 
@@ -170,15 +159,12 @@ export const getStaticProps = async () => {
   );
   const allData = await res.json();
   const results = allData.results;
-
   const resultsData = [];
-
   for (let i = 1; i < 21; i++) {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
     const data = await res.json();
     resultsData.push(data);
   }
-
   return {
     props: {
       results,

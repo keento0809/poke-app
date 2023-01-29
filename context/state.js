@@ -56,17 +56,17 @@ export function AppWrapper({ children }) {
   };
 
   let sharedState = {
-    favorites: favorites,
+    favorites,
     addFavorite: handleAddFavorite,
     removeFavorite: handleRemoveFavorite,
-    isNotify: isNotify,
-    deleteNotify: deleteNotify,
+    isNotify,
+    deleteNotify,
     setNotification: handleSetNotification,
     turnoffNotification: handleTurnoffNotification,
-    isMain: isMain,
-    handleToggleIsMain: handleToggleIsMain,
-    loading: loading,
-    handleLoading: handleLoading,
+    isMain,
+    handleToggleIsMain,
+    loading,
+    handleLoading,
   };
 
   return (

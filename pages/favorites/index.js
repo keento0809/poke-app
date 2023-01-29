@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Meta from "../../components/Meta/Meta";
-import Link from "next/link";
 import FavoritesList from "../../components/favorites/FavoritesList";
 import SuccessAlert from "../../components/UI/Alert/SuccessAlert";
 import DeleteAlert from "../../components/UI/Alert/DeleteAlert";
@@ -15,7 +14,6 @@ const Favorites = () => {
     turnoffNotification,
     isNotify,
     deleteNotify,
-    loading,
     handleLoading,
   } = useAppContext();
   const router = useRouter();

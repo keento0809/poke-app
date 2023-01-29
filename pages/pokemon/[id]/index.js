@@ -1,47 +1,37 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Meta from "../../../components/Meta/Meta";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useAppContext } from "../../../context/state";
 import Button from "../../../components/UI/Button/Button";
 
-const PokemonDetail = ({
-  fetchedPokemon,
-  fixedEvolution,
-  fixedEvolvesTo,
-  fixedEvolvesPokemon,
-}) => {
-  // declare useState
+const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-
-  // declare useContext
   const favoriteCtx = useAppContext();
-
-  // declare useRouter
   const router = useRouter();
 
-  function handleAddToFavorite() {
+  const handleAddToFavorite = () => {
     setIsFavorite(true);
     favoriteCtx.addFavorite(fetchedPokemon);
     router.push("/favorites");
     favoriteCtx.setNotification("Success");
-  }
+  };
 
-  function handleRemoveFavorite() {
+  const handleRemoveFavorite = () => {
     setIsFavorite(false);
     favoriteCtx.removeFavorite(fetchedPokemon);
     router.push("/favorites");
     favoriteCtx.setNotification("Delete");
-  }
+  };
 
-  function checkInFavorite(favList) {
+  const checkInFavorite = (favList) => {
     for (const index in favList) {
       if (favList[index].name === fetchedPokemon.name) {
         setIsFavorite(true);
         break;
       }
     }
-  }
+  };
 
   useEffect(() => {
     const favList = favoriteCtx.favorites;
