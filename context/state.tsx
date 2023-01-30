@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
+import { AppContext } from "../types/appContext";
 
-const AppContext = createContext({});
+const AppContext = createContext<AppContext | null>(null);
 
 export function AppWrapper({ children }) {
   const [favorites, setFavorites] = useState([]);
@@ -8,6 +9,17 @@ export function AppWrapper({ children }) {
   const [isNotify, setIsNotify] = useState(false);
   const [loading, setLoading] = useState(false);
   const [deleteNotify, setDeleteNotify] = useState(false);
+  const [booleans, setBooleans] = useState({
+    isMain: false,
+    loading: false,
+  });
+
+  const handleSetBooleans = (name, bool) => {
+    setBooleans({
+      ...booleans,
+      [name]: bool,
+    });
+  };
 
   const handleAddFavorite = (pokemon) => {
     setFavorites([...favorites, pokemon]);
@@ -55,8 +67,9 @@ export function AppWrapper({ children }) {
     setLoading(boolean);
   };
 
-  let sharedState = {
+  const sharedState = {
     favorites,
+    booleans,
     addFavorite: handleAddFavorite,
     removeFavorite: handleRemoveFavorite,
     isNotify,
@@ -67,6 +80,7 @@ export function AppWrapper({ children }) {
     handleToggleIsMain,
     loading,
     handleLoading,
+    setBooleans: handleSetBooleans,
   };
 
   return (

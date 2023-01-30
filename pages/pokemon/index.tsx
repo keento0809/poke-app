@@ -13,7 +13,7 @@ const Pokemon = ({ results, resultsData }) => {
   const [loadCount, setLoadCount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isShowcasedAll, setIsShowcasedAll] = useState(false);
-  const searchInputRef = useRef();
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const { isMain, handleToggleIsMain, handleLoading } = useAppContext();
 
   const handleSearch = () => {
@@ -33,12 +33,12 @@ const Pokemon = ({ results, resultsData }) => {
       i <= Number(loadCount) * 20 + 20;
       i++
     ) {
-      const res = await fetch(`${process.env.BASE_POKE_API_ENDPOINT}/${i}`);
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
       const data = await res.json();
       additionalData.push(data);
     }
     setDisplayData([...displayData, ...additionalData]);
-    setLoadCount((loadCount += 1));
+    setLoadCount((prevState) => prevState + 1);
     setIsLoading(false);
   };
 
@@ -91,7 +91,6 @@ const Pokemon = ({ results, resultsData }) => {
               id="default-search"
               className="block p-4 pl-10 w-full mx-auto text-sm text-gray-900 rounded-lg border border-purple-400 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
               placeholder="Search"
-              required=""
             />
           </div>
         </form>
@@ -104,11 +103,7 @@ const Pokemon = ({ results, resultsData }) => {
                   pokemon.url.length - 1
                 );
                 return (
-                  <div
-                    className="py-3 text-center min-w-122"
-                    key={index}
-                    onClick={handleTesting}
-                  >
+                  <div className="py-3 text-center min-w-122" key={index}>
                     <Link href={`/pokemon/${pokemonIndex}`}>
                       <span className="text-xl text-purple-400 cursor-pointer">
                         {" "}
