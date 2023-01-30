@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Meta from "../../../Meta/Meta";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useAppContext } from "../../../context/state";
+import { AppContext } from "../../../context/state";
 import Button from "../../../components/Button/Button";
 
 const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const favoriteCtx = useAppContext();
+  const favoriteCtx = useContext(AppContext);
   const router = useRouter();
 
   const handleAddToFavorite = () => {
@@ -300,7 +300,7 @@ export const getStaticProps = async ({ params }) => {
   );
   const fixedEvolution = await fixedEvolutionRes.json();
 
-  let fixedEvolvesTo = "";
+  let fixedEvolvesTo: any = "";
   let fixedEvolvesPokemon = "";
 
   let evolvesToRes;
@@ -348,6 +348,7 @@ export const getStaticProps = async ({ params }) => {
     );
     fixedEvolvesTo = await evolvesToRes.json();
   }
+  console.log(fixedEvolvesTo);
 
   if (fixedEvolvesTo !== "" && fixedEvolvesTo.varieties[0].pokemon.url) {
     const fixedEvolvesPokemonRes = await fetch(
@@ -368,7 +369,7 @@ export const getStaticProps = async ({ params }) => {
 
 export const getStaticPaths = async () => {
   const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=251`
+    `${process.env.BASE_POKE_API_ENDPOINT}/?offset=0&limit=251`
   );
 
   const allData = await response.json();

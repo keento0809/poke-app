@@ -1,8 +1,9 @@
-import { useAppContext } from "../../context/state";
+import { AppContext } from "../../context/state";
+import { useContext } from "react";
 import PokemonDetail from "../PokemonDetail/PokemonDetail";
 
 const FavoritesList = () => {
-  const favoriteCtx = useAppContext();
+  const favoriteCtx = useContext(AppContext);
   return (
     <div className="text-center">
       <div className="overflow-scroll max-h-500 md:max-h-450 lg:max-h-420 my-6 flex flex-row flex-wrap">
