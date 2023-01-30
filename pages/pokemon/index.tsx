@@ -11,10 +11,10 @@ const Pokemon = ({ results, resultsData }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [loadCount, setLoadCount] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
   const [isShowcasedAll, setIsShowcasedAll] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const { isMain, handleToggleIsMain, handleLoading } = useContext(AppContext);
+  const { isMain, handleToggleIsMain, loading, handleLoading } =
+    useContext(AppContext);
 
   const handleSearch = () => {
     const inputValue = searchInputRef.current.value;
@@ -26,7 +26,7 @@ const Pokemon = ({ results, resultsData }) => {
   };
 
   const handleLoadMore = async () => {
-    setIsLoading(true);
+    handleLoading(true);
     const additionalData = [];
     for (
       let i = Number(loadCount) * 20 + 1;
@@ -39,7 +39,7 @@ const Pokemon = ({ results, resultsData }) => {
     }
     setDisplayData([...displayData, ...additionalData]);
     setLoadCount((prevState) => prevState + 1);
-    setIsLoading(false);
+    handleLoading(false);
   };
 
   useEffect(() => {
@@ -54,12 +54,11 @@ const Pokemon = ({ results, resultsData }) => {
   return (
     <>
       <Meta title="TOP" />
-      {isLoading && <Backdrop />}
+      {loading && <Backdrop />}
       <div className={styles.main}>
         <h2 className="text-xl pb-3 text-purple-400 font-bold">
           Search Pokemon
         </h2>
-
         <form className="w-10/12 max-w-345 md:max-w-500 xl:max-w-650 mx-auto">
           <label
             htmlFor="default-search"
@@ -123,7 +122,6 @@ const Pokemon = ({ results, resultsData }) => {
                   >
                     <PokemonDetail
                       pokemonId={pokemonIndex}
-                      name={pokemon.name}
                       type={pokemon.types[0].type.name}
                       image={pokemon.sprites.other.home.front_default}
                     />
