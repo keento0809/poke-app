@@ -87,10 +87,3 @@ export function AppWrapper({ children }) {
     <AppContext.Provider value={sharedState}>{children}</AppContext.Provider>
   );
 }
-
-// export function useAppContext() {
-//   const context = useContext(AppContext);
-//   if (!context) throw new Error("Invalid context");
-//   return context;
-//   return useContext(AppContext);
-// }

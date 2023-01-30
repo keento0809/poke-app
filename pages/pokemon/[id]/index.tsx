@@ -3,25 +3,31 @@ import Meta from "../../../Meta/Meta";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { AppContext } from "../../../context/state";
-import Button from "../../../components/Button/Button";
+import BasicButton from "../../../components/Button/BasicButton";
 
 const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const favoriteCtx = useContext(AppContext);
+  const {
+    addFavorite,
+    setNotification,
+    removeFavorite,
+    handleLoading,
+    favorites,
+  } = useContext(AppContext);
   const router = useRouter();
 
   const handleAddToFavorite = () => {
     setIsFavorite(true);
-    favoriteCtx.addFavorite(fetchedPokemon);
+    addFavorite(fetchedPokemon);
     router.push("/favorites");
-    favoriteCtx.setNotification("Success");
+    setNotification("Success");
   };
 
   const handleRemoveFavorite = () => {
     setIsFavorite(false);
-    favoriteCtx.removeFavorite(fetchedPokemon);
+    removeFavorite(fetchedPokemon);
     router.push("/favorites");
-    favoriteCtx.setNotification("Delete");
+    setNotification("Delete");
   };
 
   const checkInFavorite = (favList) => {
@@ -34,13 +40,17 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   };
 
   useEffect(() => {
-    const favList = favoriteCtx.favorites;
+    handleLoading(false);
+  }, []);
+
+  useEffect(() => {
+    const favList = favorites;
     setIsFavorite(false);
     checkInFavorite(favList);
   }, [fetchedPokemon.id]);
 
   useEffect(() => {
-    const favList = favoriteCtx.favorites;
+    const favList = favorites;
     setIsFavorite(false);
     checkInFavorite(favList);
   }, []);
@@ -266,7 +276,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                       )}
                     </div>
                     <div className="py-4">
-                      <Button
+                      <BasicButton
                         link={`/pokemon/${
                           fixedEvolvesPokemon ? fixedEvolvesPokemon.id : ""
                         }`}

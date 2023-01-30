@@ -2,9 +2,9 @@ import { AppContext } from "../../context/state";
 import { useContext } from "react";
 
 const SuccessAlert = () => {
-  const favoriteCtx = useContext(AppContext);
+  const { turnoffNotification } = useContext(AppContext);
   const handleCloseAlert = () => {
-    favoriteCtx.turnoffNotification("Delete");
+    turnoffNotification("Delete");
   };
   return (
     <>
