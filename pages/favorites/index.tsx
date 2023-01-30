@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Meta from "../../Meta/Meta";
 import FavoritesList from "../../features/favorites/FavoritesList";
 import SuccessAlert from "../../components/Alert/SuccessAlert";
 import DeleteAlert from "../../components/Alert/DeleteAlert";
-import { useAppContext } from "../../context/state";
+import { AppContext } from "../../context/state";
 import TransitionButton from "../../components/Button/TransitionButton";
 import { useRouter } from "next/router";
 
@@ -15,7 +15,7 @@ const Favorites = () => {
     isNotify,
     deleteNotify,
     handleLoading,
-  } = useAppContext();
+  } = useContext(AppContext);
   const router = useRouter();
 
   const handleClick = (link) => {

@@ -1,13 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { useAppContext } from "../context/state";
+import { AppContext } from "../context/state";
 import TransitionButton from "../components/Button/TransitionButton";
 import { useRouter } from "next/router";
 
 export default function Home() {
   const router = useRouter();
-  const { isMain, handleToggleIsMain, handleLoading } = useAppContext();
+  const { isMain, handleToggleIsMain, handleLoading } = useContext(AppContext);
 
   const handleClick = (link) => {
     handleLoading(true);

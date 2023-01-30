@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import { useTheme } from "next-themes";
-import { useAppContext } from "../context/state";
+import { useContext } from "react";
+import { AppContext } from "../context/state";
 
 const Header = () => {
   const router = useRouter();
-  const { isMain, handleLoading } = useAppContext();
+  const { isMain, handleLoading } = useContext(AppContext);
 
   const handleJumpToFavorites = () => {
     router.push("/favorites");

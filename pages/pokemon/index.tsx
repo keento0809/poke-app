@@ -1,5 +1,5 @@
-import { useRef, useEffect, useState } from "react";
-import { useAppContext } from "../../context/state";
+import { useRef, useEffect, useState, useContext } from "react";
+import { AppContext } from "../../context/state";
 import Meta from "../../Meta/Meta";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
@@ -14,7 +14,7 @@ const Pokemon = ({ results, resultsData }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isShowcasedAll, setIsShowcasedAll] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const { isMain, handleToggleIsMain, handleLoading } = useAppContext();
+  const { isMain, handleToggleIsMain, handleLoading } = useContext(AppContext);
 
   const handleSearch = () => {
     const inputValue = searchInputRef.current.value;
