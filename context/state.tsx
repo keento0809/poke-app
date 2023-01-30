@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
-import { AppContext } from "../types/appContext";
+import { AppContextType } from "../types/appContext";
 
-const AppContext = createContext<AppContext | null>(null);
+export const AppContext = createContext<AppContextType | null>(null);
 
 export function AppWrapper({ children }) {
   const [favorites, setFavorites] = useState([]);
@@ -88,6 +88,9 @@ export function AppWrapper({ children }) {
   );
 }
 
-export function useAppContext() {
-  return useContext(AppContext);
-}
+// export function useAppContext() {
+//   const context = useContext(AppContext);
+//   if (!context) throw new Error("Invalid context");
+//   return context;
+//   return useContext(AppContext);
+// }

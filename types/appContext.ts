@@ -3,7 +3,7 @@ type BooleansObj = {
   loading: boolean;
 };
 
-export type AppContext = {
+export type AppContextType = {
   favorites: any[];
   addFavorite: (pokemon: any) => void;
   removeFavorite: (pokemon: any) => void;

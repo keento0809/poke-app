@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Meta from "../../../Meta/Meta";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useAppContext } from "../../../context/state";
+import { AppContext } from "../../../context/state";
 import Button from "../../../components/Button/Button";
 
 const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const favoriteCtx = useAppContext();
+  const favoriteCtx = useContext(AppContext);
   const router = useRouter();
 
   const handleAddToFavorite = () => {
