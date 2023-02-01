@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { AppContext } from "../../context/state";
+import Image, { StaticImageData } from "next/image";
 
 type Props = {
   pokemonId: number;
@@ -11,10 +12,12 @@ type Props = {
 function PokemonDetail({ pokemonId, type, image }: Props) {
   const { handleLoading } = useContext(AppContext);
   const router = useRouter();
+
   const handleJumpToPokemonDetailPage = () => {
     handleLoading(true);
     router.push(`/pokemon/${pokemonId}`);
   };
+
   return (
     <div
       onClick={handleJumpToPokemonDetailPage}

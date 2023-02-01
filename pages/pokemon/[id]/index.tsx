@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import Meta from "../../../Meta/Meta";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { AppContext } from "../../../context/state";
 import BasicButton from "../../../components/Button/BasicButton";
@@ -15,6 +14,16 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
     favorites,
   } = useContext(AppContext);
   const router = useRouter();
+
+  useEffect(() => {
+    handleLoading(false);
+  }, [router.asPath]);
+
+  useEffect(() => {
+    const favList = favorites;
+    setIsFavorite(false);
+    checkInFavorite(favList);
+  }, [fetchedPokemon.id]);
 
   const handleAddToFavorite = () => {
     setIsFavorite(true);
@@ -39,21 +48,15 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
     }
   };
 
-  useEffect(() => {
-    handleLoading(false);
-  }, []);
+  const handleMovePreviousPokemon = () => {
+    handleLoading(true);
+    router.push(`/pokemon/${fetchedPokemon.id - 1}`);
+  };
 
-  useEffect(() => {
-    const favList = favorites;
-    setIsFavorite(false);
-    checkInFavorite(favList);
-  }, [fetchedPokemon.id]);
-
-  useEffect(() => {
-    const favList = favorites;
-    setIsFavorite(false);
-    checkInFavorite(favList);
-  }, []);
+  const handleMoveNextPokemon = () => {
+    handleLoading(true);
+    router.push(`/pokemon/${fetchedPokemon.id + 1}`);
+  };
 
   return (
     <>
@@ -61,13 +64,10 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
       <div className="pt-12">
         <div className="px-6 pt-6 flex flex-row justify-around">
           {fetchedPokemon.id > 1 && (
-            <Link
-              href={`/pokemon/${fetchedPokemon.id - 1}`}
-              className="cursor-pointer"
-            >
+            <div onClick={handleMovePreviousPokemon} className="cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 cursor-pointer transition duration-150 ease-in-out rounded-lg basis-1/3 max-w-120 border border-purple-400 hover:border-purple-500 dark:border-purple-500 dark:hover:border-purple-600"
+                className="h-6 w-6 cursor-pointer transition duration-150 ease-in-out rounded-lg basis-1/3 min-w-120 border border-purple-400 hover:border-purple-500 dark:border-purple-500 dark:hover:border-purple-600"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -79,16 +79,13 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                   d="M15 19l-7-7 7-7"
                 />
               </svg>
-            </Link>
+            </div>
           )}
           {fetchedPokemon.id < 251 && (
-            <Link
-              href={`/pokemon/${fetchedPokemon.id + 1}`}
-              className="cursor-pointer"
-            >
+            <div onClick={handleMoveNextPokemon} className="cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 cursor-pointer transition duration-150 ease-in-out rounded-lg basis-1/3 max-w-120 border border-purple-400 hover:border-purple-500 dark:border-purple-500 dark:hover:border-purple-600"
+                className="h-6 w-6 cursor-pointer transition duration-150 ease-in-out rounded-lg basis-1/3 min-w-120 border border-purple-400 hover:border-purple-500 dark:border-purple-500 dark:hover:border-purple-600"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -100,7 +97,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                   d="M9 5l7 7-7 7"
                 />
               </svg>
-            </Link>
+            </div>
           )}
         </div>
         <div className="text-center">

@@ -1,6 +1,6 @@
 import { AppContext } from "../../context/state";
 import { useContext } from "react";
-import PokemonDetail from "../PokemonDetail/PokemonDetail";
+import PokemonDetail from "../pokemonDetail/PokemonDetail";
 
 const FavoritesList = () => {
   const { favorites } = useContext(AppContext);
