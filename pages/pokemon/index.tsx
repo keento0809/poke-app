@@ -3,7 +3,7 @@ import { AppContext } from "../../context/state";
 import Meta from "../../Meta/Meta";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
-import PokemonDetail from "../../features/pokemonDetail/PokemonDetail";
+import PokemonDetail from "../../features/detail/PokemonDetail";
 import Backdrop from "../../components/Backdrop/Backdrop";
 
 const Pokemon = ({ results, resultsData }) => {
