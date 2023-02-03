@@ -21,13 +21,13 @@ function PokemonDetail({ pokemonId, type, image }: Props) {
   return (
     <div
       onClick={handleJumpToPokemonDetailPage}
-      className={`cursor-pointer flex justify-center items-center rounded-lg pt-2 pb-4 hover:scale-110 transition-transform ${type}}`}
+      className={`cursor-pointer flex justify-center items-center rounded-lg pt-2 pb-4 transition-transform ${type}}`}
     >
       <img
         src={`${image}`}
         alt=""
         width="100px"
-        height="100px"
+        height="auto"
         className="mx-auto"
       />
     </div>

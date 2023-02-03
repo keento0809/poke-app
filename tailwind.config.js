@@ -7,6 +7,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      width: {
+        110: "110px",
+      },
       minWidth: {
         120: "120px",
         122: "122px",

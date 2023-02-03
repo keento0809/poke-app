@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import Meta from "../../../Meta/Meta";
 import { useRouter } from "next/router";
 import { AppContext } from "../../../context/state";
-import BasicButton from "../../../components/Button/BasicButton";
+import TransitionButton from "../../../components/Button/TransitionButton";
 
 const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -56,6 +56,13 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   const handleMoveNextPokemon = () => {
     handleLoading(true);
     router.push(`/pokemon/${fetchedPokemon.id + 1}`);
+  };
+
+  const handleJumpToPage = () => {
+    handleLoading(true);
+    router.push(
+      `/pokemon/${fixedEvolvesPokemon ? fixedEvolvesPokemon.id : ""}`
+    );
   };
 
   return (
@@ -273,11 +280,9 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                       )}
                     </div>
                     <div className="py-4">
-                      <BasicButton
-                        link={`/pokemon/${
-                          fixedEvolvesPokemon ? fixedEvolvesPokemon.id : ""
-                        }`}
-                        text={fixedEvolvesPokemon ? "Detail" : "BACK"}
+                      <TransitionButton
+                        onClick={handleJumpToPage}
+                        text={fixedEvolvesPokemon ? "Detail" : "HOME"}
                       />
                     </div>
                   </div>
@@ -355,7 +360,6 @@ export const getStaticProps = async ({ params }) => {
     );
     fixedEvolvesTo = await evolvesToRes.json();
   }
-  console.log(fixedEvolvesTo);
 
   if (fixedEvolvesTo !== "" && fixedEvolvesTo.varieties[0].pokemon.url) {
     const fixedEvolvesPokemonRes = await fetch(
@@ -367,8 +371,6 @@ export const getStaticProps = async ({ params }) => {
   return {
     props: {
       fetchedPokemon,
-      fixedEvolution,
-      fixedEvolvesTo,
       fixedEvolvesPokemon,
     },
   };
