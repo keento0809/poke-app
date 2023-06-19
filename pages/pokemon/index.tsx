@@ -45,7 +45,7 @@ const Pokemon = ({ results, resultsData }) => {
   useEffect(() => {
     isMain && handleToggleIsMain(true);
     handleLoading(false);
-  }, []);
+  }, [handleToggleIsMain, handleLoading, isMain]);
 
   useEffect(() => {
     loadCount > 12 && setIsShowcasedAll(true);
