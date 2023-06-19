@@ -1,10 +1,10 @@
 import { useEffect, useState, useContext } from "react";
 import Meta from "../../Meta/Meta";
 import FavoritesList from "../../features/favorites/FavoritesList";
-import SuccessAlert from "../../components/Alert/SuccessAlert";
-import DeleteAlert from "../../components/Alert/DeleteAlert";
+import SuccessAlert from "../../components/common/Alert/SuccessAlert";
+import DeleteAlert from "../../components/common/Alert/DeleteAlert";
 import { AppContext } from "../../context/state";
-import TransitionButton from "../../components/Button/TransitionButton";
+import TransitionButton from "../../components/common/Button/TransitionButton";
 import { useRouter } from "next/router";
 
 const Favorites = () => {
@@ -32,7 +32,7 @@ const Favorites = () => {
       turnoffNotification("Success");
       turnoffNotification("Delete");
     }, 1000);
-  }, []);
+  }, [turnoffNotification]);
 
   return (
     <>
