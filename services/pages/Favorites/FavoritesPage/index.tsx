@@ -1,14 +1,21 @@
-import { useEffect, useState, useContext } from "react";
-import { AppContext } from "../../../components/context/state";
 import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../../../components/context/state";
 
-const useFavoritesPage = () => {
+interface FavoritesPageStates {
+  favoriteLength: number;
+  handleClick: (link: string) => void;
+}
+
+type States = FavoritesPageStates;
+
+const useFavoritesPage = (): States => {
   const [favoriteLength, setFavoriteLength] = useState(0);
   const { favorites, handleLoading } = useContext(AppContext);
 
   const router = useRouter();
 
-  const handleClick = (link) => {
+  const handleClick = (link: string) => {
     handleLoading(true);
     router.replace(link);
   };
