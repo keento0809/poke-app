@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import Meta from "../../../Meta/Meta";
 import { useRouter } from "next/router";
-import { AppContext } from "../../../context/state";
+import { AppContext } from "../../../components/context/state";
 import TransitionButton from "../../../components/common/Button/TransitionButton";
 
 const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {

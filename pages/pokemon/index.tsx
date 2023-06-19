@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState, useContext } from "react";
-import { AppContext } from "../../context/state";
+import { AppContext } from "../../components/context/state";
 import Meta from "../../Meta/Meta";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";

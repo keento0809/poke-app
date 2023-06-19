@@ -1,4 +1,4 @@
-import { AppContext } from "../../context/state";
+import { AppContext } from "../../components/context/state";
 import { useContext } from "react";
 import PokemonDetail from "../detail/PokemonDetail";
 
