@@ -1,12 +1,12 @@
-import { useRef, useEffect, useState, useContext } from "react";
-import { AppContext } from "../../components/context/state";
-import Meta from "../../Meta/Meta";
 import Link from "next/link";
-import styles from "../../styles/Home.module.css";
-import PokemonDetail from "../../features/detail/PokemonDetail";
+import { useContext, useEffect, useRef, useState } from "react";
+import Meta from "../../Meta/Meta";
 import Backdrop from "../../components/common/Backdrop/Backdrop";
+import { AppContext } from "../../components/context/state";
+import PokemonDetail from "../../features/detail/PokemonDetail";
+import styles from "../../styles/Home.module.css";
 
-const Pokemon = ({ results, resultsData }) => {
+const Pokemons = ({ results, resultsData }) => {
   const [displayData, setDisplayData] = useState(resultsData);
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -167,4 +167,4 @@ export const getStaticProps = async () => {
   };
 };
 
-export default Pokemon;
+export default Pokemons;
