@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import Meta from "../../../Meta/Meta";
 import { useRouter } from "next/router";
 import { AppContext } from "../../../context/state";
-import TransitionButton from "../../../components/Button/TransitionButton";
+import TransitionButton from "../../../components/common/Button/TransitionButton";
 
 const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   const [isFavorite, setIsFavorite] = useState(false);

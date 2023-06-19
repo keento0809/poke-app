@@ -2,7 +2,7 @@ import { useEffect, useContext } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { AppContext } from "../context/state";
-import TransitionButton from "../components/Button/TransitionButton";
+import TransitionButton from "../components/common/Button/TransitionButton";
 import { useRouter } from "next/router";
 
 export default function Home() {

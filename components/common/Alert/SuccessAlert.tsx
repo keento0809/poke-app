@@ -1,4 +1,4 @@
-import { AppContext } from "../../context/state";
+import { AppContext } from "../../../context/state";
 import { useContext } from "react";
 
 const SuccessAlert = () => {

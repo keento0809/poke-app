@@ -2,7 +2,7 @@ import Meta from "../Meta/Meta";
 import Header from "./Header";
 import { useContext } from "react";
 import { AppContext } from "../context/state";
-import Backdrop from "../components/Backdrop/Backdrop";
+import Backdrop from "../components/common/Backdrop/Backdrop";
 
 const Layout = (props) => {
   const { loading } = useContext(AppContext);

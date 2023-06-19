@@ -4,7 +4,7 @@ import Meta from "../../Meta/Meta";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 import PokemonDetail from "../../features/detail/PokemonDetail";
-import Backdrop from "../../components/Backdrop/Backdrop";
+import Backdrop from "../../components/common/Backdrop/Backdrop";
 
 const Pokemon = ({ results, resultsData }) => {
   const [displayData, setDisplayData] = useState(resultsData);
@@ -45,7 +45,7 @@ const Pokemon = ({ results, resultsData }) => {
   useEffect(() => {
     isMain && handleToggleIsMain(true);
     handleLoading(false);
-  }, []);
+  }, [handleToggleIsMain, handleLoading, isMain]);
 
   useEffect(() => {
     loadCount > 12 && setIsShowcasedAll(true);

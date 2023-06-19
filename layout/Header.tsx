@@ -58,12 +58,12 @@ const Header = () => {
             )}
           </div>
           <div className="hidden w-full md:block md:w-auto" id="mobile-menu">
-            <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
-              {isMain && (
+            <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:font-medium">
+              {router.asPath !== "/" && (
                 <li onClick={handleJumpToFavorites}>
                   <a
                     href="#"
-                    className="block py-2 pr-4 pl-3 rounded text-purple-400 md:p-0 dark:text-white"
+                    className="block py-2 pr-4 pl-3 text-lg rounded text-purple-400 md:p-0 dark:text-white"
                     aria-current="page"
                   >
                     Favorites
