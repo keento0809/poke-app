@@ -1,5 +1,5 @@
 import FavoritesList from "../../../features/favorites/FavoritesList";
-import { useFavoritesPage } from "../../../services/pages/FavoritesPage";
+import { useFavoritesPage } from "../../../services/pages/Favorites/FavoritesPage";
 import TransitionButton from "../../common/Button/TransitionButton";
 
 const FavoritesPage: React.FC = () => {
@@ -18,7 +18,10 @@ const FavoritesPage: React.FC = () => {
         {favoriteLength > 0 && <FavoritesList />}
       </div>
       <div className="py-4 text-center">
-        <TransitionButton onClick={() => handleClick("/pokemon")} text="BACK" />
+        <TransitionButton
+          onClick={() => handleClick("/pokemons")}
+          text="BACK"
+        />
       </div>
 
       {/* // TODO: refactor this? */}

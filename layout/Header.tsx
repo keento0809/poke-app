@@ -24,7 +24,7 @@ const Header = () => {
         >
           <span
             className="flex items-center"
-            onClick={() => handleClick("/pokemon")}
+            onClick={() => handleClick("/pokemons")}
           >
             <span className="cursor-pointer self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               PokeApp

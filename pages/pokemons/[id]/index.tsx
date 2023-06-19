@@ -1,8 +1,8 @@
-import { useState, useEffect, useContext } from "react";
-import Meta from "../../../Meta/Meta";
 import { useRouter } from "next/router";
-import { AppContext } from "../../../components/context/state";
+import { useContext, useEffect, useState } from "react";
+import Meta from "../../../Meta/Meta";
 import TransitionButton from "../../../components/common/Button/TransitionButton";
+import { AppContext } from "../../../components/context/state";
 
 const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -50,18 +50,18 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
 
   const handleMovePreviousPokemon = () => {
     handleLoading(true);
-    router.push(`/pokemon/${fetchedPokemon.id - 1}`);
+    router.push(`/pokemons/${fetchedPokemon.id - 1}`);
   };
 
   const handleMoveNextPokemon = () => {
     handleLoading(true);
-    router.push(`/pokemon/${fetchedPokemon.id + 1}`);
+    router.push(`/pokemons/${fetchedPokemon.id + 1}`);
   };
 
   const handleJumpToPage = () => {
     handleLoading(true);
     router.push(
-      `/pokemon/${fixedEvolvesPokemon ? fixedEvolvesPokemon.id : ""}`
+      `/pokemons/${fixedEvolvesPokemon ? fixedEvolvesPokemon.id : ""}`
     );
   };
 

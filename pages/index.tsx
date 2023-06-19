@@ -1,9 +1,9 @@
-import { useEffect, useContext } from "react";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import { AppContext } from "../components/context/state";
-import TransitionButton from "../components/common/Button/TransitionButton";
 import { useRouter } from "next/router";
+import { useContext, useEffect } from "react";
+import TransitionButton from "../components/common/Button/TransitionButton";
+import { AppContext } from "../components/context/state";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const router = useRouter();
@@ -31,7 +31,7 @@ export default function Home() {
             Welcome to <a href="https://nextjs.org">PokeApp!</a>
           </h2>
           <TransitionButton
-            onClick={() => handleClick("/pokemon")}
+            onClick={() => handleClick("/pokemons")}
             text="Get started"
           />
         </div>
