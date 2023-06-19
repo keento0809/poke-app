@@ -1,7 +1,7 @@
 import Meta from "../Meta/Meta";
 import Header from "./Header";
 import { useContext } from "react";
-import { AppContext } from "../context/state";
+import { AppContext } from "../components/context/state";
 import Backdrop from "../components/common/Backdrop/Backdrop";
 
 const Layout = (props) => {

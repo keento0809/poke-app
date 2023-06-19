@@ -1,6 +1,6 @@
 import Layout from "../layout/Layout";
 import "../styles/globals.css";
-import { AppWrapper } from "../context/state";
+import { AppWrapper } from "../components/context/state";
 import { ThemeProvider } from "next-themes";
 
 function MyApp({ Component, pageProps }) {

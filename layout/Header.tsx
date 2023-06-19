@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import { AppContext } from "../context/state";
+import { AppContext } from "../components/context/state";
 
 const Header = () => {
   const router = useRouter();
