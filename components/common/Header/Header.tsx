@@ -6,7 +6,8 @@ import { AppContext } from "../../context/state";
 const Header = () => {
   const router = useRouter();
   const { isMain, handleLoading } = useContext(AppContext);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  console.log("i18n: ", i18n.language);
 
   const handleJumpToFavorites = () => {
     router.push("/favorites");

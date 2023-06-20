@@ -1,4 +1,6 @@
-const SearchInput = () => {
+interface Props {}
+
+const SearchInput = ({ searchInputRef, handleSearch }) => {
   return (
     <div className="relative ml-auto mr-auto">
       <div className="flex absolute inset-y-0 left-0 items-center pl-3 cursor-pointer">

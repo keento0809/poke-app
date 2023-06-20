@@ -1,5 +1,6 @@
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import PokemonDetail from "../../../features/detail/PokemonDetail";
 import { usePokemonsPage } from "../../../services/pages/Pokemons/PokemonsPage";
 import styles from "../../../styles/Home.module.css";
@@ -19,7 +20,11 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
     searchInputRef,
     searchResults,
   } = usePokemonsPage({ results, resultsData });
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const router = useRouter();
+  const handleChangeLanguageTest = () => {
+    i18n.changeLanguage(i18n.language === "en" ? "ja" : "en");
+  };
   return (
     <div className={styles.main}>
       <h2 className="text-xl pb-3 text-purple-400 font-bold">
@@ -100,6 +105,12 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
             {t("button.loadMoreButtonText")}
           </button>
         )}
+        <Link
+          href={router.pathname}
+          locale={i18n.language === "en" ? "ja" : "en"}
+        >
+          {t("button.changeLanguage")}
+        </Link>
       </div>
     </div>
   );

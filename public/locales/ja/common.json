@@ -1,5 +1,13 @@
 {
   "header": {
     "favorites": "お気に入り"
+  },
+  "searchBar": {
+    "title": "ポケモンを検索",
+    "placeHolder": "検索"
+  },
+  "button": {
+    "loadMoreButtonText": "もっと",
+    "changeLanguage": "Switch to English"
   }
 }
