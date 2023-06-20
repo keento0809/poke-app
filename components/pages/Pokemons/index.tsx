@@ -1,9 +1,9 @@
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import PokemonDetail from "../../../features/detail/PokemonDetail";
 import { usePokemonsPage } from "../../../services/pages/Pokemons/PokemonsPage";
 import styles from "../../../styles/Home.module.css";
+import BasicButton from "../../common/Button/BasicButton";
 // TODO: Need to fix type definition here
 interface Props {
   results: any;
@@ -20,11 +20,8 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
     searchInputRef,
     searchResults,
   } = usePokemonsPage({ results, resultsData });
-  const { t, i18n } = useTranslation();
-  const router = useRouter();
-  const handleChangeLanguageTest = () => {
-    i18n.changeLanguage(i18n.language === "en" ? "ja" : "en");
-  };
+  const { t } = useTranslation();
+
   return (
     <div className={styles.main}>
       <h2 className="text-xl pb-3 text-purple-400 font-bold">
@@ -95,15 +92,12 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
             })}
         </div>
         {!isSearching && (
-          <button
+          <BasicButton
             disabled={isShowcasedAll}
             onClick={handleLoadMore}
-            className={`mx-2 my-5 transition duration-150 ease-in-out hover:border-purple-500 hover:text-purple-500 rounded border border-purple-400 text-purple-400 px-8 py-3 text-sm  focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-purple-500 ${
-              isShowcasedAll && "opacity-40"
-            }`}
-          >
-            {t("button.loadMoreButtonText")}
-          </button>
+            text={t("button.loadMoreButtonText")}
+            styleProps={`${isShowcasedAll ? "opacity-40" : ""}`}
+          />
         )}
       </div>
     </div>

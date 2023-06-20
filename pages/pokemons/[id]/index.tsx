@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import Meta from "../../../Meta/Meta";
-import TransitionButton from "../../../components/common/Button/TransitionButton";
+import BasicButton from "../../../components/common/Button/BasicButton";
 import { AppContext } from "../../../components/context/state";
 
 const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
@@ -283,7 +283,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                       )}
                     </div>
                     <div className="py-4">
-                      <TransitionButton
+                      <BasicButton
                         onClick={handleJumpToPage}
                         text={fixedEvolvesPokemon ? "Detail" : "HOME"}
                       />

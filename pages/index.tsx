@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
-import TransitionButton from "../components/common/Button/TransitionButton";
+import BasicButton from "../components/common/Button/BasicButton";
 import { AppContext } from "../components/context/state";
 import styles from "../styles/Home.module.css";
 
@@ -30,7 +30,7 @@ export default function Home() {
           <h2 className="text-xl pb-2 text-purple-400 font-bold">
             Welcome to <a href="https://nextjs.org">PokeApp!</a>
           </h2>
-          <TransitionButton
+          <BasicButton
             onClick={() => handleClick("/pokemons")}
             text="Get started"
           />

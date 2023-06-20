@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 const LanguageToggleBar = () => {
   const router = useRouter();
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   return (
     <div className={`flex flex-row items-center`}>
       <div
