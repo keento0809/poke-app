@@ -2,7 +2,6 @@ import Link from "next/link";
 import PokemonDetail from "../../../features/detail/PokemonDetail";
 import { usePokemonsPage } from "../../../services/pages/Pokemons/PokemonsPage";
 import styles from "../../../styles/Home.module.css";
-
 // TODO: Need to fix type definition here
 interface Props {
   results: any;
@@ -18,6 +17,7 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
     isSearching,
     searchInputRef,
     searchResults,
+    t,
   } = usePokemonsPage({ results, resultsData });
   return (
     <div className={styles.main}>
@@ -100,7 +100,8 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
               isShowcasedAll && "opacity-40"
             }`}
           >
-            Load More
+            {/* Load More */}
+            {t("loadMoreButtonText")}
           </button>
         )}
       </div>

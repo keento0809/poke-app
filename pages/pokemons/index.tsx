@@ -1,3 +1,5 @@
+import { GetServerSideProps } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Meta from "../../Meta/Meta";
 import PokemonsPage from "../../components/pages/Pokemons";
 
@@ -15,7 +17,7 @@ const Pokemons: React.FC<Props> = ({ results, resultsData }) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const res = await fetch(
     `${process.env.BASE_POKE_API_ENDPOINT}/?offset=0&limit=251`
   );
@@ -30,6 +32,7 @@ export const getStaticProps = async () => {
   }
   return {
     props: {
+      ...(await serverSideTranslations(locale, ["common", "pokemons"])),
       results,
       resultsData,
     },

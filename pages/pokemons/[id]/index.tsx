@@ -1,3 +1,4 @@
+import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import Meta from "../../../Meta/Meta";
@@ -296,7 +297,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   );
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const response = await fetch(
     `${process.env.BASE_POKE_API_ENDPOINT}/${params.id}`
   );
@@ -376,7 +377,7 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch(
     `${process.env.BASE_POKE_API_ENDPOINT}/?offset=0&limit=251`
   );

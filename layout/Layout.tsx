@@ -1,8 +1,8 @@
-import Meta from "../Meta/Meta";
-import Header from "./Header";
 import { useContext } from "react";
-import { AppContext } from "../components/context/state";
+import Meta from "../Meta/Meta";
 import Backdrop from "../components/common/Backdrop/Backdrop";
+import Header from "../components/common/Header/Header";
+import { AppContext } from "../components/context/state";
 
 const Layout = (props) => {
   const { loading } = useContext(AppContext);

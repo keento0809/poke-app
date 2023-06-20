@@ -1,3 +1,4 @@
+import { TFunction, useTranslation } from "next-i18next";
 import {
   MutableRefObject,
   useContext,
@@ -22,6 +23,7 @@ interface PokemonsPageStates {
   // TODO: fix these type definitions later
   displayData: any[];
   searchResults: any[];
+  t: TFunction<"common", undefined>;
 }
 
 type Props = PokemonsPageProps;
@@ -36,6 +38,7 @@ const usePokemonsPage = ({ results, resultsData }: Props): States => {
   const [isShowcasedAll, setIsShowcasedAll] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { isMain, handleToggleIsMain, handleLoading } = useContext(AppContext);
+  const { t } = useTranslation();
 
   const handleLoadMore = async () => {
     handleLoading(true);
@@ -79,6 +82,7 @@ const usePokemonsPage = ({ results, resultsData }: Props): States => {
     isShowcasedAll,
     displayData,
     searchResults,
+    t,
   };
 };
 

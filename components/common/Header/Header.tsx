@@ -1,10 +1,12 @@
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import { AppContext } from "../components/context/state";
+import { AppContext } from "../../context/state";
 
 const Header = () => {
   const router = useRouter();
   const { isMain, handleLoading } = useContext(AppContext);
+  const { t } = useTranslation();
 
   const handleJumpToFavorites = () => {
     router.push("/favorites");
@@ -17,7 +19,7 @@ const Header = () => {
 
   return (
     <>
-      <nav className="fixed top-0 w-full z-10 border-gray-200 px-6 md:px-8 py-2.5 rounded dark:bg-purple-800">
+      <nav className="fixed top-0 w-full z-10 border-gray-200 px-6 md:px-8 py-2.5 rounded">
         <div
           className="container flex flex-wrap justify-between items-center mx-auto"
           style={{ minHeight: "40px" }}
@@ -66,7 +68,7 @@ const Header = () => {
                     className="block py-2 pr-4 pl-3 text-lg rounded text-purple-400 md:p-0 dark:text-white"
                     aria-current="page"
                   >
-                    Favorites
+                    {t("header.favorites")}
                   </a>
                 </li>
               )}
