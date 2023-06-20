@@ -105,12 +105,6 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
             {t("button.loadMoreButtonText")}
           </button>
         )}
-        <Link
-          href={router.pathname}
-          locale={i18n.language === "en" ? "ja" : "en"}
-        >
-          {t("button.changeLanguage")}
-        </Link>
       </div>
     </div>
   );

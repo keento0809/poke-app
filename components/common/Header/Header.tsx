@@ -2,6 +2,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { AppContext } from "../../context/state";
+import LanguageToggleButton from "../Bar/LanguageToggleBar";
 
 const Header = () => {
   const router = useRouter();
@@ -61,19 +62,22 @@ const Header = () => {
             )}
           </div>
           <div className="hidden w-full md:block md:w-auto" id="mobile-menu">
-            <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:font-medium">
-              {router.asPath !== "/" && (
+            {router.asPath !== "/" && (
+              <ul className="flex flex-col mt-4 md:flex-row items-center md:space-x-8 md:mt-0 md:font-medium">
                 <li onClick={handleJumpToFavorites}>
                   <a
                     href="#"
-                    className="block py-2 pr-4 pl-3 text-lg rounded text-purple-400 md:p-0 dark:text-white"
+                    className="block py-2 pr-4 pl-3 text-md rounded text-purple-400 md:p-0 dark:text-white"
                     aria-current="page"
                   >
                     {t("header.favorites")}
                   </a>
                 </li>
-              )}
-            </ul>
+                <li>
+                  <LanguageToggleButton />
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </nav>

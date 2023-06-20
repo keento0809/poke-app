@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import Meta from "../../../Meta/Meta";
@@ -262,7 +263,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                     </div>
                     <div className="mx-auto pb-4">
                       {fixedEvolvesPokemon && (
-                        <img
+                        <Image
                           className="inline-block"
                           width="100px"
                           height="100px"
@@ -272,6 +273,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                                   .front_default
                               : ""
                           }`}
+                          alt="pokemon-img"
                         />
                       )}
                       {!fixedEvolvesPokemon && (
