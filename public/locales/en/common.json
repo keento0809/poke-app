@@ -2,5 +2,11 @@
   "header": {
     "favorites": "Favorites"
   },
-  "loadMoreButtonText": "Load More"
+  "searchBar": {
+    "title": "Search Pokemon",
+    "placeHolder": "Search"
+  },
+  "button": {
+    "loadMoreButtonText": "Load More"
+  }
 }

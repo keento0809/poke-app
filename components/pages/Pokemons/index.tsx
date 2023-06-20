@@ -1,3 +1,4 @@
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import PokemonDetail from "../../../features/detail/PokemonDetail";
 import { usePokemonsPage } from "../../../services/pages/Pokemons/PokemonsPage";
@@ -17,18 +18,14 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
     isSearching,
     searchInputRef,
     searchResults,
-    t,
   } = usePokemonsPage({ results, resultsData });
+  const { t } = useTranslation();
   return (
     <div className={styles.main}>
-      <h2 className="text-xl pb-3 text-purple-400 font-bold">Search Pokemon</h2>
+      <h2 className="text-xl pb-3 text-purple-400 font-bold">
+        {t("searchBar.title")}
+      </h2>
       <form className="w-10/12 max-w-345 md:max-w-500 xl:max-w-650 mx-auto">
-        <label
-          htmlFor="default-search"
-          className="mb-2 text-sm font-medium sr-only dark:text-gray-300 text-gray-900"
-        >
-          Search
-        </label>
         <div className="relative ml-auto mr-auto">
           <div className="flex absolute inset-y-0 left-0 items-center pl-3 cursor-pointer">
             <svg
@@ -52,7 +49,7 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
             onKeyUp={handleSearch}
             id="default-search"
             className="block p-4 pl-10 w-full mx-auto text-sm text-gray-900 rounded-lg border border-purple-400 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
-            placeholder="Search"
+            placeholder={t("searchBar.placeHolder")}
           />
         </div>
       </form>
@@ -100,8 +97,7 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
               isShowcasedAll && "opacity-40"
             }`}
           >
-            {/* Load More */}
-            {t("loadMoreButtonText")}
+            {t("button.loadMoreButtonText")}
           </button>
         )}
       </div>
