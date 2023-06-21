@@ -2,6 +2,9 @@
   "header": {
     "favorites": "Favorites"
   },
+  "topPage": {
+    "title": "Welcome to PokeApp!"
+  },
   "searchBar": {
     "title": "Search Pokemon",
     "placeHolder": "Search"

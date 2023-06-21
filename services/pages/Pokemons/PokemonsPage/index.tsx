@@ -35,7 +35,7 @@ const usePokemonsPage = ({ results, resultsData }: Props): States => {
   const [loadCount, setLoadCount] = useState(1);
   const [isShowcasedAll, setIsShowcasedAll] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const { isMain, handleToggleIsMain, handleLoading } = useContext(AppContext);
+  const { handleLoading } = useContext(AppContext);
 
   const handleLoadMore = async () => {
     handleLoading(true);
@@ -62,11 +62,6 @@ const usePokemonsPage = ({ results, resultsData }: Props): States => {
     });
     setSearchResults(searching);
   };
-
-  useEffect(() => {
-    isMain && handleToggleIsMain(true);
-    handleLoading(false);
-  }, [handleToggleIsMain, handleLoading, isMain]);
 
   useEffect(() => {
     loadCount > 12 && setIsShowcasedAll(true);

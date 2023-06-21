@@ -2,6 +2,9 @@
   "header": {
     "favorites": "お気に入り"
   },
+  "topPage": {
+    "title": "ようこそPokeAppへ!"
+  },
   "searchBar": {
     "title": "ポケモンを検索",
     "placeHolder": "検索"
