@@ -9,19 +9,21 @@ const FavoritesPage: React.FC = () => {
   return (
     <div className="pt-14 px-6 min-h-screen">
       <div className="pt-6 text-center">
-        <h2 className="text-xl font-bold text-purple-400">Favorites</h2>
+        <h2 className="text-xl font-bold text-purple-400">
+          {t("favoritesPage.title")}
+        </h2>
       </div>
       <div className="py-6 text-center">
         {favoriteLength === 0 && (
           <p className="pt-6 pb-4 font-bold text-purple-400">
-            No Pokemon found.
+            {t("favoritesPage.noPokemonText")}
           </p>
         )}
         {favoriteLength > 0 && <FavoritesList />}
       </div>
       <div className="py-4 text-center">
         <BasicButton
-          onClick={() => handleClick("/pokemons")}
+          onClick={() => handleClick()}
           text={t("button.backButtonText")}
         />
       </div>

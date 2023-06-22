@@ -2,6 +2,10 @@
   "header": {
     "favorites": "Favorites"
   },
+  "favoritesPage": {
+    "title": "Favorites",
+    "noPokemonText": "No Pokemon found."
+  },
   "topPage": {
     "title": "Welcome to PokeApp!"
   },

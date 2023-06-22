@@ -2,6 +2,10 @@
   "header": {
     "favorites": "お気に入り"
   },
+  "favoritesPage": {
+    "title": "お気に入り",
+    "noPokemonText": "ポケモンは見つかりませんでした。"
+  },
   "topPage": {
     "title": "ようこそPokeAppへ!"
   },

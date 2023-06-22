@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import {
   MutableRefObject,
   useContext,
@@ -36,6 +37,8 @@ const usePokemonsPage = ({ resultsData }: Props): States => {
   const [isShowcasedAll, setIsShowcasedAll] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { loading, handleLoading } = useContext(AppContext);
+  const router = useRouter();
+  const { q } = router.query;
 
   const handleLoadMore = async () => {
     handleLoading(true);
@@ -57,7 +60,7 @@ const usePokemonsPage = ({ resultsData }: Props): States => {
     }
     await setDisplayData([...displayData, ...additionalData]);
     await setLoadCount((prevState) => prevState + 1);
-    await handleLoading(false);
+    handleLoading(false);
   };
 
   const handleSearch = () => {
@@ -68,10 +71,6 @@ const usePokemonsPage = ({ resultsData }: Props): States => {
     });
     setSearchResults(searching);
   };
-
-  useEffect(() => {
-    loading && handleLoading(false);
-  }, [loading, handleLoading]);
 
   useEffect(() => {
     loadCount > 12 && setIsShowcasedAll(true);

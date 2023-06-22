@@ -23,9 +23,19 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
 
   useEffect(() => {
     const favList = favorites;
+
+    const checkInFavorite = (favList) => {
+      for (const index in favList) {
+        if (favList[index].name === fetchedPokemon.name) {
+          setIsFavorite(true);
+          break;
+        }
+      }
+    };
+
     setIsFavorite(false);
     checkInFavorite(favList);
-  }, [fetchedPokemon.id, favorites]);
+  }, [fetchedPokemon.id, favorites, fetchedPokemon.name]);
 
   const handleAddToFavorite = () => {
     setIsFavorite(true);
@@ -39,15 +49,6 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
     removeFavorite(fetchedPokemon);
     router.push("/favorites");
     setNotification("Delete");
-  };
-
-  const checkInFavorite = (favList) => {
-    for (const index in favList) {
-      if (favList[index].name === fetchedPokemon.name) {
-        setIsFavorite(true);
-        break;
-      }
-    }
   };
 
   const handleMovePreviousPokemon = () => {
