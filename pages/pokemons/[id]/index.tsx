@@ -1,7 +1,9 @@
+import { GetStaticPaths, GetStaticProps } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import Meta from "../../../Meta/Meta";
-import TransitionButton from "../../../components/common/Button/TransitionButton";
+import BasicButton from "../../../components/common/Button/BasicButton";
 import { AppContext } from "../../../components/context/state";
 
 const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
@@ -17,13 +19,23 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
 
   useEffect(() => {
     handleLoading(false);
-  }, [router.asPath]);
+  }, [router.asPath, handleLoading]);
 
   useEffect(() => {
     const favList = favorites;
+
+    const checkInFavorite = (favList) => {
+      for (const index in favList) {
+        if (favList[index].name === fetchedPokemon.name) {
+          setIsFavorite(true);
+          break;
+        }
+      }
+    };
+
     setIsFavorite(false);
     checkInFavorite(favList);
-  }, [fetchedPokemon.id]);
+  }, [fetchedPokemon.id, favorites, fetchedPokemon.name]);
 
   const handleAddToFavorite = () => {
     setIsFavorite(true);
@@ -37,15 +49,6 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
     removeFavorite(fetchedPokemon);
     router.push("/favorites");
     setNotification("Delete");
-  };
-
-  const checkInFavorite = (favList) => {
-    for (const index in favList) {
-      if (favList[index].name === fetchedPokemon.name) {
-        setIsFavorite(true);
-        break;
-      }
-    }
   };
 
   const handleMovePreviousPokemon = () => {
@@ -173,7 +176,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                         width="300px"
                         height="300px"
                         src={fetchedPokemon.sprites.other.home.front_default}
-                        alt=""
+                        alt="pokemon-img"
                       />
                     </div>
                     <span
@@ -271,6 +274,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                                   .front_default
                               : ""
                           }`}
+                          alt="pokemon-img"
                         />
                       )}
                       {!fixedEvolvesPokemon && (
@@ -280,7 +284,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                       )}
                     </div>
                     <div className="py-4">
-                      <TransitionButton
+                      <BasicButton
                         onClick={handleJumpToPage}
                         text={fixedEvolvesPokemon ? "Detail" : "HOME"}
                       />
@@ -296,7 +300,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   );
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const response = await fetch(
     `${process.env.BASE_POKE_API_ENDPOINT}/${params.id}`
   );
@@ -370,13 +374,14 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     props: {
+      ...(await serverSideTranslations(locale, ["common", "pokemons"])),
       fetchedPokemon,
       fixedEvolvesPokemon,
     },
   };
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const response = await fetch(
     `${process.env.BASE_POKE_API_ENDPOINT}/?offset=0&limit=251`
   );
@@ -385,7 +390,20 @@ export const getStaticPaths = async () => {
   const ids = allData.results.map((data) =>
     data.url.substring(34, data.url.length - 1)
   );
-  const paths = ids.map((id) => ({ params: { id: id.toString() } }));
+  const paths = ids
+    .map((id) => {
+      return locales.map((locale) => {
+        return {
+          params: {
+            id,
+            type: id,
+          },
+          locale,
+        };
+      });
+    })
+    .flat();
+  // const paths = ids.map((id) => ({ params: { id: id.toString() } }));
 
   return {
     paths,

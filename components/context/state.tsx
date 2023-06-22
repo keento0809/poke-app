@@ -1,25 +1,24 @@
 import { createContext, useState } from "react";
-import { AppContextType } from "../../types/appContext";
+
+type AppContextType = {
+  favorites: any[];
+  addFavorite: (_pokemon: any) => void;
+  removeFavorite: (_pokemon: any) => void;
+  isNotify: boolean;
+  deleteNotify: boolean;
+  setNotification: (_type: string) => void;
+  turnoffNotification: (_type: string) => void;
+  loading: boolean;
+  handleLoading: (_boolean: boolean) => void;
+};
 
 export const AppContext = createContext<AppContextType | null>(null);
 
 export function AppWrapper({ children }) {
   const [favorites, setFavorites] = useState([]);
-  const [isMain, setIsMain] = useState(false);
   const [isNotify, setIsNotify] = useState(false);
   const [loading, setLoading] = useState(false);
   const [deleteNotify, setDeleteNotify] = useState(false);
-  const [booleans, setBooleans] = useState({
-    isMain: false,
-    loading: false,
-  });
-
-  const handleSetBooleans = (name, bool) => {
-    setBooleans({
-      ...booleans,
-      [name]: bool,
-    });
-  };
 
   const handleAddFavorite = (pokemon) => {
     setFavorites([...favorites, pokemon]);
@@ -59,28 +58,20 @@ export function AppWrapper({ children }) {
     }
   };
 
-  const handleToggleIsMain = (boolean) => {
-    setIsMain(boolean);
-  };
-
-  const handleLoading = (boolean) => {
+  const handleLoading = (boolean: boolean) => {
     setLoading(boolean);
   };
 
-  const sharedState = {
+  const sharedState: AppContextType = {
     favorites,
-    booleans,
     addFavorite: handleAddFavorite,
     removeFavorite: handleRemoveFavorite,
     isNotify,
     deleteNotify,
     setNotification: handleSetNotification,
     turnoffNotification: handleTurnoffNotification,
-    isMain,
-    handleToggleIsMain,
     loading,
     handleLoading,
-    setBooleans: handleSetBooleans,
   };
 
   return (

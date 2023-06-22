@@ -1,0 +1,33 @@
+{
+  "header": {
+    "favorites": "お気に入り"
+  },
+  "favoritesPage": {
+    "title": "お気に入り",
+    "noPokemonText": "ポケモンは見つかりませんでした。"
+  },
+  "pokemonDetailPage": {
+    "weight": "重さ",
+    "height": "高さ",
+    "hp": "HP",
+    "attack": "攻撃",
+    "defense": "防御",
+    "special-attack": "特攻",
+    "special-defense": "特防",
+    "speed": "素早さ",
+    "evolution": "進化",
+    "noEvolutionText": "このポケモンは進化しません"
+  },
+  "topPage": {
+    "title": "ようこそPokeAppへ!"
+  },
+  "searchBar": {
+    "title": "ポケモンを検索",
+    "placeHolder": "検索"
+  },
+  "button": {
+    "backButtonText": "戻る",
+    "loadMoreButtonText": "もっと",
+    "changeLanguage": "EN"
+  }
+}

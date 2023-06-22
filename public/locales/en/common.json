@@ -1,0 +1,33 @@
+{
+  "header": {
+    "favorites": "Favorites"
+  },
+  "favoritesPage": {
+    "title": "Favorites",
+    "noPokemonText": "No Pokemon found."
+  },
+  "pokemonDetailPage": {
+    "weight": "Weight",
+    "height": "Height",
+    "hp": "HP",
+    "attack": "Attack",
+    "defense": "Defense",
+    "special-attack": "Special-attack",
+    "special-defense": "Special-defense",
+    "speed": "Speed",
+    "evolution": "Evolution",
+    "noEvolutionText": "This Pokemon has No evolution"
+  },
+  "topPage": {
+    "title": "Welcome to PokeApp!"
+  },
+  "searchBar": {
+    "title": "Search Pokemon",
+    "placeHolder": "Search"
+  },
+  "button": {
+    "backButtonText": "Back",
+    "loadMoreButtonText": "Load More",
+    "changeLanguage": "JP"
+  }
+}

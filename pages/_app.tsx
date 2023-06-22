@@ -1,7 +1,8 @@
+import { appWithTranslation } from "next-i18next";
+import { ThemeProvider } from "next-themes";
+import { AppWrapper } from "../components/context/state";
 import Layout from "../layout/Layout";
 import "../styles/globals.css";
-import { AppWrapper } from "../components/context/state";
-import { ThemeProvider } from "next-themes";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -17,4 +18,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

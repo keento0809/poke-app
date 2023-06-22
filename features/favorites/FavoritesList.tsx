@@ -1,6 +1,6 @@
-import { AppContext } from "../../components/context/state";
 import { useContext } from "react";
-import PokemonDetail from "../detail/PokemonDetail";
+import { AppContext } from "../../components/context/state";
+import PokemonImageCard from "../detail/PokemonImageCard";
 
 const FavoritesList = () => {
   const { favorites } = useContext(AppContext);
@@ -13,9 +13,8 @@ const FavoritesList = () => {
               className="py-3 basis-4/12 md:basis-3/12 xl:basis-1/5"
               key={index}
             >
-              <PokemonDetail
+              <PokemonImageCard
                 pokemonId={pokemon.id}
-                type={pokemon.types[0].type.name}
                 image={pokemon.sprites.other.home.front_default}
               />
             </div>
