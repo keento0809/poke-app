@@ -15,7 +15,6 @@ const FavoritesList = () => {
             >
               <PokemonImageCard
                 pokemonId={pokemon.id}
-                type={pokemon.types[0].type.name}
                 image={pokemon.sprites.other.home.front_default}
               />
             </div>
