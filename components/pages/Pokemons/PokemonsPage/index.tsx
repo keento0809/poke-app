@@ -1,9 +1,9 @@
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import PokemonDetail from "../../../features/detail/PokemonDetail";
-import { usePokemonsPage } from "../../../services/pages/Pokemons/PokemonsPage";
-import styles from "../../../styles/Home.module.css";
-import BasicButton from "../../common/Button/BasicButton";
+import PokemonDetail from "../../../../features/detail/PokemonDetail";
+import { usePokemonsPage } from "../../../../services/pages/Pokemons/PokemonsPage";
+import styles from "../../../../styles/Home.module.css";
+import BasicButton from "../../../common/Button/BasicButton";
 // TODO: Need to fix type definition here
 interface Props {
   results: any;

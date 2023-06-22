@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import Image from "next/image";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import Meta from "../../../Meta/Meta";
@@ -175,7 +175,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                         width="300px"
                         height="300px"
                         src={fetchedPokemon.sprites.other.home.front_default}
-                        alt=""
+                        alt="pokemon-img"
                       />
                     </div>
                     <span
@@ -263,7 +263,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                     </div>
                     <div className="mx-auto pb-4">
                       {fixedEvolvesPokemon && (
-                        <Image
+                        <img
                           className="inline-block"
                           width="100px"
                           height="100px"
@@ -299,7 +299,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const response = await fetch(
     `${process.env.BASE_POKE_API_ENDPOINT}/${params.id}`
   );
@@ -373,6 +373,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
+      ...(await serverSideTranslations(locale, ["common", "pokemons"])),
       fetchedPokemon,
       fixedEvolvesPokemon,
     },

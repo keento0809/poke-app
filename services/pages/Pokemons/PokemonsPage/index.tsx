@@ -40,13 +40,15 @@ const usePokemonsPage = ({ results, resultsData }: Props): States => {
   const handleLoadMore = async () => {
     handleLoading(true);
     const additionalData = [];
+    console.log("おそらくここはok");
     for (
       let i = Number(loadCount) * 20 + 1;
       i <= Number(loadCount) * 20 + 20;
       i++
     ) {
-      const res = await fetch(`https://pokeapi.co/api/v2/pokemons/${i}`);
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
       const data = await res.json();
+      console.log("怪しい、", data);
       additionalData.push(data);
     }
     setDisplayData([...displayData, ...additionalData]);

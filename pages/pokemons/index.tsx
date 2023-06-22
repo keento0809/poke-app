@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Meta from "../../Meta/Meta";
-import PokemonsPage from "../../components/pages/Pokemons";
+import PokemonsPage from "../../components/pages/Pokemons/PokemonsPage";
 
 interface Props {
   results: any;

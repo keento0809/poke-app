@@ -50,7 +50,7 @@ const Header = () => {
                 <ul className="flex flex-col mt-4 md:flex-row items-center md:space-x-8 md:mt-0 md:font-medium">
                   <li onClick={handleJumpToFavorites}>
                     <span
-                      className="block py-2 pr-4 pl-3 text-md rounded text-purple-400 md:p-0 dark:text-white"
+                      className="block py-2 pr-4 pl-3 text-md rounded text-purple-400 md:p-0 dark:text-white cursor-pointer"
                       aria-current="page"
                     >
                       {t("header.favorites")}
