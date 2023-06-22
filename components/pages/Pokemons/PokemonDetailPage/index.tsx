@@ -1,3 +1,4 @@
+import { useTranslation } from "next-i18next";
 import { usePokemonDetailPage } from "../../../../services/pages/Pokemons/PokemonDetailPage";
 import BasicButton from "../../../common/Button/BasicButton";
 
@@ -18,6 +19,7 @@ const PokemonDetailPage: React.FC<Props> = ({
     handleRemoveFavorite,
     handleJumpToPage,
   } = usePokemonDetailPage({ fetchedPokemon, fixedEvolvesPokemon });
+  const { t } = useTranslation();
 
   return (
     <div className="pt-12">
@@ -146,7 +148,7 @@ const PokemonDetailPage: React.FC<Props> = ({
                         className="focus:outline-none focus:underline focus:text-gray-400 text-gray-800 hover:text-gray-400 cursor-pointer"
                       >
                         <p className=" dark:text-gray-100 text-sm leading-5">
-                          Weight
+                          {t("pokemonDetailPage.weight")}
                         </p>
                       </a>
                     </div>
@@ -172,7 +174,7 @@ const PokemonDetailPage: React.FC<Props> = ({
                         className="focus:outline-none focus:underline focus:text-gray-400 text-gray-800 hover:text-gray-400 cursor-pointer"
                       >
                         <p className=" dark:text-gray-100 text-sm leading-5">
-                          Height
+                          {t("pokemonDetailPage.height")}
                         </p>
                       </a>
                     </div>
@@ -209,7 +211,9 @@ const PokemonDetailPage: React.FC<Props> = ({
                 </div>
                 <div className="w-full lg:w-1/3 px-12 border-t lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
                   <div className="pb-3">
-                    <h3 className="text-xl dark:text-white">Evolution</h3>
+                    <h3 className="text-xl dark:text-white">
+                      {t("pokemonDetailPage.evolution")}
+                    </h3>
                   </div>
                   <div className="mx-auto pb-4">
                     {fixedEvolvesPokemon && (
@@ -228,7 +232,7 @@ const PokemonDetailPage: React.FC<Props> = ({
                     )}
                     {!fixedEvolvesPokemon && (
                       <div className="min-h-100 flex justify-center items-center">
-                        <p>This Pokemon has No evolution</p>
+                        <p>{t("pokemonDetailPage.noEvolutionText")}</p>
                       </div>
                     )}
                   </div>

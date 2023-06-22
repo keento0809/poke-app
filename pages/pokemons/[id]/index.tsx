@@ -381,7 +381,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const response = await fetch(
     `${process.env.BASE_POKE_API_ENDPOINT}/?offset=0&limit=251`
   );
@@ -390,7 +390,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const ids = allData.results.map((data) =>
     data.url.substring(34, data.url.length - 1)
   );
-  const paths = ids.map((id) => ({ params: { id: id.toString() } }));
+  const paths = ids
+    .map((id) => {
+      return locales.map((locale) => {
+        return {
+          params: {
+            id,
+            type: id,
+          },
+          locale,
+        };
+      });
+    })
+    .flat();
+  // const paths = ids.map((id) => ({ params: { id: id.toString() } }));
 
   return {
     paths,

@@ -4,7 +4,9 @@ import { useRouter } from "next/router";
 
 const LanguageToggleBar = () => {
   const router = useRouter();
+  const { id } = router.query;
   const { i18n } = useTranslation();
+
   return (
     <div className={`flex flex-row items-center`}>
       <div
@@ -12,7 +14,7 @@ const LanguageToggleBar = () => {
           i18n.language === "en" ? "text-slate-100" : "text-slate-500"
         }`}
       >
-        <Link href={router.pathname} locale="en">
+        <Link href={id ? router.asPath : router.pathname} locale="en">
           EN
         </Link>
       </div>
@@ -22,7 +24,7 @@ const LanguageToggleBar = () => {
           i18n.language === "ja" ? "text-slate-100" : "text-slate-500"
         }`}
       >
-        <Link href={router.pathname} locale="ja">
+        <Link href={id ? router.asPath : router.pathname} locale="ja">
           JP
         </Link>
       </div>

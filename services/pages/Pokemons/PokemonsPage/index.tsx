@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import {
   MutableRefObject,
   useContext,
@@ -37,8 +36,6 @@ const usePokemonsPage = ({ resultsData }: Props): States => {
   const [isShowcasedAll, setIsShowcasedAll] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { loading, handleLoading } = useContext(AppContext);
-  const router = useRouter();
-  const { q } = router.query;
 
   const handleLoadMore = async () => {
     handleLoading(true);
