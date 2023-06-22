@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <>
-      <nav className="fixed top-0 w-full z-10 border-gray-200 px-6 md:px-8 py-2.5 rounded">
+      <nav className="fixed top-0 w-full z-40 border-gray-200 px-6 md:px-8 py-2.5 rounded">
         <div
           className="container flex flex-wrap justify-between items-center mx-auto"
           style={{ minHeight: "40px" }}

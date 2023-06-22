@@ -1,6 +1,6 @@
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import PokemonDetail from "../../../../features/detail/PokemonDetail";
+import PokemonImageCard from "../../../../features/detail/PokemonImageCard";
 import { usePokemonsPage } from "../../../../services/pages/Pokemons/PokemonsPage";
 import styles from "../../../../styles/Home.module.css";
 import BasicButton from "../../../common/Button/BasicButton";
@@ -24,10 +24,10 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
 
   return (
     <div className={styles.main}>
-      <h2 className="text-xl pb-3 text-purple-400 font-bold">
+      <h2 className="text-2xl pb-6 text-purple-400 font-bold">
         {t("searchBar.title")}
       </h2>
-      <form className="w-10/12 max-w-345 md:max-w-500 xl:max-w-650 mx-auto">
+      <form className="w-10/12 max-w-[300px] mx-auto">
         <div className="relative ml-auto mr-auto">
           <div className="flex absolute inset-y-0 left-0 items-center pl-3 cursor-pointer">
             <svg
@@ -50,13 +50,13 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
             ref={searchInputRef}
             onKeyUp={handleSearch}
             id="default-search"
-            className="block p-4 pl-10 w-full mx-auto text-sm text-gray-900 rounded-lg border border-purple-400 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+            className="block p-2 pl-10 w-full mx-auto text-sm text-gray-900 rounded-lg border border-purple-400 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
             placeholder={t("searchBar.placeHolder")}
           />
         </div>
       </form>
       <div className="text-center">
-        <div className="overflow-scroll max-h-500 md:max-h-450 lg:max-h-420 my-6 flex flex-row flex-wrap">
+        <div className="my-6 flex flex-row flex-wrap">
           {isSearching &&
             searchResults.map((pokemon, index) => {
               const pokemonIndex = pokemon.url.substring(
@@ -82,7 +82,7 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
                   className="py-3 basis-4/12 md:basis-3/12 xl:basis-1/5"
                   key={index}
                 >
-                  <PokemonDetail
+                  <PokemonImageCard
                     pokemonId={pokemonIndex}
                     type={pokemon.types[0].type.name}
                     image={pokemon.sprites.other.home.front_default}

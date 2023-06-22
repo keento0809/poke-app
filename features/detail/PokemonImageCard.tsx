@@ -8,7 +8,7 @@ type Props = {
   image: string;
 };
 
-function PokemonDetail({ pokemonId, type, image }: Props) {
+function PokemonImageCard({ pokemonId, type, image }: Props) {
   const { handleLoading } = useContext(AppContext);
   const router = useRouter();
 
@@ -33,4 +33,4 @@ function PokemonDetail({ pokemonId, type, image }: Props) {
   );
 }
 
-export default PokemonDetail;
+export default PokemonImageCard;

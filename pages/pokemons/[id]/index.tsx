@@ -6,7 +6,7 @@ import Meta from "../../../Meta/Meta";
 import BasicButton from "../../../components/common/Button/BasicButton";
 import { AppContext } from "../../../components/context/state";
 
-const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
+const PokemonImageCard = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const {
     addFavorite,
@@ -397,4 +397,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export default PokemonDetail;
+export default PokemonImageCard;

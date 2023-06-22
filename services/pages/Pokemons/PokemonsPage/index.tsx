@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import { AppContext } from "../../../../components/context/state";
+import { INITIAL_LOAD_COUNT } from "../../../../constants";
 
 // TODO: fix these type definitions later
 interface PokemonsPageProps {
@@ -40,15 +41,15 @@ const usePokemonsPage = ({ results, resultsData }: Props): States => {
   const handleLoadMore = async () => {
     handleLoading(true);
     const additionalData = [];
-    console.log("おそらくここはok");
     for (
-      let i = Number(loadCount) * 20 + 1;
-      i <= Number(loadCount) * 20 + 20;
+      let i = loadCount * INITIAL_LOAD_COUNT + 1;
+      i <= loadCount * INITIAL_LOAD_COUNT + (INITIAL_LOAD_COUNT - 5);
       i++
     ) {
-      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_POKE_API_ENDPOINT}/${i}`
+      );
       const data = await res.json();
-      console.log("怪しい、", data);
       additionalData.push(data);
     }
     setDisplayData([...displayData, ...additionalData]);

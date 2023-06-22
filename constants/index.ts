@@ -1,0 +1,3 @@
+const INITIAL_LOAD_COUNT = 15;
+
+export { INITIAL_LOAD_COUNT };
