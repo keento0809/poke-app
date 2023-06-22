@@ -55,9 +55,9 @@ const usePokemonsPage = ({ resultsData }: Props): States => {
         image: data.sprites.other.home.front_default,
       });
     }
-    setDisplayData([...displayData, ...additionalData]);
-    setLoadCount((prevState) => prevState + 1);
-    handleLoading(false);
+    await setDisplayData([...displayData, ...additionalData]);
+    await setLoadCount((prevState) => prevState + 1);
+    await handleLoading(false);
   };
 
   const handleSearch = () => {

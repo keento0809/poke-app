@@ -1,9 +1,11 @@
+import { useTranslation } from "next-i18next";
 import FavoritesList from "../../../features/favorites/FavoritesList";
 import { useFavoritesPage } from "../../../services/pages/Favorites/FavoritesPage";
 import BasicButton from "../../common/Button/BasicButton";
 
 const FavoritesPage: React.FC = () => {
   const { favoriteLength, handleClick } = useFavoritesPage();
+  const { t } = useTranslation();
   return (
     <div className="pt-14 px-6 min-h-screen">
       <div className="pt-6 text-center">
@@ -18,7 +20,10 @@ const FavoritesPage: React.FC = () => {
         {favoriteLength > 0 && <FavoritesList />}
       </div>
       <div className="py-4 text-center">
-        <BasicButton onClick={() => handleClick("/pokemons")} text="BACK" />
+        <BasicButton
+          onClick={() => handleClick("/pokemons")}
+          text={t("button.backButtonText")}
+        />
       </div>
 
       {/* // TODO: refactor this? */}

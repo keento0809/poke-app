@@ -10,6 +10,7 @@
     "placeHolder": "検索"
   },
   "button": {
+    "backButtonText": "戻る",
     "loadMoreButtonText": "もっと",
     "changeLanguage": "EN"
   }

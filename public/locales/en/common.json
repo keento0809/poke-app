@@ -10,6 +10,7 @@
     "placeHolder": "Search"
   },
   "button": {
+    "backButtonText": "Back",
     "loadMoreButtonText": "Load More",
     "changeLanguage": "JP"
   }
