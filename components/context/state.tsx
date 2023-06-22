@@ -58,7 +58,7 @@ export function AppWrapper({ children }) {
     }
   };
 
-  const handleLoading = (boolean) => {
+  const handleLoading = (boolean: boolean) => {
     setLoading(boolean);
   };
 

@@ -5,39 +5,41 @@ import PokemonsPage from "../../components/pages/Pokemons/PokemonsPage";
 import { INITIAL_LOAD_COUNT } from "../../constants";
 
 interface Props {
-  results: any;
-  resultsData: any;
+  resultsData: ResultsData[];
 }
 
-const Pokemons: React.FC<Props> = ({ results, resultsData }) => {
+export interface ResultsData {
+  pokemonId: number;
+  name: string;
+  image: string;
+}
+
+const Pokemons: React.FC<Props> = ({ resultsData }) => {
   return (
     <>
       <Meta title="TOP" />
-      <PokemonsPage results={results} resultsData={resultsData} />
+      <PokemonsPage resultsData={resultsData} />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  const res = await fetch(
-    `${process.env.BASE_POKE_API_ENDPOINT}/?offset=0&limit=${INITIAL_LOAD_COUNT}`
-  );
-  const fetchedData = await res.json();
-  const results = fetchedData.results;
+  const resultsData: ResultsData[] = [];
 
-  const resultsData = [];
-
-  // results include only name of pokemon and url, so we need to fetch details about each pokemon
   for (let i = 1; i < INITIAL_LOAD_COUNT + 1; i++) {
     const res = await fetch(`${process.env.BASE_POKE_API_ENDPOINT}/${i}`);
-
     const data = await res.json();
-    resultsData.push(data);
+
+    resultsData.push({
+      pokemonId: data.id,
+      name: data.name,
+      image: data.sprites.other.home.front_default,
+    });
   }
+
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common", "pokemons"])),
-      results,
       resultsData,
     },
   };

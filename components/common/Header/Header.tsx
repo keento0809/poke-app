@@ -10,10 +10,6 @@ const Header = () => {
   const { handleLoading } = useContext(AppContext);
   const { t } = useTranslation();
 
-  const handleJumpToFavorites = () => {
-    router.push("/favorites");
-  };
-
   const handleClick = (link) => {
     handleLoading(true);
     router.replace(link);
@@ -41,14 +37,14 @@ const Header = () => {
                 aria-controls="mobile-menu"
                 aria-expanded="false"
               >
-                <FavoriteIconButton onClick={handleJumpToFavorites} />
+                <FavoriteIconButton onClick={() => router.push("/favorites")} />
               </div>
               <div
                 className="hidden w-full md:block md:w-auto"
                 id="mobile-menu"
               >
                 <ul className="flex flex-col mt-4 md:flex-row items-center md:space-x-8 md:mt-0 md:font-medium">
-                  <li onClick={handleJumpToFavorites}>
+                  <li onClick={() => router.push("/favorites")}>
                     <span
                       className="block py-2 pr-4 pl-3 text-md rounded text-purple-400 md:p-0 dark:text-white cursor-pointer"
                       aria-current="page"

@@ -6,7 +6,7 @@ import Meta from "../../../Meta/Meta";
 import BasicButton from "../../../components/common/Button/BasicButton";
 import { AppContext } from "../../../components/context/state";
 
-const PokemonImageCard = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
+const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const {
     addFavorite,
@@ -19,13 +19,13 @@ const PokemonImageCard = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
 
   useEffect(() => {
     handleLoading(false);
-  }, [router.asPath]);
+  }, [router.asPath, handleLoading]);
 
   useEffect(() => {
     const favList = favorites;
     setIsFavorite(false);
     checkInFavorite(favList);
-  }, [fetchedPokemon.id]);
+  }, [fetchedPokemon.id, favorites]);
 
   const handleAddToFavorite = () => {
     setIsFavorite(true);
@@ -397,4 +397,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export default PokemonImageCard;
+export default PokemonDetail;

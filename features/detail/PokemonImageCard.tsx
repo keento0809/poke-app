@@ -4,11 +4,10 @@ import { AppContext } from "../../components/context/state";
 
 type Props = {
   pokemonId: number;
-  type: string;
   image: string;
 };
 
-function PokemonImageCard({ pokemonId, type, image }: Props) {
+function PokemonImageCard({ pokemonId, image }: Props) {
   const { handleLoading } = useContext(AppContext);
   const router = useRouter();
 
@@ -20,15 +19,9 @@ function PokemonImageCard({ pokemonId, type, image }: Props) {
   return (
     <div
       onClick={handleJumpToPokemonDetailPage}
-      className={`cursor-pointer flex justify-center items-center rounded-lg pt-2 pb-4 transition-transform ${type}}`}
+      className="cursor-pointer flex justify-center items-center rounded-lg pt-2 pb-4 transition-transform hover:scale-50"
     >
-      <img
-        src={`${image}`}
-        alt=""
-        width="100px"
-        height="auto"
-        className="mx-auto"
-      />
+      <img src={`${image}`} alt="" width="100px" height="auto" />
     </div>
   );
 }

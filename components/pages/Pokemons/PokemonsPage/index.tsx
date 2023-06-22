@@ -1,16 +1,16 @@
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import PokemonImageCard from "../../../../features/detail/PokemonImageCard";
+import { ResultsData } from "../../../../pages/pokemons";
 import { usePokemonsPage } from "../../../../services/pages/Pokemons/PokemonsPage";
 import styles from "../../../../styles/Home.module.css";
 import BasicButton from "../../../common/Button/BasicButton";
-// TODO: Need to fix type definition here
+
 interface Props {
-  results: any;
-  resultsData: any;
+  resultsData: ResultsData[];
 }
 
-const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
+const PokemonsPage: React.FC<Props> = ({ resultsData }) => {
   const {
     displayData,
     handleLoadMore,
@@ -19,7 +19,7 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
     isSearching,
     searchInputRef,
     searchResults,
-  } = usePokemonsPage({ results, resultsData });
+  } = usePokemonsPage({ resultsData });
   const { t } = useTranslation();
 
   return (
@@ -76,16 +76,14 @@ const PokemonsPage: React.FC<Props> = ({ results, resultsData }) => {
             })}
           {!isSearching &&
             displayData.map((pokemon, index) => {
-              const pokemonIndex = pokemon.id;
               return (
                 <div
                   className="py-3 basis-4/12 md:basis-3/12 xl:basis-1/5"
                   key={index}
                 >
                   <PokemonImageCard
-                    pokemonId={pokemonIndex}
-                    type={pokemon.types[0].type.name}
-                    image={pokemon.sprites.other.home.front_default}
+                    pokemonId={pokemon.pokemonId}
+                    image={pokemon.image}
                   />
                 </div>
               );

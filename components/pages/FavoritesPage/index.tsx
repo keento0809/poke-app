@@ -9,7 +9,7 @@ const FavoritesPage: React.FC = () => {
       <div className="pt-6 text-center">
         <h2 className="text-xl font-bold text-purple-400">Favorites</h2>
       </div>
-      <div className="pt-6 text-center max-h-550 overflow-scroll">
+      <div className="py-6 text-center">
         {favoriteLength === 0 && (
           <p className="pt-6 pb-4 font-bold text-purple-400">
             No Pokemon found.
