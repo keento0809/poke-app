@@ -19,7 +19,7 @@ function PokemonImageCard({ pokemonId, image }: Props) {
   return (
     <div
       onClick={handleJumpToPokemonDetailPage}
-      className="cursor-pointer flex justify-center items-center rounded-lg pt-2 pb-4 transition-transform hover:scale-50"
+      className="cursor-pointer border border-transparent hover:border-purple-500 flex justify-center items-center rounded-lg pt-2 pb-4 transition-all hover:scale-50"
     >
       <img src={`${image}`} alt="" width="100px" height="auto" />
     </div>
