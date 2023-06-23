@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
@@ -16,6 +17,8 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
     favorites,
   } = useContext(AppContext);
   const router = useRouter();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     handleLoading(false);
@@ -197,7 +200,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                           className="focus:outline-none focus:underline focus:text-gray-400 text-gray-800 hover:text-gray-400 cursor-pointer"
                         >
                           <p className=" dark:text-gray-100 text-sm leading-5">
-                            Weight
+                            {t("pokemonDetailPage.weight")}
                           </p>
                         </a>
                       </div>
@@ -223,7 +226,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                           className="focus:outline-none focus:underline focus:text-gray-400 text-gray-800 hover:text-gray-400 cursor-pointer"
                         >
                           <p className=" dark:text-gray-100 text-sm leading-5">
-                            Height
+                            {t("pokemonDetailPage.height")}
                           </p>
                         </a>
                       </div>
@@ -252,7 +255,7 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                             {stats.base_stat}
                           </h2>
                           <h2 className="text-center text-sm text-gray-600 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal">
-                            {stats.stat.name}
+                            {t(`pokemonDetailPage.${stats.stat.name}`)}
                           </h2>
                         </div>
                       );
@@ -260,7 +263,9 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                   </div>
                   <div className="w-full lg:w-1/3 px-12 border-t lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
                     <div className="pb-3">
-                      <h3 className="text-xl dark:text-white">Evolution</h3>
+                      <h3 className="text-xl dark:text-white">
+                        {t("pokemonDetailPage.evolution")}
+                      </h3>
                     </div>
                     <div className="mx-auto pb-4">
                       {fixedEvolvesPokemon && (
@@ -279,14 +284,18 @@ const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
                       )}
                       {!fixedEvolvesPokemon && (
                         <div className="min-h-100 flex justify-center items-center">
-                          <p>This Pokemon has No evolution</p>
+                          <p>{t("pokemonDetailPage.noEvolutionText")}</p>
                         </div>
                       )}
                     </div>
                     <div className="py-4">
                       <BasicButton
                         onClick={handleJumpToPage}
-                        text={fixedEvolvesPokemon ? "Detail" : "HOME"}
+                        text={
+                          fixedEvolvesPokemon
+                            ? t("pokemonDetailPage.detailButton")
+                            : t("pokemonDetailPage.backButton")
+                        }
                       />
                     </div>
                   </div>
@@ -403,7 +412,6 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
       });
     })
     .flat();
-  // const paths = ids.map((id) => ({ params: { id: id.toString() } }));
 
   return {
     paths,

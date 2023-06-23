@@ -16,7 +16,9 @@
     "special-defense": "特防",
     "speed": "素早さ",
     "evolution": "進化",
-    "noEvolutionText": "このポケモンは進化しません"
+    "noEvolutionText": "このポケモンは進化しません",
+    "detailButton": "詳細",
+    "backButton": "戻る"
   },
   "topPage": {
     "title": "ようこそPokeAppへ!"
