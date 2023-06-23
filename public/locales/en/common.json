@@ -16,7 +16,9 @@
     "special-defense": "Special-defense",
     "speed": "Speed",
     "evolution": "Evolution",
-    "noEvolutionText": "This Pokemon has No evolution"
+    "noEvolutionText": "This Pokemon has No evolution",
+    "detailButton": "Detail",
+    "backButton": "Back"
   },
   "topPage": {
     "title": "Welcome to PokeApp!"
