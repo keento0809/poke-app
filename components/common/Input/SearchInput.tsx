@@ -1,7 +1,12 @@
 import { useTranslation } from "next-i18next";
 
 // TODO: Add props type later
-const SearchInput = ({ searchInputRef, handleSearch }) => {
+interface Props {
+  searchInputRef: any;
+  handleSearch: () => void;
+}
+
+const SearchInput: React.FC<Props> = ({ searchInputRef, handleSearch }) => {
   const { t } = useTranslation();
 
   return (

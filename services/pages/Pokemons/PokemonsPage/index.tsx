@@ -19,9 +19,7 @@ interface PokemonsPageStates {
   handleSearch: () => void;
   isSearching: boolean;
   isShowcasedAll: boolean;
-  // TODO: fix these type definitions later
   displayData: ResultsData[];
-  searchResults: any[];
 }
 
 type Props = PokemonsPageProps;
@@ -29,8 +27,9 @@ type Props = PokemonsPageProps;
 type States = PokemonsPageStates;
 
 const usePokemonsPage = ({ resultsData }: Props): States => {
+  const initialResultsData = resultsData;
+  console.log(initialResultsData);
   const [displayData, setDisplayData] = useState<ResultsData[]>(resultsData);
-  const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [loadCount, setLoadCount] = useState(1);
   const [isShowcasedAll, setIsShowcasedAll] = useState(false);
@@ -55,18 +54,23 @@ const usePokemonsPage = ({ resultsData }: Props): States => {
         image: data.sprites.other.home.front_default,
       });
     }
-    await setDisplayData([...displayData, ...additionalData]);
-    await setLoadCount((prevState) => prevState + 1);
+    setDisplayData([...displayData, ...additionalData]);
+    setLoadCount((prevState) => prevState + 1);
     handleLoading(false);
   };
 
   const handleSearch = () => {
+    setIsSearching(true);
     const inputValue = searchInputRef.current.value;
-    setIsSearching(inputValue.length > 0 ? true : false);
+    if (!(inputValue.length > 0)) {
+      setDisplayData(initialResultsData);
+      setIsSearching(false);
+      return;
+    }
     const searching = resultsData.filter((pokemon) => {
       return pokemon.name.includes(inputValue.toLowerCase());
     });
-    setSearchResults(searching);
+    setDisplayData(searching);
   };
 
   useEffect(() => {
@@ -80,7 +84,6 @@ const usePokemonsPage = ({ resultsData }: Props): States => {
     isSearching,
     isShowcasedAll,
     displayData,
-    searchResults,
   };
 };
 

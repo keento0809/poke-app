@@ -2,7 +2,7 @@ import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const LanguageToggleBar = () => {
+const LanguageToggleBar: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
   const { i18n } = useTranslation();
