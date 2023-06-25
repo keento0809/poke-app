@@ -9,7 +9,7 @@ const FavoritesPage: React.FC = () => {
   const { favoriteLength, handleClick } = useFavoritesPage();
   const { t } = useTranslation();
   const { favorites } = useContext(AppContext);
-  console.log(favorites);
+
   return (
     <div className="pt-14 px-6 min-h-screen">
       <div className="pt-6 text-center">
