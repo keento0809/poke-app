@@ -9,17 +9,11 @@ interface Props {
   pokemonData: PokemonData[];
 }
 
-export interface ResultsData {
-  pokemonId: number;
-  name: string;
-  image: string;
-}
-
 const Pokemons: React.FC<Props> = ({ pokemonData }) => {
   return (
     <>
       <Meta title="TOP" />
-      <PokemonsPage resultsData={pokemonData} />
+      <PokemonsPage pokemonData={pokemonData} />
     </>
   );
 };

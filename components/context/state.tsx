@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { ResultsData } from "../../pages/pokemons";
+import { PokemonData } from "../../types/pokemons";
 
 type AppContextType = {
   favorites: any[];
@@ -16,7 +16,7 @@ type AppContextType = {
 export const AppContext = createContext<AppContextType | null>(null);
 
 export function AppWrapper({ children }) {
-  const [favorites, setFavorites] = useState<ResultsData[]>([]);
+  const [favorites, setFavorites] = useState<PokemonData[]>([]);
   const [isNotify, setIsNotify] = useState(false);
   const [loading, setLoading] = useState(false);
   const [deleteNotify, setDeleteNotify] = useState(false);
