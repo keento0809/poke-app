@@ -27,14 +27,14 @@ type Props = PokemonsPageProps;
 type States = PokemonsPageStates;
 
 const usePokemonsPage = ({ resultsData }: Props): States => {
-  const initialResultsData = resultsData;
-  console.log(initialResultsData);
+  const [initialResultsData, setInitialResultsData] =
+    useState<ResultsData[]>(resultsData);
   const [displayData, setDisplayData] = useState<ResultsData[]>(resultsData);
   const [isSearching, setIsSearching] = useState(false);
   const [loadCount, setLoadCount] = useState(1);
   const [isShowcasedAll, setIsShowcasedAll] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const { loading, handleLoading } = useContext(AppContext);
+  const { handleLoading } = useContext(AppContext);
 
   const handleLoadMore = async () => {
     handleLoading(true);
@@ -54,6 +54,7 @@ const usePokemonsPage = ({ resultsData }: Props): States => {
         image: data.sprites.other.home.front_default,
       });
     }
+    setInitialResultsData([...displayData, ...additionalData]);
     setDisplayData([...displayData, ...additionalData]);
     setLoadCount((prevState) => prevState + 1);
     handleLoading(false);
@@ -67,7 +68,7 @@ const usePokemonsPage = ({ resultsData }: Props): States => {
       setIsSearching(false);
       return;
     }
-    const searching = resultsData.filter((pokemon) => {
+    const searching = displayData.filter((pokemon) => {
       return pokemon.name.includes(inputValue.toLowerCase());
     });
     setDisplayData(searching);

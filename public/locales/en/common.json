@@ -18,7 +18,9 @@
     "evolution": "Evolution",
     "noEvolutionText": "This Pokemon has No evolution",
     "detailButton": "Detail",
-    "backButton": "Back"
+    "backButton": "Back",
+    "previousTooltip": "Previous",
+    "nextTooltip": "Next"
   },
   "topPage": {
     "title": "Welcome to PokeApp!"

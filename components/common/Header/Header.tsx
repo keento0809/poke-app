@@ -2,8 +2,8 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { AppContext } from "../../context/state";
-import LanguageToggleButton from "../Bar/LanguageToggleBar";
 import FavoriteIconButton from "../Button/FavoriteIconButton";
+import LanguageToggleButton from "../Button/LanguageToggleButton";
 
 const Header: React.FC = () => {
   const router = useRouter();

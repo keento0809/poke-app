@@ -2,21 +2,32 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../../components/context/state";
 
-interface Props {
+interface PokemonDetailPageProps {
   fetchedPokemon: any;
   fixedEvolvesPokemon: any;
 }
 
-interface PokemonDetailPageStates {}
+interface PokemonDetailPageStates {
+  handleMovePreviousPokemon: () => void;
+  handleMoveNextPokemon: () => void;
+  isFavorite: boolean;
+  handleAddToFavorite: () => void;
+  handleRemoveFavorite: () => void;
+  handleJumpToPage: () => void;
+}
+
+type Props = PokemonDetailPageProps;
+
+type States = PokemonDetailPageStates;
 
 const usePokemonDetailPage = ({
   fetchedPokemon,
   fixedEvolvesPokemon,
-}: Props) => {
+}: Props): States => {
   const [isFavorite, setIsFavorite] = useState(false);
   const {
     addFavorite,
-    setNotification,
+    // setNotification,
     removeFavorite,
     handleLoading,
     favorites,
@@ -47,14 +58,14 @@ const usePokemonDetailPage = ({
     setIsFavorite(true);
     addFavorite(fetchedPokemon);
     router.push("/favorites");
-    setNotification("Success");
+    // setNotification("Success");
   };
 
   const handleRemoveFavorite = () => {
     setIsFavorite(false);
     removeFavorite(fetchedPokemon);
     router.push("/favorites");
-    setNotification("Delete");
+    // setNotification("Delete");
   };
 
   const handleMovePreviousPokemon = () => {
