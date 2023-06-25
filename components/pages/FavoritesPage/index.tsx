@@ -1,11 +1,14 @@
 import { useTranslation } from "next-i18next";
-import FavoritesList from "../../../features/favorites/FavoritesList";
+import { useContext } from "react";
 import { useFavoritesPage } from "../../../services/pages/Favorites/FavoritesPage";
 import BasicButton from "../../common/Button/BasicButton";
+import PokemonsList from "../../common/List/PokemonsList";
+import { AppContext } from "../../context/state";
 
 const FavoritesPage: React.FC = () => {
   const { favoriteLength, handleClick } = useFavoritesPage();
   const { t } = useTranslation();
+  const { favorites } = useContext(AppContext);
   return (
     <div className="pt-14 px-6 min-h-screen">
       <div className="pt-6 text-center">
@@ -19,7 +22,7 @@ const FavoritesPage: React.FC = () => {
             {t("favoritesPage.noPokemonText")}
           </p>
         )}
-        {favoriteLength > 0 && <FavoritesList />}
+        {favoriteLength > 0 && <PokemonsList pokemonsData={favorites} />}
       </div>
       <div className="py-4 text-center">
         <BasicButton

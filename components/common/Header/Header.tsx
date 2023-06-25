@@ -5,7 +5,7 @@ import { AppContext } from "../../context/state";
 import LanguageToggleButton from "../Bar/LanguageToggleBar";
 import FavoriteIconButton from "../Button/FavoriteIconButton";
 
-const Header = () => {
+const Header: React.FC = () => {
   const router = useRouter();
   const { handleLoading } = useContext(AppContext);
   const { t } = useTranslation();
