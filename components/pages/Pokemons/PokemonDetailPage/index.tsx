@@ -1,7 +1,9 @@
 import { useTranslation } from "next-i18next";
 import { usePokemonDetailPage } from "../../../../services/pages/Pokemons/PokemonDetailPage";
+import AbilityBar from "../../../common/Bar/AbilityBar";
 import BasicButton from "../../../common/Button/BasicButton";
 
+// TODO: Fix type definitions
 interface Props {
   fetchedPokemon: any;
   fixedEvolvesPokemon: any;
@@ -139,7 +141,7 @@ const PokemonDetailPage: React.FC<Props> = ({
                     </h2>
                   </span>
                   <div className="flex items-start">
-                    <div className="">
+                    <div className="min-w-[45px]">
                       <h2 className="text-gray-600 dark:text-gray-100 text-2xl leading-6 mb-2 text-center">
                         {fetchedPokemon.weight}
                       </h2>
@@ -165,7 +167,7 @@ const PokemonDetailPage: React.FC<Props> = ({
                         </p>
                       </a>
                     </div>
-                    <div className="">
+                    <div className="min-w-[45px]">
                       <h2 className="text-gray-600 dark:text-gray-100 text-2xl leading-6 mb-2 text-center">
                         {fetchedPokemon.height}
                       </h2>
@@ -184,13 +186,13 @@ const PokemonDetailPage: React.FC<Props> = ({
                   <div className="flex items-start justify-between">
                     {fetchedPokemon.types.map((pokemonType, index) => {
                       return (
-                        <a
+                        <span
                           key={index}
                           tab-index="0"
                           className="border border-purple-400 dark:border-purple-500 mx-4  bg-white text-gray-600 dark:text-gray-100 dark:bg-gray-700 rounded text-xs leading-3 py-2 px-3"
                         >
                           {pokemonType.type.name}
-                        </a>
+                        </span>
                       );
                     })}
                   </div>
@@ -198,13 +200,19 @@ const PokemonDetailPage: React.FC<Props> = ({
                 <div className="w-full lg:w-1/3 flex-col flex justify-center items-center px-12 py-8">
                   {fetchedPokemon.stats.map((stats, index) => {
                     return (
-                      <div key={index}>
-                        <h2 className="text-center text-2xl text-gray-800 dark:text-gray-100 font-medium tracking-normal">
-                          {stats.base_stat}
-                        </h2>
-                        <h2 className="text-center text-sm text-gray-600 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal">
-                          {stats.stat.name}
-                        </h2>
+                      <div
+                        className="w-full flex flex-col items-center"
+                        key={index}
+                      >
+                        <div className="w-full flex flex-row justify-between items-center">
+                          <h2 className="text-center text-sm text-gray-600 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal">
+                            {t(`pokemonDetailPage.${stats.stat.name}`)}
+                          </h2>
+                          <h2 className="text-center text-2xl text-gray-800 dark:text-gray-100 font-medium tracking-normal">
+                            {stats.base_stat}
+                          </h2>
+                        </div>
+                        <AbilityBar />
                       </div>
                     );
                   })}
@@ -239,7 +247,11 @@ const PokemonDetailPage: React.FC<Props> = ({
                   <div className="py-4">
                     <BasicButton
                       onClick={handleJumpToPage}
-                      text={fixedEvolvesPokemon ? "Detail" : "HOME"}
+                      text={
+                        fixedEvolvesPokemon
+                          ? t("pokemonDetailPage.detailButton")
+                          : t("pokemonDetailPage.backButton")
+                      }
                     />
                   </div>
                 </div>
