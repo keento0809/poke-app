@@ -18,7 +18,9 @@
     "evolution": "進化",
     "noEvolutionText": "このポケモンは進化しません",
     "detailButton": "詳細",
-    "backButton": "戻る"
+    "backButton": "戻る",
+    "previousTooltip": "前",
+    "nextTooltip": "次"
   },
   "topPage": {
     "title": "ようこそPokeAppへ!"

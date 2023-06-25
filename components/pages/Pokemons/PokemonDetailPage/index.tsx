@@ -1,7 +1,12 @@
+import { Tooltip } from "flowbite-react";
 import { useTranslation } from "next-i18next";
 import { usePokemonDetailPage } from "../../../../services/pages/Pokemons/PokemonDetailPage";
 import AbilityBar from "../../../common/Bar/AbilityBar";
 import BasicButton from "../../../common/Button/BasicButton";
+import FavoriteContainedStarIcon from "../../../common/Icons/FavoriteContainedStarIcon";
+import FavoriteOutlinedStarIcon from "../../../common/Icons/FavoriteOutlinedStarIcon";
+import LeftArrowIcon from "../../../common/Icons/LeftArrowIcon";
+import RightArrowIcon from "../../../common/Icons/RightArrowIcon";
 
 // TODO: Fix type definitions
 interface Props {
@@ -27,40 +32,24 @@ const PokemonDetailPage: React.FC<Props> = ({
     <div className="pt-12">
       <div className="px-6 pt-6 flex flex-row justify-around">
         {fetchedPokemon.id > 1 && (
-          <div onClick={handleMovePreviousPokemon} className="cursor-pointer">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 cursor-pointer transition duration-150 ease-in-out rounded-lg basis-1/3 min-w-120 border border-purple-400 hover:border-purple-500 dark:border-purple-500 dark:hover:border-purple-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </div>
+          <Tooltip
+            content={t("pokemonDetailPage.previousTooltip")}
+            placement="left"
+          >
+            <div onClick={handleMovePreviousPokemon} className="cursor-pointer">
+              <LeftArrowIcon />
+            </div>
+          </Tooltip>
         )}
         {fetchedPokemon.id < 251 && (
-          <div onClick={handleMoveNextPokemon} className="cursor-pointer">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 cursor-pointer transition duration-150 ease-in-out rounded-lg basis-1/3 min-w-120 border border-purple-400 hover:border-purple-500 dark:border-purple-500 dark:hover:border-purple-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </div>
+          <Tooltip
+            content={t("pokemonDetailPage.nextTooltip")}
+            placement="right"
+          >
+            <div onClick={handleMoveNextPokemon} className="cursor-pointer">
+              <RightArrowIcon />
+            </div>
+          </Tooltip>
         )}
       </div>
       <div className="text-center">
@@ -73,37 +62,13 @@ const PokemonDetailPage: React.FC<Props> = ({
                 }`}
               >
                 {!isFavorite && (
-                  <>
-                    <svg
-                      onClick={handleAddToFavorite}
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 cursor-pointer"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                  </>
+                  <FavoriteOutlinedStarIcon onClick={handleAddToFavorite} />
                 )}
                 {isFavorite && (
-                  <svg
-                    onClick={handleRemoveFavorite}
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 cursor-pointer"
-                    viewBox="0 0 20 20"
-                    fill="purple"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
+                  <FavoriteContainedStarIcon onClick={handleRemoveFavorite} />
                 )}
               </div>
-              {isFavorite && (
+              {/* {isFavorite && (
                 <div className="absolute top-0 right-0 px-2 py-2 rounded-lg border border-purple-300">
                   <svg
                     onClick={handleRemoveFavorite}
@@ -121,7 +86,7 @@ const PokemonDetailPage: React.FC<Props> = ({
                     />
                   </svg>
                 </div>
-              )}
+              )} */}
               <div className="flex flex-col lg:flex-row mx-auto dark:bg-gray-800 shadow-xl dark:shadow-gray-900 rounded">
                 <div className="w-full lg:w-1/3 px-12 flex flex-col items-center pt-5 pb-10">
                   <div className="">
