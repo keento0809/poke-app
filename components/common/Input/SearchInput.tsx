@@ -1,9 +1,9 @@
 import { useTranslation } from "next-i18next";
+import { MutableRefObject } from "react";
 import SearchIcon from "../Icons/SearchIcon";
 
-// TODO: Add props type later
 interface Props {
-  searchInputRef: any;
+  searchInputRef: MutableRefObject<HTMLInputElement>;
   handleSearch: () => void;
 }
 

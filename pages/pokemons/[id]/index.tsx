@@ -31,6 +31,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   );
   const fixedEvolution = await fixedEvolutionRes.json();
 
+  // TODO: fix this any type here
   let fixedEvolvesTo: any = "";
   let fixedEvolvesPokemon = "";
 

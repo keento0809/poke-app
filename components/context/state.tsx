@@ -2,9 +2,9 @@ import { createContext, useState } from "react";
 import { PokemonData } from "../../types/pokemons";
 
 type AppContextType = {
-  favorites: any[];
-  addFavorite: (_pokemon: any) => void;
-  removeFavorite: (_pokemon: any) => void;
+  favorites: PokemonData[];
+  addFavorite: (_pokemon: PokemonData) => void;
+  removeFavorite: (_pokemon: PokemonData) => void;
   isNotify: boolean;
   deleteNotify: boolean;
   setNotification: (_type: string) => void;
