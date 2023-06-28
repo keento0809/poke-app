@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Meta from "../../../Meta/Meta";
 import PokemonDetailPage from "../../../components/pages/Pokemons/PokemonDetailPage";
+import { OriginalPokemonData } from "../../../types/pokemons";
 
 const PokemonDetail = ({ fetchedPokemon, fixedEvolvesPokemon }) => {
   return (
@@ -24,7 +25,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   );
 
   const fetchedSpecies = await resSpecies.json();
-  const fetchedPokemon = await response.json();
+  const fetchedPokemon: OriginalPokemonData = await response.json();
 
   const fixedEvolutionRes = await fetch(
     `${fetchedSpecies.evolution_chain.url}`
@@ -32,7 +33,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const fixedEvolution = await fixedEvolutionRes.json();
 
   // TODO: fix this any type here
-  let fixedEvolvesTo: any = "";
+  let fixedEvolvesTo: string | any = "";
   let fixedEvolvesPokemon = "";
 
   let evolvesToRes;

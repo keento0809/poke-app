@@ -21,14 +21,8 @@ export function AppWrapper({ children }) {
   const [loading, setLoading] = useState(false);
   const [deleteNotify, setDeleteNotify] = useState(false);
 
-  const handleAddFavorite = (pokemon) => {
-    console.log(pokemon);
-    const addingPokemon = {
-      pokemonId: pokemon.id,
-      name: pokemon.name,
-      image: pokemon.sprites.other.home.front_default,
-    };
-    setFavorites([...favorites, addingPokemon]);
+  const handleAddFavorite = (pokemon: PokemonData) => {
+    setFavorites([...favorites, pokemon]);
   };
   const handleRemoveFavorite = (pokemon) => {
     const updatedFavorites = favorites.filter(

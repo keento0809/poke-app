@@ -69,11 +69,11 @@ const PokemonDetailPage: React.FC<Props> = ({
                 )}
               </div>
               <div className="flex flex-col lg:flex-row mx-auto dark:bg-gray-800 shadow-xl dark:shadow-gray-900 rounded">
-                <div className="w-full lg:w-1/3 px-12 flex flex-col items-center pt-5 pb-10">
+                <div className="w-full min-w-[364px] lg:w-1/3 px-12 flex flex-col items-center pt-5 pb-10">
                   <div className="">
                     <img
-                      width="300px"
-                      height="300px"
+                      className="max-w-[256px]"
+                      height="auto"
                       src={fetchedPokemon.sprites.other.home.front_default}
                       alt="pokemon-img"
                     />
@@ -87,7 +87,7 @@ const PokemonDetailPage: React.FC<Props> = ({
                     </h2>
                   </span>
                   <div className="flex items-start">
-                    <div className="min-w-[45px]">
+                    <div className="min-w-[57px]">
                       <h2 className="text-gray-600 dark:text-gray-100 text-2xl leading-6 mb-2 text-center">
                         {fetchedPokemon.weight}
                       </h2>
@@ -113,7 +113,7 @@ const PokemonDetailPage: React.FC<Props> = ({
                         </p>
                       </a>
                     </div>
-                    <div className="min-w-[45px]">
+                    <div className="min-w-[57px]">
                       <h2 className="text-gray-600 dark:text-gray-100 text-2xl leading-6 mb-2 text-center">
                         {fetchedPokemon.height}
                       </h2>
@@ -128,7 +128,7 @@ const PokemonDetailPage: React.FC<Props> = ({
                     </div>
                   </div>
                 </div>
-                <div className="w-full lg:w-1/3 px-12 border-t border-b lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
+                <div className="w-full min-w-[297px] lg:w-1/3 px-12 border-t border-b lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
                   <div className="flex items-start justify-between">
                     {fetchedPokemon.types.map((pokemonType, index) => {
                       return (
@@ -143,7 +143,7 @@ const PokemonDetailPage: React.FC<Props> = ({
                     })}
                   </div>
                 </div>
-                <div className="w-full lg:w-1/3 flex-col flex justify-center items-center px-12 py-8">
+                <div className="w-full min-w-[284px] lg:w-1/3 flex-col flex justify-center items-center px-12 py-8">
                   {fetchedPokemon.stats.map((stats, index) => {
                     return (
                       <div
@@ -158,12 +158,12 @@ const PokemonDetailPage: React.FC<Props> = ({
                             {stats.base_stat}
                           </h2>
                         </div>
-                        <AbilityBar />
+                        <AbilityBar abilityValue={stats.base_stat} />
                       </div>
                     );
                   })}
                 </div>
-                <div className="w-full lg:w-1/3 px-12 border-t lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
+                <div className="w-full min-w-[285px] lg:w-1/3 px-12 border-t lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
                   <div className="pb-3">
                     <h3 className="text-xl dark:text-white">
                       {t("pokemonDetailPage.evolution")}
