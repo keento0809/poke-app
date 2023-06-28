@@ -1,8 +1,8 @@
-import { ResultsData } from "../../../pages/pokemons";
+import { PokemonData } from "../../../types/pokemons";
 import PokemonImageCard from "../../pages/Pokemons/PokemonDetailPage/PokemonImageCard";
 
 interface Props {
-  pokemonsData: ResultsData[];
+  pokemonsData: PokemonData[];
 }
 
 const PokemonsList: React.FC<Props> = ({ pokemonsData }) => {

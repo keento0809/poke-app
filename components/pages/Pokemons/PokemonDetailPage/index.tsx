@@ -1,6 +1,7 @@
 import { Tooltip } from "flowbite-react";
 import { useTranslation } from "next-i18next";
 import { usePokemonDetailPage } from "../../../../services/pages/Pokemons/PokemonDetailPage";
+import { OriginalPokemonData } from "../../../../types/pokemons";
 import AbilityBar from "../../../common/Bar/AbilityBar";
 import BasicButton from "../../../common/Button/BasicButton";
 import FavoriteContainedStarIcon from "../../../common/Icons/FavoriteContainedStarIcon";
@@ -8,10 +9,9 @@ import FavoriteOutlinedStarIcon from "../../../common/Icons/FavoriteOutlinedStar
 import LeftArrowIcon from "../../../common/Icons/LeftArrowIcon";
 import RightArrowIcon from "../../../common/Icons/RightArrowIcon";
 
-// TODO: Fix type definitions
 interface Props {
-  fetchedPokemon: any;
-  fixedEvolvesPokemon: any;
+  fetchedPokemon: OriginalPokemonData;
+  fixedEvolvesPokemon: OriginalPokemonData;
 }
 
 const PokemonDetailPage: React.FC<Props> = ({
@@ -68,31 +68,12 @@ const PokemonDetailPage: React.FC<Props> = ({
                   <FavoriteContainedStarIcon onClick={handleRemoveFavorite} />
                 )}
               </div>
-              {/* {isFavorite && (
-                <div className="absolute top-0 right-0 px-2 py-2 rounded-lg border border-purple-300">
-                  <svg
-                    onClick={handleRemoveFavorite}
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 cursor-pointer"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                    />
-                  </svg>
-                </div>
-              )} */}
               <div className="flex flex-col lg:flex-row mx-auto dark:bg-gray-800 shadow-xl dark:shadow-gray-900 rounded">
-                <div className="w-full lg:w-1/3 px-12 flex flex-col items-center pt-5 pb-10">
+                <div className="w-full min-w-[364px] lg:w-1/3 px-12 flex flex-col items-center pt-5 pb-10">
                   <div className="">
                     <img
-                      width="300px"
-                      height="300px"
+                      className="max-w-[256px]"
+                      height="auto"
                       src={fetchedPokemon.sprites.other.home.front_default}
                       alt="pokemon-img"
                     />
@@ -106,7 +87,7 @@ const PokemonDetailPage: React.FC<Props> = ({
                     </h2>
                   </span>
                   <div className="flex items-start">
-                    <div className="min-w-[45px]">
+                    <div className="min-w-[57px]">
                       <h2 className="text-gray-600 dark:text-gray-100 text-2xl leading-6 mb-2 text-center">
                         {fetchedPokemon.weight}
                       </h2>
@@ -132,7 +113,7 @@ const PokemonDetailPage: React.FC<Props> = ({
                         </p>
                       </a>
                     </div>
-                    <div className="min-w-[45px]">
+                    <div className="min-w-[57px]">
                       <h2 className="text-gray-600 dark:text-gray-100 text-2xl leading-6 mb-2 text-center">
                         {fetchedPokemon.height}
                       </h2>
@@ -147,7 +128,7 @@ const PokemonDetailPage: React.FC<Props> = ({
                     </div>
                   </div>
                 </div>
-                <div className="w-full lg:w-1/3 px-12 border-t border-b lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
+                <div className="w-full min-w-[297px] lg:w-1/3 px-12 border-t border-b lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
                   <div className="flex items-start justify-between">
                     {fetchedPokemon.types.map((pokemonType, index) => {
                       return (
@@ -162,7 +143,7 @@ const PokemonDetailPage: React.FC<Props> = ({
                     })}
                   </div>
                 </div>
-                <div className="w-full lg:w-1/3 flex-col flex justify-center items-center px-12 py-8">
+                <div className="w-full min-w-[284px] lg:w-1/3 flex-col flex justify-center items-center px-12 py-8">
                   {fetchedPokemon.stats.map((stats, index) => {
                     return (
                       <div
@@ -177,12 +158,12 @@ const PokemonDetailPage: React.FC<Props> = ({
                             {stats.base_stat}
                           </h2>
                         </div>
-                        <AbilityBar />
+                        <AbilityBar abilityValue={stats.base_stat} />
                       </div>
                     );
                   })}
                 </div>
-                <div className="w-full lg:w-1/3 px-12 border-t lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
+                <div className="w-full min-w-[285px] lg:w-1/3 px-12 border-t lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r border-gray-300 flex flex-col items-center py-10">
                   <div className="pb-3">
                     <h3 className="text-xl dark:text-white">
                       {t("pokemonDetailPage.evolution")}

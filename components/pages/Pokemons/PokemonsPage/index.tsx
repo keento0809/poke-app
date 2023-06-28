@@ -1,6 +1,6 @@
 import { useTranslation } from "next-i18next";
+import { PokemonData } from "../../../../types/pokemons";
 // import Link from "next/link";
-import { ResultsData } from "../../../../pages/pokemons";
 import { usePokemonsPage } from "../../../../services/pages/Pokemons/PokemonsPage";
 import styles from "../../../../styles/Home.module.css";
 import BasicButton from "../../../common/Button/BasicButton";
@@ -8,10 +8,10 @@ import SearchInput from "../../../common/Input/SearchInput";
 import PokemonsList from "../../../common/List/PokemonsList";
 
 interface Props {
-  resultsData: ResultsData[];
+  pokemonData: PokemonData[];
 }
 
-const PokemonsPage: React.FC<Props> = ({ resultsData }) => {
+const PokemonsPage: React.FC<Props> = ({ pokemonData }) => {
   const {
     displayData,
     handleLoadMore,
@@ -19,7 +19,7 @@ const PokemonsPage: React.FC<Props> = ({ resultsData }) => {
     isShowcasedAll,
     isSearching,
     searchInputRef,
-  } = usePokemonsPage({ resultsData });
+  } = usePokemonsPage({ pokemonData });
   const { t } = useTranslation();
 
   return (

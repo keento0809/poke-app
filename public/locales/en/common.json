@@ -20,7 +20,24 @@
     "detailButton": "Detail",
     "backButton": "Back",
     "previousTooltip": "Previous",
-    "nextTooltip": "Next"
+    "nextTooltip": "Next",
+    "addFavoritesTooltip": "Add to favorites",
+    "removeFavoritesTooltip": "Remove from favorites"
+  },
+  "pokemonType": {
+    "electric": "electric",
+    "dark": "dark",
+    "dragon": "dragon",
+    "fighting": "fighting",
+    "fire": "fire",
+    "flying": "flying",
+    "ground": "ground",
+    "ice": "ice",
+    "normal": "normal",
+    "psychic": "psychic",
+    "rock": "rock",
+    "steel": "steel",
+    "water": "water"
   },
   "topPage": {
     "title": "Welcome to PokeApp!"

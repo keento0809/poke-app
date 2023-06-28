@@ -1,10 +1,10 @@
 import { createContext, useState } from "react";
-import { ResultsData } from "../../pages/pokemons";
+import { PokemonData } from "../../types/pokemons";
 
 type AppContextType = {
-  favorites: any[];
-  addFavorite: (_pokemon: any) => void;
-  removeFavorite: (_pokemon: any) => void;
+  favorites: PokemonData[];
+  addFavorite: (_pokemon: PokemonData) => void;
+  removeFavorite: (_pokemon: PokemonData) => void;
   isNotify: boolean;
   deleteNotify: boolean;
   setNotification: (_type: string) => void;
@@ -16,19 +16,13 @@ type AppContextType = {
 export const AppContext = createContext<AppContextType | null>(null);
 
 export function AppWrapper({ children }) {
-  const [favorites, setFavorites] = useState<ResultsData[]>([]);
+  const [favorites, setFavorites] = useState<PokemonData[]>([]);
   const [isNotify, setIsNotify] = useState(false);
   const [loading, setLoading] = useState(false);
   const [deleteNotify, setDeleteNotify] = useState(false);
 
-  const handleAddFavorite = (pokemon) => {
-    console.log(pokemon);
-    const addingPokemon = {
-      pokemonId: pokemon.id,
-      name: pokemon.name,
-      image: pokemon.sprites.other.home.front_default,
-    };
-    setFavorites([...favorites, addingPokemon]);
+  const handleAddFavorite = (pokemon: PokemonData) => {
+    setFavorites([...favorites, pokemon]);
   };
   const handleRemoveFavorite = (pokemon) => {
     const updatedFavorites = favorites.filter(

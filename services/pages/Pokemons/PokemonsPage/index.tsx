@@ -7,10 +7,10 @@ import {
 } from "react";
 import { AppContext } from "../../../../components/context/state";
 import { INITIAL_LOAD_COUNT } from "../../../../constants";
-import { ResultsData } from "../../../../pages/pokemons";
+import { PokemonData } from "../../../../types/pokemons";
 
 interface PokemonsPageProps {
-  resultsData: ResultsData[];
+  pokemonData: PokemonData[];
 }
 
 interface PokemonsPageStates {
@@ -19,17 +19,17 @@ interface PokemonsPageStates {
   handleSearch: () => void;
   isSearching: boolean;
   isShowcasedAll: boolean;
-  displayData: ResultsData[];
+  displayData: PokemonData[];
 }
 
 type Props = PokemonsPageProps;
 
 type States = PokemonsPageStates;
 
-const usePokemonsPage = ({ resultsData }: Props): States => {
-  const [initialResultsData, setInitialResultsData] =
-    useState<ResultsData[]>(resultsData);
-  const [displayData, setDisplayData] = useState<ResultsData[]>(resultsData);
+const usePokemonsPage = ({ pokemonData }: Props): States => {
+  const [initialPokemonData, setInitialPokemonData] =
+    useState<PokemonData[]>(pokemonData);
+  const [displayData, setDisplayData] = useState<PokemonData[]>(pokemonData);
   const [isSearching, setIsSearching] = useState(false);
   const [loadCount, setLoadCount] = useState(1);
   const [isShowcasedAll, setIsShowcasedAll] = useState(false);
@@ -38,7 +38,7 @@ const usePokemonsPage = ({ resultsData }: Props): States => {
 
   const handleLoadMore = async () => {
     handleLoading(true);
-    const additionalData: ResultsData[] = [];
+    const additionalData: PokemonData[] = [];
     for (
       let i = loadCount * INITIAL_LOAD_COUNT + 1;
       i <= loadCount * INITIAL_LOAD_COUNT + (INITIAL_LOAD_COUNT - 5);
@@ -54,7 +54,7 @@ const usePokemonsPage = ({ resultsData }: Props): States => {
         image: data.sprites.other.home.front_default,
       });
     }
-    setInitialResultsData([...displayData, ...additionalData]);
+    setInitialPokemonData([...displayData, ...additionalData]);
     setDisplayData([...displayData, ...additionalData]);
     setLoadCount((prevState) => prevState + 1);
     handleLoading(false);
@@ -64,7 +64,7 @@ const usePokemonsPage = ({ resultsData }: Props): States => {
     setIsSearching(true);
     const inputValue = searchInputRef.current.value;
     if (!(inputValue.length > 0)) {
-      setDisplayData(initialResultsData);
+      setDisplayData(initialPokemonData);
       setIsSearching(false);
       return;
     }

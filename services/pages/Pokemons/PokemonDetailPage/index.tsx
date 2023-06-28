@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../../components/context/state";
+import { OriginalPokemonData, PokemonData } from "../../../../types/pokemons";
 
 interface PokemonDetailPageProps {
-  fetchedPokemon: any;
-  fixedEvolvesPokemon: any;
+  fetchedPokemon: OriginalPokemonData;
+  fixedEvolvesPokemon: OriginalPokemonData;
 }
 
 interface PokemonDetailPageStates {
@@ -34,6 +35,12 @@ const usePokemonDetailPage = ({
   } = useContext(AppContext);
   const router = useRouter();
 
+  const fixedFetchedPokemon: PokemonData = {
+    pokemonId: fetchedPokemon.id,
+    name: fetchedPokemon.name,
+    image: fetchedPokemon.sprites.other.home.front_default,
+  };
+
   useEffect(() => {
     handleLoading(false);
   }, [router.asPath, handleLoading]);
@@ -56,14 +63,14 @@ const usePokemonDetailPage = ({
 
   const handleAddToFavorite = () => {
     setIsFavorite(true);
-    addFavorite(fetchedPokemon);
+    addFavorite(fixedFetchedPokemon);
     router.push("/favorites");
     // setNotification("Success");
   };
 
   const handleRemoveFavorite = () => {
     setIsFavorite(false);
-    removeFavorite(fetchedPokemon);
+    removeFavorite(fixedFetchedPokemon);
     router.push("/favorites");
     // setNotification("Delete");
   };
